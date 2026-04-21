@@ -417,5 +417,129 @@
             }
         }
     </script>
+    <style>
+    /* Estilos para el Login del Owner */
+    .login-overlay {
+        display: none; /* Oculto por defecto */
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.95);
+        z-index: 3000;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .login-box {
+        background: #111;
+        padding: 40px;
+        border: 2px solid var(--color-mostaza);
+        border-radius: 10px;
+        text-align: center;
+        width: 320px;
+        box-shadow: 0 0 20px rgba(209, 180, 100, 0.3);
+    }
+
+    .login-box h2 {
+        color: var(--color-mostaza);
+        margin-bottom: 25px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+    }
+
+    .login-box input {
+        width: 100%;
+        padding: 12px;
+        margin-bottom: 15px;
+        background: #222;
+        border: 1px solid #444;
+        color: white;
+        border-radius: 5px;
+        outline: none;
+    }
+
+    .login-box input:focus {
+        border-color: var(--color-mostaza);
+    }
+
+    .btn-login {
+        width: 100%;
+        background: var(--color-mostaza);
+        color: black;
+        border: none;
+        padding: 12px;
+        font-weight: bold;
+        cursor: pointer;
+        border-radius: 5px;
+        text-transform: uppercase;
+    }
+
+    /* Estilo para el panel de gestión que aparecerá después del login */
+    #panel-edicion {
+        display: none;
+        background: #1a1a1a;
+        border: 1px dashed var(--color-mostaza);
+        padding: 20px;
+        margin: 20px auto;
+        max-width: 1200px;
+        text-align: center;
+    }
+</style>
+
+<div id="login-owner" class="login-overlay">
+    <div class="login-box animate__animated animate__zoomIn">
+        <i class="fas fa-user-shield" style="font-size: 3rem; color: var(--color-mostaza); margin-bottom: 15px;"></i>
+        <h2>Acceso Owner</h2>
+        <input type="text" id="user-owner" placeholder="Usuario">
+        <input type="password" id="pass-owner" placeholder="Contraseña">
+        <button class="btn-login" onclick="validarAcceso()">Entrar</button>
+        <p id="error-login" style="color: red; font-size: 12px; margin-top: 10px; display: none;">Datos incorrectos, acceso denegado.</p>
+        <button onclick="cerrarLogin()" style="background:transparent; color:#666; border:none; margin-top:15px; cursor:pointer;">Cancelar</button>
+    </div>
+</div>
+
+<div id="panel-edicion" class="animate__animated animate__fadeIn">
+    <h2 style="color: var(--color-mostaza);">Bienvenido, Day Rojas</h2>
+    <p>Desde aquí podrás modificar las publicaciones del catálogo.</p>
+    <button class="btn-dorado" onclick="mostrarFormularioNuevo()">+ Agregar Nuevo Auto</button>
+    <button onclick="location.reload()" style="background:red; color:white; border:none; padding:5px 10px; margin-left:10px; cursor:pointer;">Cerrar Sesión</button>
+</div>
+
+<script>
+    // Nueva función para mostrar el login elegante
+    function activarAdmin() {
+        document.getElementById('login-owner').style.display = 'flex';
+    }
+
+    function cerrarLogin() {
+        document.getElementById('login-owner').style.display = 'none';
+    }
+
+    function validarAcceso() {
+        const user = document.getElementById('user-owner').value;
+        const pass = document.getElementById('pass-owner').value;
+        const errorMsg = document.getElementById('error-login');
+
+        // Validación exacta como pediste
+        if (user === "DAY ROJAS" && pass === "POTOMAC2026") {
+            document.getElementById('login-owner').style.display = 'none';
+            document.getElementById('panel-edicion').style.display = 'block';
+            alert("Acceso concedido. Bienvenido al panel de Brilla Auto Spa.");
+            
+            // Aquí habilitaremos los botones de "Editar" en las tarjetas
+            document.querySelectorAll('.btn-editar-admin').forEach(btn => btn.style.display = 'block');
+        } else {
+            errorMsg.style.display = 'block';
+            setTimeout(() => { errorMsg.style.display = 'none'; }, 3000);
+        }
+    }
+
+    // Función placeholder para el futuro
+    function mostrarFormularioNuevo() {
+        alert("Abriendo editor de publicaciones...");
+    }
+</script>
 </body>
 </html>

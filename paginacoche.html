@@ -1,0 +1,24 @@
+<div id="admin-panel" style="display:none; background: #f4f4f4; padding: 20px; border: 1px solid #ccc;">
+    <h3>Subir Nuevo Auto</h3>
+    <form id="carForm">
+        <input type="text" id="carImg" placeholder="Link de la imagen (URL)" required><br><br>
+        <input type="text" id="carName" placeholder="Marca y Modelo" required><br><br>
+        <input type="number" id="carPrice" placeholder="Precio ($)" required><br><br>
+        <textarea id="carDesc" placeholder="Características..."></textarea><br><br>
+        <button type="submit">Publicar Auto</button>
+    </form>
+</div>
+
+<button onclick="accesoOwner()" style="opacity: 0.1; position: fixed; bottom: 0;">.</button>
+
+<script>
+function accesoOwner() {
+    let pass = prompt("Introduce la clave de administrador:");
+    if (pass === "TU_CLAVE_AQUI") {
+        document.getElementById('admin-panel').style.display = 'block';
+        alert("Modo administrador activado");
+    } else {
+        alert("Acceso denegado");
+    }
+}
+</script>

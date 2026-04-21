@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Venta de Autos | Catálogo Profesional</title>
+    <style>
+        /* CSS: EL DISEÑO */
+        :root {
+            --color-principal: #1a1a1a; /* Negro elegante */
+            --color-acento: #e63946;    /* Rojo deportivo */
+            --color-fondo: #f4f4f4;
+            --color-texto: #333;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            background-color: var(--color-fondo);
+            color: var(--color-texto);
+        }
+
+        /* Navegación */
+        nav {
+            background: var(--color-principal);
+            color: white;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo { font-weight: bold; font-size: 1.5rem; color: var(--color-acento); }
+
+        /* Banner Principal */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1500&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+        }
+
+        /* Contenedor de Autos (Grid) */
+        .contenedor-autos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 40px 20px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        /* Tarjeta de Auto */
+        .tarjeta {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .tarjeta:hover { transform: translateY(-5px); }
+
+        .tarjeta img { width: 100%; height: 200px; object-fit: cover; }
+
+        .info { padding: 15px; }
+        .info h3 { margin: 0; font-size: 1.2rem; }
+        .precio { color: var(--color-acento); font-weight: bold; font-size: 1.3rem; margin: 10px 0; }
+        .detalles { font-size: 0.9rem; color: #666; }
+
+        /* Panel Admin */
+        #admin-panel {
+            background: white;
+            padding: 30px;
+            margin: 20px auto;
+            max-width: 600px;
+            border-radius: 10px;
+            display: none; /* Oculto por defecto */
+        }
+
+        form input, form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background: var(--color-acento);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        footer { text-align: center; padding: 20px; background: var(--color-principal); color: white; }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">MR. JOSE MOTORS</div>
+        <button onclick="activarAdmin()" style="background: transparent; border: 1px solid white; font-size: 10px;">Admin</button>
+    </nav>
+
+    <div class="hero">
+        <h1>Encuentra el auto de tus sueños</h1>
+        <p>Calidad, confianza y los mejores precios del mercado.</p>
+    </div>
+
+    <div id="admin-panel">
+        <h2>Subir Nuevo Vehículo</h2>
+        <form id="formAuto">
+            <input type="text" placeholder="URL de la imagen" required>
+            <input type="text" placeholder="Marca y Modelo" required>
+            <input type="text" placeholder="Año / Kilometraje" required>
+            <input type="number" placeholder="Precio ($)" required>
+            <textarea placeholder="Descripción adicional"></textarea>
+            <button type="submit">Publicar en el Catálogo</button>
+        </form>
+    </div>
+
+    <div class="contenedor-autos" id="catalogo">
+        <div class="tarjeta">
+            <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=800&q=80" alt="Auto">
+            <div class="info">
+                <h3>Porsche 911 Carrera</h3>
+                <p class="detalles">Modelo 2023 | 5,000 km</p>
+                <div class="precio">$120,000</div>
+                <button>Ver Detalles</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Mr. Jose Motors - Todos los derechos reservados</p>
+    </footer>
+
+    <script>
+        function activarAdmin() {
+            const clave = prompt("Introduce la clave de acceso:");
+            if (clave === "1234") { // Cambia esto por tu clave real
+                document.getElementById('admin-panel').style.display = 'block';
+                window.scrollTo(0, document.getElementById('admin-panel').offsetTop - 100);
+            } else {
+                alert("Clave incorrecta.");
+            }
+        }
+    </script>
+</body>
+</html>

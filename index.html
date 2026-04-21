@@ -36,34 +36,31 @@
         .hero {
             background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.9)), url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1500&q=80');
             background-size: cover; background-position: center;
-            height: 350px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;
+            height: 300px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;
         }
 
         /* CATALOGO */
         .seccion-autos { padding: 60px 20px; max-width: 1300px; margin: auto; }
         .contenedor-autos { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
         .tarjeta-auto { background: var(--color-gris-oscuro); border: 1px solid #333; border-radius: 8px; overflow: hidden; cursor: pointer; transition: 0.3s; }
-        .tarjeta-auto:hover { transform: translateY(-8px); border-color: var(--color-mostaza); }
         .tarjeta-auto img { width: 100%; height: 230px; object-fit: cover; border-bottom: 2px solid var(--color-mostaza); }
         .info-auto { padding: 20px; }
         .marca-modelo { font-size: 1.4rem; color: var(--color-mostaza); margin: 0; }
         .precio-auto { font-size: 1.8rem; font-weight: bold; margin-top: 15px; }
 
-        /* MODAL PREMIUM */
+        /* MODAL */
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 2000; overflow: auto; }
         .modal-content { background: #111; margin: 5% auto; padding: 40px; border: 1px solid var(--color-mostaza); width: 80%; max-width: 900px; border-radius: 8px; position: relative; }
         .close-modal { position: absolute; top: 15px; right: 25px; font-size: 28px; cursor: pointer; color: #aaa; }
-        .galeria-modal img { width: 100%; height: 400px; object-fit: cover; border-radius: 4px; border: 1px solid #333; }
         
-        /* BOTONES EDITAR (Solo visibles para DAY ROJAS) */
-        .btn-edit-inline { display: none; background: #222; color: var(--color-mostaza); border: 1px solid var(--color-mostaza); border-radius: 4px; padding: 4px 8px; font-size: 0.7rem; cursor: pointer; margin-left: 10px; }
-        .btn-edit-inline:hover { background: var(--color-mostaza); color: black; }
+        /* BOTONES EDITAR INLINE */
+        .btn-edit-inline { display: none; background: #222; color: var(--color-mostaza); border: 1px solid var(--color-mostaza); border-radius: 4px; padding: 2px 6px; font-size: 0.6rem; cursor: pointer; margin-left: 5px; vertical-align: middle; }
 
-        /* LOGIN OVERLAY */
+        /* LOGIN */
         .login-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.98); z-index: 3000; justify-content: center; align-items: center; }
         .login-box { background: #000; padding: 40px; border: 2px solid var(--color-mostaza); border-radius: 10px; text-align: center; width: 320px; }
         .login-box input { width: 100%; padding: 12px; margin-bottom: 15px; background: #111; border: 1px solid var(--color-mostaza); color: white; border-radius: 5px; box-sizing: border-box; }
-        #user-greeting { display: none; color: var(--color-mostaza); font-weight: bold; margin-right: 15px; }
+        #user-greeting { display: none; color: var(--color-mostaza); font-weight: bold; margin-right: 15px; font-size: 0.8rem; }
 
         footer { text-align: center; padding: 40px; border-top: 2px solid var(--color-mostaza); background: #000; color: #aaa; }
     </style>
@@ -81,26 +78,20 @@
         </div>
     </nav>
 
-    <div class="hero">
-        <h1>Servicio Premium</h1>
-        <p>Donde el lujo se encuentra con la potencia.</p>
-    </div>
-
     <div class="seccion-autos">
-        <h2 style="text-align:center; color:var(--color-mostaza);">CATÁLOGO EXCLUSIVO</h2>
-        <div class="contenedor-autos" id="catalogo-publico">
+        <div class="contenedor-autos">
             <div class="tarjeta-auto" onclick="abrirModal('corvette')">
-                <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=800&q=80">
+                <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=800">
                 <div class="info-auto">
-                    <p class="marca-modelo" id="card-titulo-corvette">Chevrolet Corvette Z06</p>
-                    <div class="precio-auto" id="card-precio-corvette">$150,000</div>
+                    <p class="marca-modelo" id="card-titulo-corvette">Cargando...</p>
+                    <div class="precio-auto" id="card-precio-corvette">...</div>
                 </div>
             </div>
             <div class="tarjeta-auto" onclick="abrirModal('ferrari')">
-                <img src="https://images.unsplash.com/photo-1583121274602-3e2820c69888?auto=format&fit=crop&w=800&q=80">
+                <img src="https://images.unsplash.com/photo-1583121274602-3e2820c69888?w=800">
                 <div class="info-auto">
-                    <p class="marca-modelo" id="card-titulo-ferrari">Ferrari F8 Tributo</p>
-                    <div class="precio-auto" id="card-precio-ferrari">$380,000</div>
+                    <p class="marca-modelo" id="card-titulo-ferrari">Cargando...</p>
+                    <div class="precio-auto" id="card-precio-ferrari">...</div>
                 </div>
             </div>
         </div>
@@ -115,62 +106,57 @@
 
     <div id="login-owner" class="login-overlay">
         <div class="login-box">
-            <i class="fas fa-crown" style="font-size: 3rem; color: var(--color-mostaza); margin-bottom: 15px;"></i>
-            <h2 style="color:var(--color-mostaza);">ACCESO PRIVADO</h2>
+            <h2 style="color:var(--color-mostaza);">ACCESO OWNER</h2>
             <input type="text" id="user-owner" placeholder="USUARIO">
             <input type="password" id="pass-owner" placeholder="CONTRASEÑA">
             <button onclick="validarAcceso()" style="background:var(--color-mostaza); border:none; padding:10px; width:100%; font-weight:bold; cursor:pointer;">ENTRAR</button>
-            <button onclick="document.getElementById('login-owner').style.display='none'" style="background:transparent; color:#666; border:none; margin-top:10px; cursor:pointer;">Cerrar</button>
+            <p onclick="document.getElementById('login-owner').style.display='none'" style="color:#666; cursor:pointer; margin-top:10px;">Cerrar</p>
         </div>
     </div>
-
-    <footer>
-        <p>&copy; 2024 BRILLA AUTO SPA - Exclusividad y Calidad</p>
-    </footer>
 
     <script>
         let esOwner = false;
         let autoActualId = "";
 
-        const catalogo = {
-            'corvette': {
-                titulo: 'Chevrolet Corvette Z06',
-                precio: '$150,000',
-                descripcion: 'Detallado de pintura premium de 3 etapas.',
-                modelo: '2024',
-                motor: '5.5L LT6 V8',
-                potencia: '670 HP'
-            },
-            'ferrari': {
-                titulo: 'Ferrari F8 Tributo',
-                precio: '$380,000',
-                descripcion: 'Homenaje al motor V8 más icónico.',
-                modelo: '2023',
-                motor: '3.9L Twin-Turbo V8',
-                potencia: '710 HP'
-            }
+        // BASE DE DATOS LOCAL
+        const defaultCatalogo = {
+            'corvette': { titulo: 'Chevrolet Corvette Z06', precio: '$150,000', descripcion: 'Pintura 3 etapas.', modelo: '2024', motor: '5.5L LT6 V8', potencia: '670 HP' },
+            'ferrari': { titulo: 'Ferrari F8 Tributo', precio: '$380,000', descripcion: 'Homenaje al motor V8.', modelo: '2023', motor: '3.9L Twin-Turbo V8', potencia: '710 HP' }
         };
+
+        // Cargar datos guardados o usar los de fábrica
+        let catalogo = JSON.parse(localStorage.getItem('brilla_spa_data')) || defaultCatalogo;
+
+        function guardarEnMemoria() {
+            localStorage.setItem('brilla_spa_data', JSON.stringify(catalogo));
+        }
+
+        function actualizarTarjetas() {
+            Object.keys(catalogo).forEach(id => {
+                document.getElementById('card-titulo-' + id).innerText = catalogo[id].titulo;
+                document.getElementById('card-precio-' + id).innerText = catalogo[id].precio;
+            });
+        }
 
         function abrirModal(id) {
             autoActualId = id;
             const auto = catalogo[id];
-            const displayBtn = esOwner ? 'inline-block' : 'none';
+            const btnStyle = esOwner ? 'inline-block' : 'none';
 
             document.getElementById('contenido-modal').innerHTML = `
-                <h2 style="color: var(--color-mostaza);">${auto.titulo} <button class="btn-edit-inline" style="display:${displayBtn}" onclick="editar('titulo')">EDITAR</button></h2>
-                <img src="${id === 'corvette' ? 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=1000' : 'https://images.unsplash.com/photo-1583121274602-3e2820c69888?w=1000'}" style="width:100%; border-radius:8px; margin-bottom:20px;">
+                <h2 style="color: var(--color-mostaza);">${auto.titulo} <button class="btn-edit-inline" style="display:${btnStyle}" onclick="editar('titulo')">EDITAR</button></h2>
                 <div style="display:grid; grid-template-columns: 1fr 1fr; gap:20px;">
                     <div>
-                        <h3>Descripción <button class="btn-edit-inline" style="display:${displayBtn}" onclick="editar('descripcion')">EDITAR</button></h3>
-                        <p id="desc-text">${auto.descripcion}</p>
-                        <h3>Precio <button class="btn-edit-inline" style="display:${displayBtn}" onclick="editar('precio')">EDITAR</button></h3>
+                        <h3>Descripción <button class="btn-edit-inline" style="display:${btnStyle}" onclick="editar('descripcion')">EDITAR</button></h3>
+                        <p>${auto.descripcion}</p>
+                        <h3>Precio <button class="btn-edit-inline" style="display:${btnStyle}" onclick="editar('precio')">EDITAR</button></h3>
                         <p style="font-size:1.5rem; color:var(--color-mostaza);">${auto.precio}</p>
                     </div>
                     <div style="background:#222; padding:20px; border-radius:8px;">
                         <h3>Ficha Técnica</h3>
-                        <p><strong>Modelo:</strong> ${auto.modelo} <button class="btn-edit-inline" style="display:${displayBtn}" onclick="editar('modelo')">EDITAR</button></p>
-                        <p><strong>Motor:</strong> ${auto.motor} <button class="btn-edit-inline" style="display:${displayBtn}" onclick="editar('motor')">EDITAR</button></p>
-                        <p><strong>Potencia:</strong> ${auto.potencia} <button class="btn-edit-inline" style="display:${displayBtn}" onclick="editar('potencia')">EDITAR</button></p>
+                        <p><strong>Modelo:</strong> ${auto.modelo} <button class="btn-edit-inline" style="display:${btnStyle}" onclick="editar('modelo')">EDITAR</button></p>
+                        <p><strong>Motor:</strong> ${auto.motor} <button class="btn-edit-inline" style="display:${btnStyle}" onclick="editar('motor')">EDITAR</button></p>
+                        <p><strong>Potencia:</strong> ${auto.potencia} <button class="btn-edit-inline" style="display:${btnStyle}" onclick="editar('potencia')">EDITAR</button></p>
                     </div>
                 </div>
             `;
@@ -178,33 +164,30 @@
         }
 
         function editar(campo) {
-            const nuevoValor = prompt("Nuevo valor para " + campo + ":", catalogo[autoActualId][campo]);
-            if (nuevoValor) {
+            const nuevoValor = prompt("Editar " + campo + ":", catalogo[autoActualId][campo]);
+            if (nuevoValor !== null) {
                 catalogo[autoActualId][campo] = nuevoValor;
-                // Actualizar tarjeta exterior
-                if(campo === 'titulo') document.getElementById('card-titulo-' + autoActualId).innerText = nuevoValor;
-                if(campo === 'precio') document.getElementById('card-precio-' + autoActualId).innerText = nuevoValor;
-                // Refrescar modal
+                guardarEnMemoria(); // AQUÍ SE GUARDA PERMANENTE
+                actualizarTarjetas();
                 abrirModal(autoActualId);
             }
         }
 
         function validarAcceso() {
-            const user = document.getElementById('user-owner').value;
-            const pass = document.getElementById('pass-owner').value;
-            if (user === "DAY ROJAS" && pass === "POTOMAC2026") {
+            if (document.getElementById('user-owner').value === "DAY ROJAS" && document.getElementById('pass-owner').value === "POTOMAC2026") {
                 esOwner = true;
                 document.getElementById('login-owner').style.display = 'none';
-                document.getElementById('user-greeting').innerHTML = "BIENVENIDO, DAY ROJAS";
+                document.getElementById('user-greeting').innerText = "OWNER: DAY ROJAS";
                 document.getElementById('user-greeting').style.display = 'inline-block';
                 document.getElementById('btn-admin-nav').style.display = 'none';
-                alert("Modo Edición Activado. Abre cualquier auto para ver los botones dorados.");
-            } else {
-                alert("Datos incorrectos");
-            }
+                alert("Modo Edición Permanente Activado.");
+            } else { alert("Error"); }
         }
 
         function cerrarModal() { document.getElementById('modal-detalles').style.display = 'none'; }
+        
+        // Iniciar tarjetas al cargar
+        actualizarTarjetas();
     </script>
 </body>
 </html>

@@ -3,28 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Venta de Autos | Catálogo Profesional</title>
+    <title>BRILLA AUTO SPA | Detallado y Elegancia</title>
     <style>
-        /* CSS: EL DISEÑO */
         :root {
-            --color-principal: #1a1a1a; /* Negro elegante */
-            --color-acento: #e63946;    /* Rojo deportivo */
-            --color-fondo: #f4f4f4;
-            --color-texto: #333;
+            --color-negro: #0a0a0a;
+            --color-dorado: #d4af37; /* Dorado Clásico */
+            --color-dorado-brillante: #f9e272;
+            --color-gris-oscuro: #1c1c1c;
+            --color-texto-blanco: #ffffff;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Georgia', serif; /* Una fuente más elegante */
             margin: 0;
-            background-color: var(--color-fondo);
-            color: var(--color-texto);
+            background-color: var(--color-negro);
+            color: var(--color-texto-blanco);
         }
 
-        /* Navegación */
+        /* Navegación Elegante */
         nav {
-            background: var(--color-principal);
-            color: white;
-            padding: 1rem;
+            background: linear-gradient(to bottom, #1a1a1a, #000);
+            border-bottom: 2px solid var(--color-dorado);
+            padding: 1.5rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -33,130 +33,157 @@
             z-index: 1000;
         }
 
-        .logo { font-weight: bold; font-size: 1.5rem; color: var(--color-acento); }
+        .logo { 
+            font-weight: bold; 
+            font-size: 1.8rem; 
+            color: var(--color-dorado);
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
 
-        /* Banner Principal */
+        /* Sección Hero / Portada */
         .hero {
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1500&q=80');
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1601362840469-51e4d8d59085?auto=format&fit=crop&w=1500&q=80');
             background-size: cover;
             background-position: center;
-            height: 400px;
+            height: 500px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            color: white;
-            text-align: center;
+            border-bottom: 1px solid var(--color-dorado);
         }
 
-        /* Contenedor de Autos (Grid) */
+        .hero h1 { 
+            color: var(--color-dorado); 
+            font-size: 3rem; 
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        /* Contenedor de Autos */
         .contenedor-autos {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            padding: 40px 20px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            padding: 50px 20px;
             max-width: 1200px;
             margin: auto;
         }
 
-        /* Tarjeta de Auto */
+        /* Tarjeta de Auto Estilo Dorado */
         .tarjeta {
-            background: white;
-            border-radius: 10px;
+            background: var(--color-gris-oscuro);
+            border: 1px solid #333;
+            border-radius: 5px;
             overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
+            transition: all 0.4s ease;
         }
 
-        .tarjeta:hover { transform: translateY(-5px); }
+        .tarjeta:hover { 
+            transform: scale(1.03);
+            border-color: var(--color-dorado);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+        }
 
-        .tarjeta img { width: 100%; height: 200px; object-fit: cover; }
+        .tarjeta img { width: 100%; height: 220px; object-fit: cover; }
 
-        .info { padding: 15px; }
-        .info h3 { margin: 0; font-size: 1.2rem; }
-        .precio { color: var(--color-acento); font-weight: bold; font-size: 1.3rem; margin: 10px 0; }
-        .detalles { font-size: 0.9rem; color: #666; }
+        .info { padding: 20px; border-top: 2px solid var(--color-dorado); }
+        .info h3 { margin: 0; color: var(--color-dorado-brillante); }
+        .precio { color: white; font-weight: bold; font-size: 1.4rem; margin: 15px 0; }
+        
+        /* Botones Dorados */
+        .btn-dorado {
+            background: linear-gradient(45deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
+            color: black;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 3px;
+            cursor: pointer;
+            font-weight: bold;
+            text-transform: uppercase;
+            transition: opacity 0.3s;
+        }
+
+        .btn-dorado:hover { opacity: 0.8; }
 
         /* Panel Admin */
         #admin-panel {
-            background: white;
-            padding: 30px;
-            margin: 20px auto;
+            background: #111;
+            padding: 40px;
+            margin: 40px auto;
             max-width: 600px;
-            border-radius: 10px;
-            display: none; /* Oculto por defecto */
+            border: 2px dashed var(--color-dorado);
+            display: none;
         }
 
         form input, form textarea {
             width: 100%;
-            padding: 10px;
-            margin-bottom: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            box-sizing: border-box;
-        }
-
-        button {
-            background: var(--color-acento);
+            padding: 12px;
+            margin-bottom: 15px;
+            background: #222;
+            border: 1px solid var(--color-dorado);
             color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
+            border-radius: 4px;
         }
 
-        footer { text-align: center; padding: 20px; background: var(--color-principal); color: white; }
+        footer { 
+            text-align: center; 
+            padding: 30px; 
+            border-top: 1px solid var(--color-dorado);
+            margin-top: 50px;
+            color: #888;
+        }
     </style>
 </head>
 <body>
 
     <nav>
-        <div class="logo">MR. JOSE MOTORS</div>
-        <button onclick="activarAdmin()" style="background: transparent; border: 1px solid white; font-size: 10px;">Admin</button>
+        <div class="logo">BRILLA AUTO SPA</div>
+        <button onclick="activarAdmin()" style="background: transparent; color: var(--color-dorado); border: 1px solid var(--color-dorado); cursor: pointer; padding: 5px 10px;">Acceso Owner</button>
     </nav>
 
     <div class="hero">
-        <h1>Encuentra el auto de tus sueños</h1>
-        <p>Calidad, confianza y los mejores precios del mercado.</p>
+        <h1>Excelencia Automotriz</h1>
+        <p style="color: #ccc; font-size: 1.2rem;">Donde el lujo se encuentra con la potencia.</p>
     </div>
 
     <div id="admin-panel">
-        <h2>Subir Nuevo Vehículo</h2>
+        <h2 style="color: var(--color-dorado);">Panel de Control - Brilla Auto Spa</h2>
         <form id="formAuto">
-            <input type="text" placeholder="URL de la imagen" required>
+            <input type="text" placeholder="URL de la imagen del auto" required>
             <input type="text" placeholder="Marca y Modelo" required>
-            <input type="text" placeholder="Año / Kilometraje" required>
+            <input type="text" placeholder="Características (Año, Km, Motor)" required>
             <input type="number" placeholder="Precio ($)" required>
-            <textarea placeholder="Descripción adicional"></textarea>
-            <button type="submit">Publicar en el Catálogo</button>
+            <textarea placeholder="Descripción detallada de lujo" rows="4"></textarea>
+            <button type="submit" class="btn-dorado">Publicar Vehículo</button>
         </form>
     </div>
 
     <div class="contenedor-autos" id="catalogo">
         <div class="tarjeta">
-            <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=800&q=80" alt="Auto">
+            <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=800&q=80" alt="Auto">
             <div class="info">
-                <h3>Porsche 911 Carrera</h3>
-                <p class="detalles">Modelo 2023 | 5,000 km</p>
-                <div class="precio">$120,000</div>
-                <button>Ver Detalles</button>
+                <h3>Chevrolet Corvette Z06</h3>
+                <p style="color: #aaa;">2024 | 0 KM | Edición Especial</p>
+                <div class="precio">$150,000</div>
+                <button class="btn-dorado">Ver Detalles</button>
             </div>
         </div>
     </div>
 
     <footer>
-        <p>&copy; 2024 Mr. Jose Motors - Todos los derechos reservados</p>
+        <p>&copy; 2024 BRILLA AUTO SPA - Exclusividad y Calidad</p>
     </footer>
 
     <script>
         function activarAdmin() {
-            const clave = prompt("Introduce la clave de acceso:");
-            if (clave === "1234") { // Cambia esto por tu clave real
+            const clave = prompt("Introduzca la clave de seguridad:");
+            if (clave === "oro2024") { // Cambia esta clave a tu gusto
                 document.getElementById('admin-panel').style.display = 'block';
                 window.scrollTo(0, document.getElementById('admin-panel').offsetTop - 100);
             } else {
-                alert("Clave incorrecta.");
+                alert("Acceso denegado. Solo personal autorizado.");
             }
         }
     </script>

@@ -28,208 +28,237 @@
             position: sticky; top: 0; z-index: 1000;
         }
 
-        .logo-minimal-brilla { display: flex; flex-direction: column; align-items: center; cursor: pointer; text-decoration: none; filter: drop-shadow(0 0 5px rgba(209,180,100,0.4)); }
-        .svg-carrito-dorado { fill: var(--color-mostaza); width: 45px; height: auto; }
-        .text-brilla-nav { font-size: 1rem; color: var(--color-mostaza); font-weight: bold; margin: 0; letter-spacing: 1px; }
-
-        /* BOTONES DE ADMINISTRACIÓN */
-        .admin-controls { display: flex; align-items: center; gap: 15px; }
-        #btn-crear-publicacion { display: none; background: var(--color-mostaza); color: black; border: none; padding: 10px 18px; font-weight: bold; border-radius: 4px; cursor: pointer; font-size: 0.8rem; }
-
-        /* HERO Y SECCIONES */
-        .hero {
-            background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.95)), url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1500&q=80');
-            background-size: cover; background-position: center;
-            height: 250px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; border-bottom: 1px solid #222;
+        .logo-minimal-brilla {
+            display: flex; flex-direction: column; align-items: center; gap: 2px;
+            cursor: pointer; text-decoration: none; filter: drop-shadow(0 0 5px rgba(209, 180, 100, 0.4));
         }
 
-        .contenedor-autos { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; padding: 40px 20px; max-width: 1300px; margin: auto; }
+        .svg-carrito-dorado { fill: var(--color-mostaza); width: 50px; height: auto; }
+        .text-brilla-nav { font-size: 1.1rem; color: var(--color-mostaza); font-weight: bold; letter-spacing: 1px; margin: 0; font-family: 'Times New Roman', Times, serif; }
+        .text-autospa-nav { font-size: 0.6rem; color: #aaa; letter-spacing: 2px; text-transform: uppercase; margin: -2px 0 0 0; }
+
+        /* ÁREA DE ADMINISTRACIÓN */
+        .area-admin-nav { display: flex; align-items: center; gap: 15px; }
+        #btn-nueva-pub { display: none; background: var(--color-mostaza); color: black; border: none; padding: 8px 15px; border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 0.75rem; text-transform: uppercase; }
+
+        /* HERO */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.9)), url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1500&q=80');
+            background-size: cover; background-position: center;
+            height: 300px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; border-bottom: 1px solid var(--color-mostaza);
+        }
+        .hero h1 { font-size: 3rem; text-transform: uppercase; margin: 0; }
+        .hero p { color: var(--color-mostaza); letter-spacing: 2px; }
+
+        /* CATALOGO */
+        .seccion-autos { padding: 60px 20px; max-width: 1300px; margin: auto; }
+        .contenedor-autos { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
         
-        /* TARJETAS ESTILO ORIGINAL */
         .tarjeta-auto { background: var(--color-gris-oscuro); border: 1px solid #333; border-radius: 12px; overflow: hidden; transition: 0.4s; cursor: pointer; position: relative; }
-        .tarjeta-auto:hover { border-color: var(--color-mostaza); transform: translateY(-5px); }
-        .tarjeta-auto img { width: 100%; height: 220px; object-fit: cover; border-bottom: 2px solid var(--color-mostaza); }
+        .tarjeta-auto:hover { transform: translateY(-10px); border-color: var(--color-mostaza); box-shadow: 0 10px 20px rgba(209, 180, 100, 0.1); }
+        .tarjeta-auto img { width: 100%; height: 230px; object-fit: cover; border-bottom: 2px solid var(--color-mostaza); }
+        
         .info-auto { padding: 20px; }
-        .marca-modelo { font-size: 1.3rem; color: var(--color-mostaza); font-weight: bold; margin-bottom: 10px; }
-        .precio-auto { font-size: 1.5rem; font-weight: bold; color: white; margin-top: 10px; }
+        .marca-modelo { font-size: 1.4rem; color: var(--color-mostaza); margin-bottom: 8px; font-weight: bold; }
+        .preview-info { font-size: 0.85rem; color: #bbb; margin-bottom: 15px; line-height: 1.4; height: 40px; overflow: hidden; }
+        .preview-tech { font-size: 0.8rem; color: var(--color-mostaza); border-top: 1px solid #333; padding-top: 10px; display: flex; justify-content: space-between; }
+        .precio-auto { font-size: 1.6rem; font-weight: bold; margin-top: 15px; color: white; }
 
-        /* MODAL DE DETALLES */
-        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.96); z-index: 2000; overflow-y: auto; }
-        .modal-content { background: #111; margin: 2% auto; padding: 40px; border: 1px solid var(--color-mostaza); width: 90%; max-width: 950px; border-radius: 15px; position: relative; box-shadow: 0 0 30px rgba(209,180,100,0.2); }
-        .close-modal { position: absolute; top: 20px; right: 25px; font-size: 30px; cursor: pointer; color: #666; }
+        /* MODALES */
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 2000; overflow-y: auto; }
+        .modal-content { background: #111; margin: 5% auto; padding: 40px; border: 1px solid var(--color-mostaza); width: 85%; max-width: 900px; border-radius: 10px; position: relative; }
+        .close-modal { position: absolute; top: 15px; right: 25px; font-size: 30px; cursor: pointer; color: #666; }
+        
+        /* LOGIN */
+        .login-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.98); z-index: 3000; justify-content: center; align-items: center; }
+        .login-box { background: #000; padding: 40px; border: 2px solid var(--color-mostaza); border-radius: 10px; text-align: center; width: 320px; }
+        .login-box input { width: 100%; padding: 12px; margin-bottom: 15px; background: #111; border: 1px solid var(--color-mostaza); color: white; border-radius: 5px; box-sizing: border-box; }
+        
+        /* FORMULARIO CREACIÓN */
+        .form-crear { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; color: white; text-align: left; }
+        .form-crear label { color: var(--color-mostaza); font-size: 0.8rem; text-transform: uppercase; }
+        .form-crear input, .form-crear textarea { width: 100%; padding: 10px; background: #000; border: 1px solid #333; color: white; border-radius: 4px; margin-top: 5px; box-sizing: border-box; }
+        
+        .btn-edit-inline { display: none; background: #000; color: var(--color-mostaza); border: 1px solid var(--color-mostaza); border-radius: 4px; padding: 3px 8px; font-size: 0.65rem; cursor: pointer; margin-left: 8px; }
 
-        /* FORMULARIO NUEVA PUBLICACIÓN */
-        .panel-creacion { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.98); z-index: 5000; padding: 40px 20px; overflow-y: auto; }
-        .form-box { max-width: 800px; margin: auto; background: #0a0a0a; border: 1px solid var(--color-mostaza); padding: 30px; border-radius: 10px; }
-        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px; }
-        .form-box input, .form-box textarea { width: 100%; padding: 12px; background: #111; border: 1px solid #333; color: white; border-radius: 4px; box-sizing: border-box; }
-        .form-box label { color: var(--color-mostaza); font-size: 0.8rem; text-transform: uppercase; display: block; margin-bottom: 5px; }
-
-        /* BOTONES EDITAR IN-MODAL */
-        .btn-edit-icon { display: none; background: transparent; color: var(--color-mostaza); border: 1px solid var(--color-mostaza); border-radius: 4px; cursor: pointer; padding: 2px 5px; font-size: 0.7rem; margin-left: 5px; }
+        footer { text-align: center; padding: 40px; border-top: 2px solid var(--color-mostaza); background: #000; color: #aaa; margin-top: 50px; }
     </style>
 </head>
 <body>
 
     <nav class="animate__animated animate__fadeInDown">
         <a href="#" class="logo-minimal-brilla">
-            <svg class="svg-carrito-dorado" viewBox="0 0 512 512"><path d="M472.1,348.6c13.7,0,24.8-11.1,24.8-24.8V188.2c0-13.7-11.1-24.8-24.8-24.8H188.2c-13.7,0-24.8,11.1-24.8,24.8v135.6c0,13.7,11.1,24.8,24.8,24.8h60v50H60c-13.7,0-24.8,11.1-24.8,24.8v50c0,13.7,11.1,24.8,24.8,24.8h400c13.7,0,24.8-11.1,24.8-24.8v-50c0-13.7-11.1-24.8-24.8-24.8h-70v-50C472.1,348.6,472.1,348.6,472.1,348.6z M188.2,188.2h283.9v135.6H188.2V188.2z M60,400h400v50H60V400z M273.9,348.6h100v50h-100V348.6z"/></svg>
-            <p class="text-brilla-nav">BRILLA AUTO SPA</p>
+            <svg class="svg-carrito-dorado" viewBox="0 0 512 512">
+                <path d="M472.1,348.6c13.7,0,24.8-11.1,24.8-24.8V188.2c0-13.7-11.1-24.8-24.8-24.8H188.2c-13.7,0-24.8,11.1-24.8,24.8v135.6c0,13.7,11.1,24.8,24.8,24.8h60v50H60c-13.7,0-24.8,11.1-24.8,24.8v50c0,13.7,11.1,24.8,24.8,24.8h400c13.7,0,24.8-11.1,24.8-24.8v-50c0-13.7-11.1-24.8-24.8-24.8h-70v-50C472.1,348.6,472.1,348.6,472.1,348.6z M188.2,188.2h283.9v135.6H188.2V188.2z M60,400h400v50H60V400z M273.9,348.6h100v50h-100V348.6z"/>
+            </svg>
+            <p class="text-brilla-nav">BRILLA</p>
+            <p class="text-autospa-nav">AUTO SPA</p>
         </a>
-        <div class="admin-controls">
-            <button id="btn-crear-publicacion" onclick="document.getElementById('panel-new').style.display='block'"><i class="fas fa-plus"></i> NUEVA PUBLICACIÓN</button>
-            <span id="owner-label" style="display:none; color:var(--color-mostaza); font-weight:bold; font-size:0.8rem; margin-right:10px;">OWNER: DAY ROJAS</span>
-            <button id="btn-login-trigger" onclick="abrirLogin()" style="background:transparent; color:var(--color-mostaza); border:1px solid var(--color-mostaza); padding:8px 15px; cursor:pointer; border-radius:4px; font-weight:bold;">ACCESO OWNER</button>
+
+        <div class="area-admin-nav">
+            <button id="btn-nueva-pub" onclick="abrirModalCrear()"><i class="fas fa-plus"></i> Nueva Publicación</button>
+            <span id="user-greeting"></span>
+            <button id="btn-admin-nav" onclick="document.getElementById('login-owner').style.display='flex'" style="background: transparent; color: var(--color-mostaza); border: 1px solid var(--color-mostaza); cursor: pointer; padding: 6px 12px; font-size: 11px; border-radius: 3px; font-weight: bold; text-transform: uppercase;">Owner</button>
         </div>
     </nav>
 
     <div class="hero">
-        <h1 class="animate__animated animate__zoomIn" style="margin:0; font-size: 2.5rem;">CATÁLOGO DE EXCLUSIVIDAD</h1>
-        <p class="animate__animated animate__fadeInUp animate__delay-1s" style="color:var(--color-mostaza); letter-spacing:3px;">BY DAY ROJAS</p>
+        <h1 class="animate__animated animate__zoomIn">Servicio Premium</h1>
+        <p class="animate__animated animate__fadeInUp animate__delay-1s">Brilla Auto Spa by Day Rojas</p>
     </div>
 
-    <div id="grid-autos" class="contenedor-autos">
-        </div>
+    <div class="seccion-autos">
+        <h2 style="text-align:center; color:var(--color-mostaza); margin-bottom: 40px;" class="animate__animated animate__fadeIn">CATÁLOGO EXCLUSIVO</h2>
+        <div id="grid-autos" class="contenedor-autos"></div>
+    </div>
 
-    <div id="modal-view" class="modal">
-        <div class="modal-content animate__animated animate__fadeInUp">
-            <span class="close-modal" onclick="cerrarModalView()">&times;</span>
-            <div id="modal-body"></div>
+    <div id="modal-detalles" class="modal">
+        <div class="modal-content animate__animated animate__fadeInDown">
+            <span class="close-modal" onclick="cerrarModal()">&times;</span>
+            <div id="contenido-modal"></div>
         </div>
     </div>
 
-    <div id="panel-new" class="panel-creacion">
-        <div class="form-box">
-            <h2 style="color:var(--color-mostaza); border-bottom:1px solid #333; padding-bottom:15px;"><i class="fas fa-file-upload"></i> Nueva Publicación</h2>
-            <div class="form-grid">
+    <div id="modal-crear" class="modal">
+        <div class="modal-content animate__animated animate__zoomIn">
+            <span class="close-modal" onclick="document.getElementById('modal-crear').style.display='none'">&times;</span>
+            <h2 style="color:var(--color-mostaza); border-bottom:1px solid #333; padding-bottom:10px;">Nueva Publicación</h2>
+            <div class="form-crear">
                 <div style="grid-column: span 2;">
                     <label>Imagen del Vehículo</label>
-                    <input type="file" id="new-img" accept="image/*" onchange="procesarImagen(this)">
+                    <input type="file" id="new-foto" accept="image/*" onchange="procesarImagen(this)">
                 </div>
-                <div style="grid-column: span 2;"><label>Nombre del Vehículo</label><input type="text" id="new-title" placeholder="Ej: Ferrari F8 Tributo"></div>
-                <div style="grid-column: span 2;"><label>Descripción / Detalles del Servicio</label><textarea id="new-desc" rows="3"></textarea></div>
-                <div><label>Precio ($)</label><input type="text" id="new-price" placeholder="$0.00"></div>
-                <div><label>Modelo (Año)</label><input type="text" id="new-year"></div>
+                <div style="grid-column: span 2;"><label>Título</label><input type="text" id="new-titulo"></div>
+                <div style="grid-column: span 2;"><label>Descripción</label><textarea id="new-desc" rows="3"></textarea></div>
+                <div><label>Precio</label><input type="text" id="new-precio"></div>
+                <div><label>Año/Modelo</label><input type="text" id="new-modelo"></div>
                 <div><label>Motor</label><input type="text" id="new-motor"></div>
-                <div><label>Potencia</label><input type="text" id="new-hp"></div>
+                <div><label>Potencia</label><input type="text" id="new-potencia"></div>
             </div>
-            <div style="margin-top:25px; display:flex; gap:10px;">
-                <button onclick="guardarPublicacion()" style="flex:1; background:var(--color-mostaza); padding:15px; border:none; font-weight:bold; cursor:pointer; border-radius:5px;">PUBLICAR</button>
-                <button onclick="document.getElementById('panel-new').style.display='none'" style="flex:1; background:#222; color:white; border:none; padding:15px; border-radius:5px; cursor:pointer;">CANCELAR</button>
-            </div>
+            <button onclick="guardarNuevaPublicacion()" style="width:100%; margin-top:20px; background:var(--color-mostaza); color:black; padding:15px; border:none; font-weight:bold; cursor:pointer; border-radius:5px;">PUBLICAR AHORA</button>
         </div>
     </div>
+
+    <div id="login-owner" class="login-overlay">
+        <div class="login-box animate__animated animate__pulse">
+            <i class="fas fa-car-on" style="font-size: 2rem; color: var(--color-mostaza); margin-bottom: 15px;"></i>
+            <h2 style="color:var(--color-mostaza);">IDENTIFICACIÓN</h2>
+            <input type="text" id="user-owner" placeholder="USUARIO">
+            <input type="password" id="pass-owner" placeholder="CONTRASEÑA">
+            <button onclick="validarAcceso()" style="background:var(--color-mostaza); color:black; border:none; padding:12px; width:100%; font-weight:bold; cursor:pointer; border-radius:5px;">Entrar</button>
+            <p onclick="document.getElementById('login-owner').style.display='none'" style="color:#555; cursor:pointer; margin-top:15px; font-size: 0.8rem;">Cerrar</p>
+        </div>
+    </div>
+
+    <footer><p>&copy; 2024 BRILLA AUTO SPA - Exclusividad y Calidad</p></footer>
 
     <script>
         let esOwner = false;
-        let imgTemporal = "";
-        let idActual = "";
+        let fotoTemporal = "";
         
-        // Base de datos local
-        let catalogo = JSON.parse(localStorage.getItem('brilla_v8')) || {
-            '1': { titulo: 'Chevrolet Corvette Z06', precio: '$150,000', descripcion: 'El pináculo del rendimiento estadounidense. Detallado de 3 etapas.', modelo: '2024', motor: '5.5L LT6 V8', potencia: '670 HP', foto: 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=800' }
+        const defaultCatalogo = {
+            '1': { titulo: 'Chevrolet Corvette Z06', precio: '$150,000', descripcion: 'Detallado premium de 3 etapas con sellado cerámico de grafeno.', modelo: '2024', motor: '5.5L LT6 V8', potencia: '670 HP', foto: 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=800' }
         };
 
-        function guardarBD() { localStorage.setItem('brilla_v8', JSON.stringify(catalogo)); }
+        let catalogo = JSON.parse(localStorage.getItem('brilla_v9')) || defaultCatalogo;
+
+        function guardar() { localStorage.setItem('brilla_v9', JSON.stringify(catalogo)); }
 
         function procesarImagen(input) {
             if (input.files && input.files[0]) {
                 const reader = new FileReader();
-                reader.onload = e => imgTemporal = e.target.result;
+                reader.onload = e => fotoTemporal = e.target.result;
                 reader.readAsDataURL(input.files[0]);
             }
         }
 
-        function guardarPublicacion() {
+        function abrirModalCrear() { document.getElementById('modal-crear').style.display = 'block'; }
+
+        function guardarNuevaPublicacion() {
             const id = "auto_" + Date.now();
             catalogo[id] = {
-                titulo: document.getElementById('new-title').value,
-                precio: document.getElementById('new-price').value,
+                titulo: document.getElementById('new-titulo').value,
+                precio: document.getElementById('new-precio').value,
                 descripcion: document.getElementById('new-desc').value,
-                modelo: document.getElementById('new-year').value,
+                modelo: document.getElementById('new-modelo').value,
                 motor: document.getElementById('new-motor').value,
-                potencia: document.getElementById('new-hp').value,
-                foto: imgTemporal || 'https://via.placeholder.com/800x500?text=Brilla+Auto+Spa'
+                potencia: document.getElementById('new-potencia').value,
+                foto: fotoTemporal || 'https://via.placeholder.com/800x500?text=Brilla+Auto+Spa'
             };
-            guardarBD();
-            renderizar();
-            document.getElementById('panel-new').style.display = 'none';
+            guardar();
+            renderizarCatalogo();
+            document.getElementById('modal-crear').style.display = 'none';
+            alert("¡Publicado con éxito!");
         }
 
-        function renderizar() {
+        function renderizarCatalogo() {
             const grid = document.getElementById('grid-autos');
-            grid.innerHTML = "";
-            Object.keys(catalogo).reverse().forEach(id => {
+            grid.innerHTML = ""; 
+            Object.keys(catalogo).reverse().forEach((id, index) => {
                 const auto = catalogo[id];
+                const delayClass = `animate__delay-${index}s`;
                 grid.innerHTML += `
-                    <div class="tarjeta-auto animate__animated animate__fadeInUp" onclick="abrirDetalle('${id}')">
-                        ${esOwner ? `<button onclick="event.stopPropagation(); borrar('${id}')" style="position:absolute; top:10px; right:10px; background:red; color:white; border:none; padding:5px; border-radius:3px; cursor:pointer; font-size:10px;">ELIMINAR</button>` : ''}
+                    <div class="tarjeta-auto animate__animated animate__fadeInUp ${delayClass}" onclick="abrirModal('${id}')">
+                        ${esOwner ? `<button onclick="event.stopPropagation(); eliminar('${id}')" style="position:absolute; top:10px; right:10px; background:red; color:white; border:none; padding:5px; border-radius:3px; cursor:pointer; font-size:10px;">BORRAR</button>` : ''}
                         <img src="${auto.foto}">
                         <div class="info-auto">
-                            <div class="marca-modelo">${auto.titulo}</div>
-                            <div style="color:#aaa; font-size:0.85rem; margin-bottom:10px;">${auto.motor} | ${auto.modelo}</div>
+                            <p class="marca-modelo">${auto.titulo}</p>
+                            <p class="preview-info">${auto.descripcion.substring(0, 75)}...</p>
+                            <div class="preview-tech">
+                                <span><i class="fas fa-bolt"></i> ${auto.motor}</span>
+                                <span><i class="fas fa-calendar-alt"></i> ${auto.modelo}</span>
+                            </div>
                             <div class="precio-auto">${auto.precio}</div>
                         </div>
                     </div>`;
             });
         }
 
-        function abrirDetalle(id) {
-            idActual = id;
+        function abrirModal(id) {
             const auto = catalogo[id];
             const displayEdit = esOwner ? 'inline-block' : 'none';
-            
-            document.getElementById('modal-body').innerHTML = `
-                <h2 style="color:var(--color-mostaza); margin-bottom:20px;">${auto.titulo} <button class="btn-edit-icon" style="display:${displayEdit}" onclick="editar('titulo')"><i class="fas fa-edit"></i></button></h2>
-                <img src="${auto.foto}" style="width:100%; border-radius:10px; border:1px solid #333; margin-bottom:25px;">
+            document.getElementById('contenido-modal').innerHTML = `
+                <h2 style="color:var(--color-mostaza); font-size:2rem;">${auto.titulo}</h2>
+                <img src="${auto.foto}" style="width:100%; border-radius:8px; margin-bottom:20px; border:1px solid #222;">
                 <div style="display:grid; grid-template-columns: 1.2fr 0.8fr; gap:30px; text-align:left;">
                     <div>
-                        <h3 style="color:var(--color-mostaza); font-size:1rem; border-bottom:1px solid #222; padding-bottom:5px;">DESCRIPCIÓN <button class="btn-edit-icon" style="display:${displayEdit}" onclick="editar('descripcion')"><i class="fas fa-edit"></i></button></h3>
-                        <p style="color:#ccc; line-height:1.6; font-size:0.95rem;">${auto.descripcion}</p>
-                        <h3 style="color:white; margin-top:30px;">PRECIO SUGERIDO <button class="btn-edit-icon" style="display:${displayEdit}" onclick="editar('precio')"><i class="fas fa-edit"></i></button></h3>
+                        <h3 style="color:var(--color-mostaza);">Descripción</h3>
+                        <p style="color:#ccc; line-height:1.6;">${auto.descripcion}</p>
+                        <h3 style="color:white; margin-top:20px;">Precio Sugerido</h3>
                         <p style="font-size:2.2rem; color:var(--color-mostaza); font-weight:bold; margin:0;">${auto.precio}</p>
                     </div>
-                    <div style="background:#181818; padding:20px; border-radius:10px; border:1px solid #222;">
-                        <h3 style="margin-top:0; font-size:0.9rem; color:var(--color-mostaza); border-bottom:1px solid #333; padding-bottom:10px;">FICHA TÉCNICA</h3>
-                        <p style="font-size:0.9rem;"><strong>Modelo:</strong> ${auto.modelo} <button class="btn-edit-icon" style="display:${displayEdit}" onclick="editar('modelo')"><i class="fas fa-edit"></i></button></p>
-                        <p style="font-size:0.9rem;"><strong>Motor:</strong> ${auto.motor} <button class="btn-edit-icon" style="display:${displayEdit}" onclick="editar('motor')"><i class="fas fa-edit"></i></button></p>
-                        <p style="font-size:0.9rem;"><strong>Potencia:</strong> ${auto.potencia} <button class="btn-edit-icon" style="display:${displayEdit}" onclick="editar('potencia')"><i class="fas fa-edit"></i></button></p>
+                    <div style="background:#1a1a1a; padding:25px; border-radius:10px; border:1px solid #333;">
+                        <h3 style="margin-top:0; border-bottom:1px solid var(--color-mostaza); padding-bottom:10px;">Ficha Técnica</h3>
+                        <p><strong>Modelo:</strong> ${auto.modelo}</p>
+                        <p><strong>Motor:</strong> ${auto.motor}</p>
+                        <p><strong>Potencia:</strong> ${auto.potencia}</p>
                     </div>
-                </div>
-                <button style="width:100%; margin-top:30px; background:var(--color-mostaza); color:black; padding:15px; font-weight:bold; border:none; border-radius:5px; cursor:pointer;">CONSULTAR DISPONIBILIDAD (WHATSAPP)</button>
-            `;
-            document.getElementById('modal-view').style.display = 'block';
+                </div>`;
+            document.getElementById('modal-detalles').style.display = 'block';
         }
 
-        function editar(campo) {
-            const nuevo = prompt("Editar " + campo.toUpperCase(), catalogo[idActual][campo]);
-            if(nuevo) {
-                catalogo[idActual][campo] = nuevo;
-                guardarBD();
-                renderizar();
-                abrirDetalle(idActual);
+        function eliminar(id) {
+            if(confirm("¿Seguro que quieres eliminar este auto?")) {
+                delete catalogo[id];
+                guardar();
+                renderizarCatalogo();
             }
         }
 
-        function borrar(id) {
-            if(confirm("¿Eliminar esta publicación?")) { delete catalogo[id]; guardarBD(); renderizar(); }
-        }
-
-        function abrirLogin() {
-            const clave = prompt("Introduzca la clave de seguridad del owner:");
-            if (clave === "POTOMAC2026") {
+        function validarAcceso() {
+            if (document.getElementById('user-owner').value === "DAY ROJAS" && document.getElementById('pass-owner').value === "POTOMAC2026") {
                 esOwner = true;
-                document.getElementById('btn-crear-publicacion').style.display = 'block';
-                document.getElementById('owner-label').style.display = 'block';
-                document.getElementById('btn-login-trigger').style.display = 'none';
-                renderizar();
-                alert("Modo Owner Activado: Day Rojas");
-            } else { alert("Acceso Denegado"); }
+                document.getElementById('login-owner').style.display = 'none';
+                document.getElementById('btn-nueva-pub').style.display = 'block';
+                document.getElementById('user-greeting').innerHTML = "DAY ROJAS";
+                document.getElementById('user-greeting').style.display = 'inline-block';
+                document.getElementById('btn-admin-nav').style.display = 'none';
+                renderizarCatalogo();
+            } else { alert("Acceso Denegado."); }
         }
 
-        function cerrarModalView() { document.getElementById('modal-view').style.display = 'none'; }
-        
-        renderizar();
+        function cerrarModal() { document.getElementById('modal-detalles').style.display = 'none'; }
+        renderizarCatalogo();
     </script>
 </body>
 </html>

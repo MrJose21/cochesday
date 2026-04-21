@@ -487,7 +487,7 @@
         text-align: center;
     }
 <style>
-    /* Estilos para el Login */
+    /* 1. RECUPERACIÓN DE ESTILOS DE LOGIN */
     .login-overlay {
         display: none;
         position: fixed;
@@ -504,34 +504,11 @@
         border-radius: 10px;
         text-align: center;
         width: 320px;
-        box-shadow: 0 0 30px rgba(209, 180, 100, 0.2);
     }
 
-    .login-box input {
-        width: 100%; padding: 12px; margin-bottom: 15px;
-        background: #111; border: 1px solid var(--color-mostaza);
-        color: white; border-radius: 5px; box-sizing: border-box;
-    }
-
-    /* Mensajes de éxito/error */
-    #msg-login { font-size: 14px; margin-top: 15px; display: none; font-weight: bold; }
-    .msg-error { color: #ff4d4d; }
-    .msg-exito { color: #d1b464; }
-
-    /* Saludo del Owner en el Nav */
-    #user-greeting {
-        display: none;
-        color: var(--color-mostaza);
-        font-size: 0.9rem;
-        font-weight: bold;
-        margin-right: 15px;
-        border-right: 1px solid #444;
-        padding-right: 15px;
-    }
-
-    /* Botones de edición en las tarjetas */
+    /* Estilos de los botones de edición */
     .btn-editar-admin {
-        display: none; /* Solo visible para admin */
+        display: none;
         background: #222;
         color: var(--color-mostaza);
         border: 1px solid var(--color-mostaza);
@@ -544,135 +521,154 @@
         border-radius: 4px;
     }
 
-    .btn-editar-admin:hover { background: var(--color-mostaza); color: black; }
-        <div id="login-owner" class="login-overlay">
-        <div class="login-box animate__animated animate__fadeInUp">
-            <i class="fas fa-crown" style="font-size: 3rem; color: var(--color-mostaza); margin-bottom: 15px;"></i>
-            <h2 style="color:var(--color-mostaza); letter-spacing: 2px;">ACCESO PRIVADO</h2>
-            <input type="text" id="user-owner" placeholder="USUARIO">
-            <input type="password" id="pass-owner" placeholder="CONTRASEÑA">
-            <button class="btn-whatsapp" style="width:100%; margin:0;" onclick="validarAcceso()">Entrar al Sistema</button>
-            <div id="msg-login"></div>
-            <button onclick="cerrarLogin()" style="background:transparent; color:#666; border:none; margin-top:15px; cursor:pointer;">Cerrar</button>
+    .btn-editar-admin:hover { 
+        background: var(--color-mostaza); 
+        color: black; 
+    }
+
+    /* Estilo del Editor Profesional */
+    .editor-overlay {
+        display: none;
+        position: fixed;
+        top: 0; left: 0; width: 100%; height: 100%;
+        background: rgba(0,0,0,0.85);
+        z-index: 5000;
+        justify-content: center; align-items: center;
+    }
+
+    .editor-box {
+        background: #000;
+        border: 1px solid var(--color-mostaza);
+        border-radius: 8px;
+        padding: 25px;
+        color: white;
+    }
+
+    .editor-box input, .editor-box textarea {
+        width: 100%;
+        padding: 10px;
+        margin: 5px 0 15px 0;
+        background: #111;
+        border: 1px solid #333;
+        color: white;
+        border-radius: 4px;
+    }
+</style>
+
+<div id="login-owner" class="login-overlay">
+    <div class="login-box animate__animated animate__fadeInUp">
+        <i class="fas fa-crown" style="font-size: 3rem; color: var(--color-mostaza); margin-bottom: 15px;"></i>
+        <h2 style="color:var(--color-mostaza); letter-spacing: 2px;">ACCESO PRIVADO</h2>
+        <input type="text" id="user-owner" placeholder="USUARIO">
+        <input type="password" id="pass-owner" placeholder="CONTRASEÑA">
+        <button class="btn-whatsapp" style="width:100%; margin:0;" onclick="validarAcceso()">Entrar al Sistema</button>
+        <div id="msg-login"></div>
+        <button onclick="cerrarLogin()" style="background:transparent; color:#666; border:none; margin-top:15px; cursor:pointer;">Cerrar</button>
+    </div>
+</div>
+
+<div id="editor-publicacion" class="editor-overlay">
+    <div class="editor-box animate__animated animate__fadeInDown" style="max-width: 750px; width: 90%;">
+        <h3><i class="fas fa-car-side"></i> Editor de Publicación</h3>
+        <p style="color: var(--color-mostaza); font-size: 0.8rem; margin-top:-10px;">Sesión Activa: DAY ROJAS</p>
+        
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; text-align: left;">
+            <div>
+                <label>Título de la Edición</label>
+                <input type="text" id="edit-nombre">
+                <label>Descripción del Trabajo</label>
+                <textarea id="edit-desc" style="height: 100px;"></textarea>
+                <label>Precio de Venta ($)</label>
+                <input type="text" id="edit-precio">
+            </div>
+            <div style="background: #111; padding: 15px; border-radius: 8px;">
+                <h4 style="color: var(--color-mostaza); margin-bottom: 10px;">Ficha Técnica</h4>
+                <label>Modelo (Año)</label>
+                <input type="text" id="edit-modelo">
+                <label>Motor</label>
+                <input type="text" id="edit-motor">
+                <label>Potencia / HP</label>
+                <input type="text" id="edit-hp">
+                <label>Kilometraje</label>
+                <input type="text" id="edit-km">
+            </div>
+        </div>
+
+        <div style="margin-top: 20px; display: flex; gap: 10px;">
+            <button class="btn-guardar" onclick="aplicarCambios()" style="flex:2; background:var(--color-mostaza); color:black; font-weight:bold; padding:12px; border:none; cursor:pointer;">GUARDAR CAMBIOS</button>
+            <button onclick="cerrarEditor()" style="flex:1; background:#222; color:white; border:none; cursor:pointer;">CANCELAR</button>
         </div>
     </div>
+</div>
 
-   <div id="login-owner" class="login-overlay">
-        <div class="login-box animate__animated animate__fadeInUp">
-            <i class="fas fa-crown" style="font-size: 3rem; color: var(--color-mostaza); margin-bottom: 15px;"></i>
-            <h2 style="color:var(--color-mostaza); letter-spacing: 2px;">ACCESO PRIVADO</h2>
-            <input type="text" id="user-owner" placeholder="USUARIO">
-            <input type="password" id="pass-owner" placeholder="CONTRASEÑA">
-            <button class="btn-whatsapp" style="width:100%; margin:0;" onclick="validarAcceso()">Entrar al Sistema</button>
-            <div id="msg-login"></div>
-            <button onclick="cerrarLogin()" style="background:transparent; color:#666; border:none; margin-top:15px; cursor:pointer;">Cerrar</button>
-        </div>
-    </div>
+<script>
+let autoSiendoEditado = null;
 
-    <div id="editor-publicacion" class="editor-overlay" style="display:none; z-index: 9999;">
-        <div class="editor-box animate__animated animate__fadeInDown" style="max-width: 700px; width: 95%;">
-            <h3><i class="fas fa-edit"></i> Editor de Ficha Técnica</h3>
-            <p style="color: var(--color-mostaza); font-size: 0.8rem; margin-top: -10px;">Owner: DAY ROJAS</p>
+function validarAcceso() {
+    const user = document.getElementById('user-owner').value;
+    const pass = document.getElementById('pass-owner').value;
+    const msg = document.getElementById('msg-login');
+
+    if (user === "DAY ROJAS" && pass === "POTOMAC2026") {
+        msg.innerHTML = "¡ACCESO EXITOSO!";
+        msg.className = "msg-exito";
+        msg.style.display = "block";
+
+        setTimeout(() => {
+            document.getElementById('login-owner').style.display = 'none';
+            document.getElementById('user-greeting').style.display = 'inline-block';
+            document.getElementById('user-greeting').innerHTML = '<i class="fas fa-user-check"></i> DAY ROJAS';
             
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; text-align: left;">
-                <div>
-                    <label style="color:#aaa; font-size:0.7rem;">Título del Vehículo</label>
-                    <input type="text" id="edit-nombre">
-                    
-                    <label style="color:#aaa; font-size:0.7rem;">Descripción del Trabajo</label>
-                    <textarea id="edit-desc" style="width:100%; height:100px; background:#111; color:white; border:1px solid #333; border-radius:4px; padding:10px;"></textarea>
-                    
-                    <label style="color:#aaa; font-size:0.7rem;">Precio ($)</label>
-                    <input type="text" id="edit-precio">
-                </div>
-
-                <div style="background: #111; padding: 15px; border-radius: 8px; border: 1px solid #222;">
-                    <h4 style="color: var(--color-mostaza); margin-bottom: 10px; font-size: 0.9rem;">Características Técnicas</h4>
-                    
-                    <label style="color:#aaa; font-size:0.7rem;">Modelo (Año)</label>
-                    <input type="text" id="edit-modelo">
-                    
-                    <label style="color:#aaa; font-size:0.7rem;">Motor</label>
-                    <input type="text" id="edit-motor">
-                    
-                    <label style="color:#aaa; font-size:0.7rem;">Potencia / HP</label>
-                    <input type="text" id="edit-hp">
-                    
-                    <label style="color:#aaa; font-size:0.7rem;">Kilometraje</label>
-                    <input type="text" id="edit-km">
-                </div>
-            </div>
-
-            <div style="margin-top: 25px; display: flex; gap: 10px;">
-                <button class="btn-guardar" onclick="aplicarCambios()" style="flex:2;">Guardar Cambios</button>
-                <button onclick="cerrarEditor()" style="background:transparent; color:#666; border:none; flex:1; cursor:pointer;">Cancelar</button>
-            </div>
-        </div>
-    </div>
-
-    <script>
-    let autoSiendoEditado = null;
-
-    function validarAcceso() {
-        const user = document.getElementById('user-owner').value;
-        const pass = document.getElementById('pass-owner').value;
-        const msg = document.getElementById('msg-login');
-
-        if (user === "DAY ROJAS" && pass === "POTOMAC2026") {
-            msg.innerHTML = "¡INICIO CON ÉXITO!";
-            msg.className = "msg-exito";
-            msg.style.display = "block";
-
-            setTimeout(() => {
-                document.getElementById('login-owner').style.display = 'none';
-                document.getElementById('user-greeting').style.display = 'inline-block';
-                document.getElementById('user-greeting').innerHTML = '<i class="fas fa-user-check"></i> DAY ROJAS';
-                
-                // Activar botones de edición en cada auto
-                document.querySelectorAll('.btn-editar-admin').forEach(btn => {
-                    btn.style.display = 'block';
-                    btn.onclick = function(e) { 
-                        e.stopPropagation(); 
-                        abrirEditor(this); 
-                    };
-                });
-                
-                document.querySelector('nav button').style.display = 'none';
-            }, 1500);
-        } else {
-            msg.innerHTML = "DATOS INCORRECTOS";
-            msg.className = "msg-error";
-            msg.style.display = "block";
-        }
+            document.querySelectorAll('.btn-editar-admin').forEach(btn => {
+                btn.style.display = 'block';
+                btn.onclick = function(e) { e.stopPropagation(); abrirEditor(this); };
+            });
+            
+            document.querySelector('nav button').style.display = 'none';
+        }, 1500);
+    } else {
+        msg.innerHTML = "DATOS INCORRECTOS";
+        msg.className = "msg-error";
+        msg.style.display = "block";
     }
+}
 
-    function abrirEditor(elementoBtn) {
-        autoSiendoEditado = elementoBtn.closest('.tarjeta-auto');
-        const idAuto = autoSiendoEditado.getAttribute('data-id');
-        const datos = catalogo[idAuto];
+function abrirEditor(btn) {
+    autoSiendoEditado = btn.closest('.tarjeta-auto');
+    const id = autoSiendoEditado.getAttribute('data-id');
+    const datos = catalogo[id];
 
-        // Cargar datos actuales en el editor
-        document.getElementById('edit-nombre').value = autoSiendoEditado.querySelector('.marca-modelo').innerText;
-        document.getElementById('edit-precio').value = autoSiendoEditado.querySelector('.precio-auto').innerText;
-        document.getElementById('edit-desc').value = datos.descripcion;
-        document.getElementById('edit-modelo').value = datos.modelo;
-        document.getElementById('edit-motor').value = datos.motor;
-        document.getElementById('edit-hp').value = datos.potencia;
-        document.getElementById('edit-km').value = datos.kilometraje;
+    document.getElementById('edit-nombre').value = autoSiendoEditado.querySelector('.marca-modelo').innerText;
+    document.getElementById('edit-precio').value = autoSiendoEditado.querySelector('.precio-auto').innerText;
+    document.getElementById('edit-desc').value = datos.descripcion || "";
+    document.getElementById('edit-modelo').value = datos.modelo || "";
+    document.getElementById('edit-motor').value = datos.motor || "";
+    document.getElementById('edit-hp').value = datos.potencia || "";
+    document.getElementById('edit-km').value = datos.kilometraje || "";
 
-        document.getElementById('editor-publicacion').style.display = 'flex';
-    }
+    document.getElementById('editor-publicacion').style.display = 'flex';
+}
 
-    function aplicarCambios() {
-        if (!autoSiendoEditado) return;
-        const idAuto = autoSiendoEditado.getAttribute('data-id');
+function aplicarCambios() {
+    const id = autoSiendoEditado.getAttribute('data-id');
+    
+    // Actualizar catálogo interno
+    catalogo[id].descripcion = document.getElementById('edit-desc').value;
+    catalogo[id].modelo = document.getElementById('edit-modelo').value;
+    catalogo[id].motor = document.getElementById('edit-motor').value;
+    catalogo[id].potencia = document.getElementById('edit-hp').value;
+    catalogo[id].kilometraje = document.getElementById('edit-km').value;
 
-        // 1. Actualizar objeto catálogo (El cerebro)
-        catalogo[idAuto].descripcion = document.getElementById('edit-desc').value;
-        catalogo[idAuto].modelo = document.getElementById('edit-modelo').value;
-        catalogo[idAuto].motor = document.getElementById('edit-motor').value;
-        catalogo[idAuto].potencia = document.getElementById('edit-hp').value;
-        catalogo[idAuto].kilometraje = document.getElementById('edit-km').value;
+    // Actualizar vista exterior
+    autoSiendoEditado.querySelector('.marca-modelo').innerText = document.getElementById('edit-nombre').value;
+    autoSiendoEditado.querySelector('.precio-auto').innerText = document.getElementById('edit-precio').value;
 
-        // 2. Actualizar tarjeta visual (Lo de afuera)
-        autoSiendoEditado.querySelector('.
+    cerrarEditor();
+    if(typeof verDetalles === "function") verDetalles(id);
+}
+
+function cerrarEditor() { document.getElementById('editor-publicacion').style.display = 'none'; }
+function cerrarLogin() { document.getElementById('login-owner').style.display = 'none'; }
+</script>
+</body>
+</html>

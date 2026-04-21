@@ -28,27 +28,70 @@
             position: sticky; top: 0; z-index: 1000;
         }
 
-        .logo-text { font-weight: bold; font-size: 1.6rem; color: var(--color-mostaza); letter-spacing: 2px; }
+        /* -----------------------------------------------------------
+           EL NUEVO LOGO MINIMALISTA CON CARRITO (Arriba a la Izquierda)
+           ----------------------------------------------------------- */
+        .logo-minimal-brilla {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+            cursor: pointer;
+            text-decoration: none;
+            filter: drop-shadow(0 0 5px rgba(209, 180, 100, 0.4)); /* Brillo dorado */
+        }
+
+        /* Recreación del carrito minimalista en SVG dorado */
+        .svg-carrito-dorado {
+            fill: var(--color-mostaza);
+            width: 50px; /* Tamaño del icono */
+            height: auto;
+        }
+
+        .text-brilla-nav {
+            font-size: 1.1rem;
+            color: var(--color-mostaza);
+            font-weight: bold;
+            letter-spacing: 1px;
+            margin: 0;
+            font-family: 'Times New Roman', Times, serif; /* Fuente más parecida a */
+        }
+
+        .text-autospa-nav {
+            font-size: 0.6rem;
+            color: #aaa;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin: -2px 0 0 0;
+        }
+
+        /* -----------------------------------------------------------
+           ÁREA DE LOGIN (Arriba a la Derecha)
+           ----------------------------------------------------------- */
+        .area-login-nav {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        #user-greeting { display: none; color: var(--color-mostaza); font-weight: bold; font-size: 0.85rem; }
 
         /* HERO ANIMADO */
         .hero {
             background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.9)), url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1500&q=80');
             background-size: cover; background-position: center;
             height: 300px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;
+            border-bottom: 1px solid var(--color-mostaza);
         }
 
-        /* TARJETAS CON VISTA PREVIA DETALLADA */
+        .hero h1 { font-size: 3rem; text-transform: uppercase; margin: 0; }
+        .hero p { color: var(--color-mostaza); letter-spacing: 2px; }
+
+        /* CATALOGO */
         .seccion-autos { padding: 60px 20px; max-width: 1300px; margin: auto; }
         .contenedor-autos { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
         
-        .tarjeta-auto { 
-            background: var(--color-gris-oscuro); 
-            border: 1px solid #333; 
-            border-radius: 12px; 
-            overflow: hidden; 
-            transition: 0.4s;
-            cursor: pointer;
-        }
+        .tarjeta-auto { background: var(--color-gris-oscuro); border: 1px solid #333; border-radius: 12px; overflow: hidden; transition: 0.4s; cursor: pointer; }
         .tarjeta-auto:hover { transform: translateY(-10px); border-color: var(--color-mostaza); box-shadow: 0 10px 20px rgba(209, 180, 100, 0.1); }
         .tarjeta-auto img { width: 100%; height: 230px; object-fit: cover; border-bottom: 2px solid var(--color-mostaza); }
         
@@ -56,39 +99,50 @@
         .marca-modelo { font-size: 1.4rem; color: var(--color-mostaza); margin-bottom: 8px; font-weight: bold; }
         .preview-info { font-size: 0.85rem; color: #bbb; margin-bottom: 15px; line-height: 1.4; height: 40px; overflow: hidden; }
         .preview-tech { font-size: 0.8rem; color: var(--color-mostaza); border-top: 1px solid #333; padding-top: 10px; display: flex; justify-content: space-between; }
-
         .precio-auto { font-size: 1.6rem; font-weight: bold; margin-top: 15px; color: white; }
 
-        /* BOTONES DE EDICIÓN (SÓLO OWNER) */
-        .btn-edit-inline { display: none; background: #000; color: var(--color-mostaza); border: 1px solid var(--color-mostaza); border-radius: 4px; padding: 3px 8px; font-size: 0.65rem; cursor: pointer; margin-left: 8px; }
+        /* BOTONES EDITAR (Solo DAY ROJAS) */
+        .btn-edit-inline { display: none; background: #000; color: var(--color-mostaza); border: 1px solid var(--color-mostaza); border-radius: 4px; padding: 3px 8px; font-size: 0.65rem; cursor: pointer; margin-left: 8px; font-family: sans-serif; }
 
-        /* MODALES Y LOGIN */
+        /* MODAL */
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 2000; overflow: auto; }
         .modal-content { background: #111; margin: 5% auto; padding: 40px; border: 1px solid var(--color-mostaza); width: 85%; max-width: 900px; border-radius: 10px; position: relative; }
-        .close-modal { position: absolute; top: 15px; right: 25px; font-size: 30px; cursor: pointer; color: #666; }
-        
+        .close-modal { position: absolute; top: 15px; right: 25px; font-size: 30px; cursor: pointer; color: #666; transition: 0.3s; }
+        .close-modal:hover { color: var(--color-mostaza); }
+
+        /* LOGIN */
         .login-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.98); z-index: 3000; justify-content: center; align-items: center; }
         .login-box { background: #000; padding: 40px; border: 2px solid var(--color-mostaza); border-radius: 10px; text-align: center; width: 320px; }
         .login-box input { width: 100%; padding: 12px; margin-bottom: 15px; background: #111; border: 1px solid var(--color-mostaza); color: white; border-radius: 5px; box-sizing: border-box; }
+        .btn-login { background: var(--color-mostaza); color: black; border: none; padding: 12px; width: 100%; font-weight: bold; cursor: pointer; text-transform: uppercase; border-radius: 5px; }
+
+        footer { text-align: center; padding: 40px; border-top: 2px solid var(--color-mostaza); background: #000; color: #aaa; margin-top: 50px; }
     </style>
 </head>
 <body>
 
     <nav class="animate__animated animate__fadeInDown">
-        <div class="logo-text">BRILLA AUTO SPA</div>
-        <div>
-            <span id="user-greeting" style="display:none; color:var(--color-mostaza); margin-right:15px; font-weight: bold;"></span>
-            <button id="btn-admin-nav" onclick="document.getElementById('login-owner').style.display='flex'" style="background:transparent; color:var(--color-mostaza); border:1px solid var(--color-mostaza); cursor:pointer; padding:6px 12px; border-radius:3px;">ACCESO OWNER</button>
+        <a href="#" class="logo-minimal-brilla">
+            <svg class="svg-carrito-dorado" viewBox="0 0 512 512">
+                <path d="M472.1,348.6c13.7,0,24.8-11.1,24.8-24.8V188.2c0-13.7-11.1-24.8-24.8-24.8H188.2c-13.7,0-24.8,11.1-24.8,24.8v135.6c0,13.7,11.1,24.8,24.8,24.8h60v50H60c-13.7,0-24.8,11.1-24.8,24.8v50c0,13.7,11.1,24.8,24.8,24.8h400c13.7,0,24.8-11.1,24.8-24.8v-50c0-13.7-11.1-24.8-24.8-24.8h-70v-50C472.1,348.6,472.1,348.6,472.1,348.6z M188.2,188.2h283.9v135.6H188.2V188.2z M60,400h400v50H60V400z M273.9,348.6h100v50h-100V348.6z"/>
+            </svg>
+            <p class="text-brilla-nav">BRILLA</p>
+            <p class="text-autospa-nav">AUTO SPA</p>
+        </a>
+
+        <div class="area-login-nav">
+            <span id="user-greeting"></span>
+            <button id="btn-admin-nav" onclick="document.getElementById('login-owner').style.display='flex'" style="background: transparent; color: var(--color-mostaza); border: 1px solid var(--color-mostaza); cursor: pointer; padding: 6px 12px; font-size: 11px; border-radius: 3px; font-weight: bold; text-transform: uppercase;">Owner</button>
         </div>
     </nav>
 
     <div class="hero">
-        <h1 class="animate__animated animate__zoomIn" style="font-size: 3rem; margin: 0;">EXCLUSIVIDAD AUTOMOTRIZ</h1>
-        <p class="animate__animated animate__fadeInUp animate__delay-1s" style="color: var(--color-mostaza); letter-spacing: 2px;">BY DAY ROJAS</p>
+        <h1 class="animate__animated animate__zoomIn">Servicio Premium</h1>
+        <p class="animate__animated animate__fadeInUp animate__delay-1s">Brilla Auto Spa by Day Rojas</p>
     </div>
 
     <div class="seccion-autos">
-        <h2 style="text-align:center; color:var(--color-mostaza); margin-bottom: 40px;" class="animate__animated animate__fadeIn">CATÁLOGO DISPONIBLE</h2>
+        <h2 style="text-align:center; color:var(--color-mostaza); margin-bottom: 40px;" class="animate__animated animate__fadeIn">CATÁLOGO EXCLUSIVO</h2>
         <div id="grid-autos" class="contenedor-autos">
             </div>
     </div>
@@ -102,13 +156,18 @@
 
     <div id="login-owner" class="login-overlay">
         <div class="login-box animate__animated animate__pulse">
+            <i class="fas fa-car-on" style="font-size: 2rem; color: var(--color-mostaza); margin-bottom: 15px;"></i>
             <h2 style="color:var(--color-mostaza);">IDENTIFICACIÓN</h2>
             <input type="text" id="user-owner" placeholder="USUARIO">
             <input type="password" id="pass-owner" placeholder="CONTRASEÑA">
-            <button onclick="validarAcceso()" style="background:var(--color-mostaza); border:none; padding:12px; width:100%; font-weight:bold; cursor:pointer;">ENTRAR</button>
-            <p onclick="document.getElementById('login-owner').style.display='none'" style="color:#555; cursor:pointer; margin-top:15px;">Cerrar</p>
+            <button onclick="validarAcceso()" class="btn-login">Entrar</button>
+            <p onclick="document.getElementById('login-owner').style.display='none'" style="color:#555; cursor:pointer; margin-top:15px; font-size: 0.8rem;">Cerrar</p>
         </div>
     </div>
+
+    <footer>
+        <p>&copy; 2024 BRILLA AUTO SPA - Exclusividad y Calidad</p>
+    </footer>
 
     <script>
         let esOwner = false;
@@ -119,19 +178,18 @@
             'ferrari': { titulo: 'Ferrari F8 Tributo', precio: '$380,000', descripcion: 'Tratamiento de cuero premium e interior impecable con acabado espejo.', modelo: '2023', motor: '3.9L Twin-Turbo V8', potencia: '710 HP' }
         };
 
-        let catalogo = JSON.parse(localStorage.getItem('brilla_spa_v5')) || defaultCatalogo;
+        let catalogo = JSON.parse(localStorage.getItem('brilla_spa_v6')) || defaultCatalogo;
 
-        function guardar() { localStorage.setItem('brilla_spa_v5', JSON.stringify(catalogo)); }
+        function guardar() { localStorage.setItem('brilla_spa_v6', JSON.stringify(catalogo)); }
 
         function renderizarCatalogo() {
             const grid = document.getElementById('grid-autos');
+            if(!grid) return;
             grid.innerHTML = ""; 
 
             Object.keys(catalogo).forEach((id, index) => {
                 const auto = catalogo[id];
                 const img = id === 'corvette' ? 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=800' : 'https://images.unsplash.com/photo-1583121274602-3e2820c69888?w=800';
-                
-                // Añadimos delay progresivo a las tarjetas para que entren una tras otra
                 const delayClass = `animate__delay-${index}s`;
 
                 grid.innerHTML += `
@@ -155,30 +213,32 @@
             autoActualId = id;
             const auto = catalogo[id];
             const displayEdit = esOwner ? 'inline-block' : 'none';
+            const imgUrl = id === 'corvette' ? 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=1000' : 'https://images.unsplash.com/photo-1583121274602-3e2820c69888?w=1000';
 
             document.getElementById('contenido-modal').innerHTML = `
-                <h2 style="color: var(--color-mostaza); font-size: 2rem;">${auto.titulo} <button class="btn-edit-inline" style="display:${displayEdit}" onclick="editar('titulo')">EDITAR</button></h2>
-                <div style="display:grid; grid-template-columns: 1.2fr 0.8fr; gap:30px;">
+                <h2 style="color: var(--color-mostaza); font-size: 2rem;">${auto.titulo} <button class="btn-edit-inline" style="display:${displayEdit}" onclick="editarCampo('titulo')"><i class="fas fa-edit"></i></button></h2>
+                <img src="${imgUrl}" style="width:100%; border-radius:8px; margin-bottom:20px; border: 1px solid #222;">
+                <div style="display:grid; grid-template-columns: 1.2fr 0.8fr; gap:30px; text-align:left;">
                     <div>
-                        <h3 style="color:var(--color-mostaza);">Descripción <button class="btn-edit-inline" style="display:${displayEdit}" onclick="editar('descripcion')">EDITAR</button></h3>
-                        <p style="line-height:1.6; color:#ccc;">${auto.descripcion}</p>
-                        <h3 style="color:white; margin-top:20px;">Precio Sugerido <button class="btn-edit-inline" style="display:${displayEdit}" onclick="editar('precio')">EDITAR</button></h3>
+                        <h3 style="color:var(--color-mostaza);">Descripción <button class="btn-edit-inline" style="display:${displayEdit}" onclick="editarCampo('descripcion')"><i class="fas fa-edit"></i></button></h3>
+                        <p style="color:#ccc; line-height:1.6;">${auto.descripcion}</p>
+                        <h3 style="color:white; margin-top:20px;">Precio Sugerido <button class="btn-edit-inline" style="display:${displayEdit}" onclick="editarCampo('precio')"><i class="fas fa-edit"></i></button></h3>
                         <p style="font-size:2rem; color:var(--color-mostaza); font-weight:bold; margin:0;">${auto.precio}</p>
                     </div>
                     <div style="background:#1a1a1a; padding:25px; border-radius:10px; border: 1px solid #333;">
                         <h3 style="margin-top:0; border-bottom:1px solid var(--color-mostaza); padding-bottom:10px;">Ficha Técnica</h3>
-                        <p><strong>Modelo:</strong> ${auto.modelo} <button class="btn-edit-inline" style="display:${displayEdit}" onclick="editar('modelo')">EDITAR</button></p>
-                        <p><strong>Motor:</strong> ${auto.motor} <button class="btn-edit-inline" style="display:${displayEdit}" onclick="editar('motor')">EDITAR</button></p>
-                        <p><strong>Potencia:</strong> ${auto.potencia} <button class="btn-edit-inline" style="display:${displayEdit}" onclick="editar('potencia')">EDITAR</button></p>
+                        <p><strong>Modelo:</strong> ${auto.modelo} <button class="btn-edit-inline" style="display:${displayEdit}" onclick="editarCampo('modelo')"><i class="fas fa-edit"></i></button></p>
+                        <p><strong>Motor:</strong> ${auto.motor} <button class="btn-edit-inline" style="display:${displayEdit}" onclick="editarCampo('motor')"><i class="fas fa-edit"></i></button></p>
+                        <p><strong>Potencia:</strong> ${auto.potencia} <button class="btn-edit-inline" style="display:${displayEdit}" onclick="editarCampo('potencia')"><i class="fas fa-edit"></i></button></p>
                     </div>
                 </div>
             `;
             document.getElementById('modal-detalles').style.display = 'block';
         }
 
-        function editar(campo) {
-            const nuevo = prompt("Nuevo valor para " + campo.toUpperCase() + ":", catalogo[autoActualId][campo]);
-            if (nuevo) {
+        function editarCampo(campo) {
+            const nuevo = prompt("Actualizar " + campo.toUpperCase() + ":", catalogo[autoActualId][campo]);
+            if (nuevo !== null && nuevo !== "") {
                 catalogo[autoActualId][campo] = nuevo;
                 guardar();
                 renderizarCatalogo();
@@ -190,16 +250,16 @@
             if (document.getElementById('user-owner').value === "DAY ROJAS" && document.getElementById('pass-owner').value === "POTOMAC2026") {
                 esOwner = true;
                 document.getElementById('login-owner').style.display = 'none';
-                document.getElementById('user-greeting').innerHTML = '<i class="fas fa-user-shield"></i> OWNER: DAY ROJAS';
+                document.getElementById('user-greeting').innerHTML = "DAY ROJAS";
                 document.getElementById('user-greeting').style.display = 'inline-block';
                 document.getElementById('btn-admin-nav').style.display = 'none';
                 renderizarCatalogo();
-            } else { alert("Acceso denegado"); }
+            } else { alert("Acceso Denegado."); }
         }
 
         function cerrarModal() { document.getElementById('modal-detalles').style.display = 'none'; }
         
-        // Iniciar catálogo con animaciones
+        // Iniciar
         renderizarCatalogo();
     </script>
 </body>

@@ -6,6 +6,7 @@
     <title>Brilla Auto Spa | Catálogo de Exclusividad</title>
     
     <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/MrJose21/cochesday/2fc9948b3ad68451d7661ea1d7c6692337e8bd41/logo%20de%20fondo.jpg">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
 
@@ -31,7 +32,17 @@
             position: sticky; top: 0; z-index: 1000;
         }
 
-        .logo-img-link img { height: 60px; filter: drop-shadow(0 0 5px rgba(209, 180, 100, 0.3)); }
+        /* Contenedor para el logo largo */
+        .logo-img-link {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .logo-img-link img {
+            height: 60px; /* Tamaño para el logo largo */
+            filter: drop-shadow(0 0 5px rgba(209, 180, 100, 0.3));
+        }
 
         .area-login-nav { display: flex; align-items: center; gap: 15px; }
         #user-greeting { display: none; color: var(--color-mostaza); font-weight: bold; font-size: 0.85rem; text-transform: uppercase; border-right: 1px solid #333; padding-right: 15px; }
@@ -41,89 +52,121 @@
             padding: 8px 16px; font-size: 11px; border-radius: 4px; font-weight: bold; 
             text-transform: uppercase; cursor: pointer; transition: 0.3s;
         }
+        #btn-nueva-pub:hover { transform: scale(1.05); box-shadow: var(--shadow-gold); }
 
         .promo-banner {
             background-color: var(--color-mostaza); color: #000; padding: 12px;
             display: flex; align-items: center; justify-content: center; gap: 15px;
             font-weight: bold; font-size: 0.9rem; text-align: center;
-            text-transform: uppercase;
         }
 
-        /* HERO AJUSTADO PARA MÁS ESPACIO */
+        /* HERO - FONDO LOGO CAMBIADO */
         .hero {
-            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://raw.githubusercontent.com/MrJose21/cochesday/2fc9948b3ad68451d7661ea1d7c6692337e8bd41/logo%20de%20fondo.jpg');
-            background-size: contain; 
-            background-position: center;
-            background-repeat: no-repeat;
-            height: 550px; /* Aumentado para dar mucho más espacio */
-            display: flex; 
-            flex-direction: column; 
-            justify-content: center; 
-            align-items: center; 
-            text-align: center; 
-            border-bottom: 1px solid var(--color-mostaza);
-            padding: 0 20px;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.85)), url('https://raw.githubusercontent.com/MrJose21/cochesday/2fc9948b3ad68451d7661ea1d7c6692337e8bd41/logo%20de%20fondo.jpg');
+            background-size: cover; background-position: center;
+            height: 300px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; border-bottom: 1px solid var(--color-mostaza);
         }
+        .hero h1 { font-size: 3rem; text-transform: uppercase; margin: 0; letter-spacing: 3px; }
+        .hero p { color: var(--color-mostaza); letter-spacing: 2px; font-size: 1.2rem; margin-top: 10px; }
 
-        .hero-content {
-            background: rgba(0, 0, 0, 0.4);
-            padding: 40px;
-            border-radius: 20px;
-            backdrop-filter: blur(2px);
-        }
-
-        .hero h1 { font-size: 3.5rem; text-transform: uppercase; margin: 0; letter-spacing: 4px; color: white; }
-        .hero p { color: var(--color-mostaza); letter-spacing: 2px; font-size: 1.3rem; margin-top: 15px; max-width: 800px; }
-
-        /* SECCIÓN SERVICIOS */
+        /* SECCIÓN SERVICIOS (Espaciada, añadida) */
         .seccion-servicios {
             background: #080808;
             padding: 35px 20px;
+            border-bottom: 1px solid #222;
             display: flex;
             justify-content: center;
-            gap: 40px;
+            gap: 40px; /* Espacio grande solicitado */
             flex-wrap: wrap;
-            border-bottom: 1px solid #222;
         }
         .servicio-item {
-            color: #aaa; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1.5px;
-            display: flex; align-items: center; gap: 10px;
+            color: #aaa;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
-        .servicio-item i { color: var(--color-mostaza); }
+        .servicio-item i { color: var(--color-mostaza); font-size: 1rem; }
 
-        /* CATALOGO */
-        .seccion-autos { padding: 80px 5% 50px 5%; }
-        .contenedor-autos { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-        .tarjeta-auto { background: var(--color-gris-oscuro); border: 1px solid #222; border-radius: 12px; overflow: hidden; position: relative; transition: 0.3s; }
-        .tarjeta-auto img { width: 100%; height: 230px; object-fit: cover; border-bottom: 2px solid var(--color-mostaza); cursor: pointer; }
-        .info-auto { padding: 20px; }
-
-        /* MODALES PROFESIONALES */
+        /* MODALES Y LOGIN (Conservando estética profesional original de tu código) */
         .modal, .login-overlay { 
-            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
-            background: rgba(0,0,0,0.9); z-index: 2000; backdrop-filter: blur(5px);
-            justify-content: center; align-items: center;
-        }
-        .modal-content, .login-box { 
-            background: #0a0a0a; padding: 35px; border: 1px solid var(--color-mostaza); 
-            width: 90%; max-width: 650px; border-radius: 15px; position: relative;
-            box-shadow: var(--shadow-gold); max-height: 90vh; overflow-y: auto;
+            display: none; 
+            position: fixed; 
+            top: 0; left: 0; 
+            width: 100%; height: 100%; 
+            background: rgba(0,0,0,0.9); 
+            z-index: 2000; 
+            backdrop-filter: blur(5px);
+            justify-content: center; 
+            align-items: center;
         }
 
+        .modal-content, .login-box { 
+            background: #0a0a0a; 
+            padding: 35px; 
+            border: 1px solid var(--color-mostaza); 
+            width: 90%; 
+            max-width: 650px; 
+            border-radius: 15px; /* Bordes originales solicitados */
+            position: relative;
+            box-shadow: var(--shadow-gold);
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .login-box { max-width: 350px; text-align: center; }
+
+        /* FORMULARIO (Estilo profesional original) */
         .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 20px; }
         .full-width { grid-column: span 2; }
         .input-group { display: flex; flex-direction: column; gap: 5px; text-align: left; }
         .input-group label { color: var(--color-mostaza); font-size: 0.7rem; text-transform: uppercase; font-weight: bold; }
-        .form-control { background: var(--color-gris-input); border: 1px solid #333; color: white; padding: 12px; border-radius: 8px; outline: none; width: 100%; box-sizing: border-box; }
+        .form-control { 
+            background: var(--color-gris-input); 
+            border: 1px solid #333; 
+            color: white; 
+            padding: 12px; 
+            border-radius: 8px; /* Redondeado original solicitado */
+            outline: none;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .login-box input { margin-bottom: 15px; text-align: center; }
+
+        /* CARGA DE ARCHIVOS (Estilo profesional original) */
+        .file-upload-wrapper {
+            border: 2px dashed #444; padding: 25px; text-align: center; border-radius: 10px;
+            cursor: pointer; transition: 0.3s; background: #111;
+        }
+        .file-upload-wrapper:hover { border-color: var(--color-mostaza); background: #151515; }
+        .file-upload-wrapper i { font-size: 1.5rem; color: var(--color-mostaza); margin-bottom: 10px; }
 
         .btn-principal { 
             background: var(--color-mostaza); color: black; border: none; padding: 14px; 
             border-radius: 8px; font-weight: bold; text-transform: uppercase; 
             width: 100%; cursor: pointer; transition: 0.3s; margin-top: 10px;
         }
+        .btn-principal:hover { background: #e2c575; transform: scale(1.02); }
 
         .close-btn { position: absolute; top: 15px; right: 15px; color: #555; font-size: 22px; cursor: pointer; }
 
+        /* CATALOGO - ESPACIADO ARRASTRADO HACIA ABAJO (Solicitado) */
+        .seccion-autos { 
+            padding: 80px 5% 50px 5%; /* Más padding arriba para separar de servicios */
+        }
+        .contenedor-autos { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .tarjeta-auto { background: var(--color-gris-oscuro); border: 1px solid #222; border-radius: 12px; overflow: hidden; position: relative; transition: 0.3s; }
+        .tarjeta-auto:hover { transform: translateY(-5px); border-color: var(--color-mostaza); }
+        .tarjeta-auto img { width: 100%; height: 230px; object-fit: cover; border-bottom: 2px solid var(--color-mostaza); cursor: pointer; }
+        .info-auto { padding: 20px; }
+        
+        /* CONTACTO */
+        .contact-info-bar { padding: 40px; background: #080808; display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; border-top: 1px solid #111; margin-top: 50px; }
+        .contact-item { display: flex; align-items: center; gap: 10px; }
+        .hex-icon { width: 35px; height: 35px; border: 1px solid var(--color-mostaza); display: flex; align-items: center; justify-content: center; clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%); color: var(--color-mostaza); }
+        
         .loading-overlay { display: none; position: fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); z-index:5000; flex-direction:column; justify-content:center; align-items:center; }
         .loader { border: 4px solid #111; border-top: 4px solid var(--color-mostaza); border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
@@ -131,7 +174,7 @@
 </head>
 <body>
 
-    <div id="loading-screen" class="loading-overlay"><div class="loader"></div><h3 style="color:var(--color-mostaza)">VERIFICANDO...</h3></div>
+    <div id="loading-screen" class="loading-overlay"><div class="loader"></div><h3 id="loading-text" style="color:var(--color-mostaza)">VERIFICANDO...</h3></div>
 
     <nav>
         <a href="#" class="logo-img-link">
@@ -147,13 +190,8 @@
     <div class="promo-banner"><span>GET $15 OFF YOUR FIRST FULL DETAIL SERVICE!</span></div>
 
     <div class="hero">
-        <div class="hero-content animate__animated animate__fadeIn">
-            <h1>Catálogo Premium</h1>
-            <p>Brilla Auto Spa by Day Rojas</p>
-            <p style="font-size: 0.9rem; opacity: 0.8; margin-top: 20px; font-style: italic;">
-                Ofreciendo el mejor servicio para tu vehículo. Agenda tu cita hoy mismo.
-            </p>
-        </div>
+        <h1 class="animate__animated animate__fadeInDown">Catálogo Premium</h1>
+        <p>Exclusividad por Day Rojas</p>
     </div>
 
     <div class="seccion-servicios">
@@ -165,7 +203,7 @@
     </div>
 
     <div class="seccion-autos">
-        <h2 style="text-align: center; color: var(--color-mostaza); margin-bottom: 40px; letter-spacing: 2px;">EXCLUSIVIDAD EN CADA DETALLE</h2>
+        <h2 style="text-align: center; color: var(--color-mostaza); margin-bottom: 40px; letter-spacing: 2px;">VEHÍCULOS DISPONIBLES</h2>
         <div id="grid-autos" class="contenedor-autos"></div>
     </div>
 
@@ -185,6 +223,8 @@
                 <div class="input-group full-width"><label>Descripción</label><textarea id="new-desc" class="form-control" rows="2"></textarea></div>
                 <div class="input-group"><label>Precio</label><input type="text" id="new-precio" class="form-control"></div>
                 <div class="input-group"><label>Año</label><input type="text" id="new-modelo" class="form-control"></div>
+                <div class="input-group"><label>Motor</label><input type="text" id="new-motor" class="form-control"></div>
+                <div class="input-group"><label>Potencia</label><input type="text" id="new-potencia" class="form-control"></div>
             </div>
             <button onclick="crearPublicacion()" class="btn-principal">CONFIRMAR Y PUBLICAR</button>
         </div>
@@ -204,11 +244,15 @@
         <div class="modal-content"><span class="close-btn" onclick="this.parentElement.parentElement.style.display='none'">&times;</span><div id="contenido-modal"></div></div>
     </div>
 
-    <footer style="text-align:center; padding:40px; background: #050505; color:#444; font-size:0.8rem;">
-        &copy; 2024 BRILLA AUTO SPA - Exclusividad y Calidad
-    </footer>
+    <div class="contact-info-bar">
+        <div class="contact-item"><div class="hex-icon"><i class="fas fa-envelope"></i></div><p style="margin:0; font-size:0.8rem;">brillautospa@gmail.com</p></div>
+        <div class="contact-item"><div class="hex-icon"><i class="fab fa-whatsapp"></i></div><p style="margin:0; font-size:0.8rem;">+1 (571) 660-0734</p></div>
+    </div>
+
+    <footer style="text-align:center; padding:30px; color:#444; font-size:0.8rem;">&copy; 2024 BRILLA AUTO SPA</footer>
 
     <script>
+        // ... (Script mantenido idéntico al código base para conservar funcionalidad)
         let esOwner = false;
         let catalogo = JSON.parse(localStorage.getItem('brilla_vFinal_v2')) || {};
 
@@ -249,10 +293,12 @@
             const fotos = await Promise.all(promesas);
             const id = "auto_" + Date.now();
             catalogo[id] = {
-                titulo: document.getElementById('new-titulo').value,
-                precio: document.getElementById('new-precio').value,
-                descripcion: document.getElementById('new-desc').value,
-                modelo: document.getElementById('new-modelo').value,
+                titulo: document.getElementById('new-titulo').value || 'Sin Título',
+                precio: document.getElementById('new-precio').value || '-',
+                descripcion: document.getElementById('new-desc').value || '',
+                modelo: document.getElementById('new-modelo').value || '-',
+                motor: document.getElementById('new-motor').value || '-',
+                potencia: document.getElementById('new-potencia').value || '-',
                 fotos: fotos
             };
             localStorage.setItem('brilla_vFinal_v2', JSON.stringify(catalogo));
@@ -290,7 +336,8 @@
                 </div>
                 <p>${auto.descripcion}</p>
                 <div style="background:#111; padding:15px; border-radius:8px; display:grid; grid-template-columns:1fr 1fr; font-size:0.85rem;">
-                    <p><b>Año:</b> ${auto.modelo}</p><p style="color:var(--color-mostaza); font-size:1.2rem;"><b>${auto.precio}</b></p>
+                    <p><b>Año:</b> ${auto.modelo}</p><p><b>Motor:</b> ${auto.motor}</p>
+                    <p><b>Potencia:</b> ${auto.potencia}</p><p style="color:var(--color-mostaza); font-size:1.2rem;"><b>${auto.precio}</b></p>
                 </div>`;
             document.getElementById('modal-detalles').style.display = 'flex';
         }

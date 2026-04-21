@@ -32,17 +32,8 @@
             position: sticky; top: 0; z-index: 1000;
         }
 
-        /* Contenedor para el logo largo */
-        .logo-img-link {
-            display: flex;
-            align-items: center;
-            text-decoration: none;
-        }
-
-        .logo-img-link img {
-            height: 60px; /* Tamaño para el logo largo */
-            filter: drop-shadow(0 0 5px rgba(209, 180, 100, 0.3));
-        }
+        .logo-img-link { display: flex; align-items: center; text-decoration: none; }
+        .logo-img-link img { height: 60px; filter: drop-shadow(0 0 5px rgba(209, 180, 100, 0.3)); }
 
         .area-login-nav { display: flex; align-items: center; gap: 15px; }
         #user-greeting { display: none; color: var(--color-mostaza); font-weight: bold; font-size: 0.85rem; text-transform: uppercase; border-right: 1px solid #333; padding-right: 15px; }
@@ -60,88 +51,72 @@
             font-weight: bold; font-size: 0.9rem; text-align: center;
         }
 
-        /* HERO - FONDO LOGO CAMBIADO */
+        /* HERO - CORRECCIÓN DE LOGO RODADO A LA IZQUIERDA Y SIN DIFUMINADO */
         .hero {
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.85)), url('https://raw.githubusercontent.com/MrJose21/cochesday/2fc9948b3ad68451d7661ea1d7c6692337e8bd41/logo%20de%20fondo.jpg');
-            background-size: cover; background-position: center;
-            height: 300px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; border-bottom: 1px solid var(--color-mostaza);
+            background-color: var(--color-negro);
+            /* Se eliminó el degradado oscuro (difuminado) que tapaba la imagen */
+            background-image: url('https://raw.githubusercontent.com/MrJose21/cochesday/2fc9948b3ad68451d7661ea1d7c6692337e8bd41/logo%20de%20fondo.jpg');
+            background-size: contain; /* Para que el logo no se estire ni se corte */
+            background-position: left center; /* Rodado a la izquierda */
+            background-repeat: no-repeat;
+            height: 350px; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            align-items: center; 
+            text-align: center; 
+            border-bottom: 1px solid var(--color-mostaza);
         }
-        .hero h1 { font-size: 3rem; text-transform: uppercase; margin: 0; letter-spacing: 3px; }
-        .hero p { color: var(--color-mostaza); letter-spacing: 2px; font-size: 1.2rem; margin-top: 10px; }
+        /* Sombras suaves al texto para que resalte sobre cualquier parte del logo */
+        .hero h1 { font-size: 3.5rem; text-transform: uppercase; margin: 0; letter-spacing: 3px; text-shadow: 2px 2px 10px #000; }
+        .hero p { color: var(--color-mostaza); letter-spacing: 2px; font-size: 1.2rem; margin-top: 10px; text-shadow: 1px 1px 5px #000; }
 
-        /* SECCIÓN SERVICIOS (Espaciada, añadida) */
+        /* SECCIÓN SERVICIOS */
         .seccion-servicios {
             background: #080808;
             padding: 35px 20px;
-            border-bottom: 1px solid #222;
             display: flex;
             justify-content: center;
-            gap: 40px; /* Espacio grande solicitado */
+            gap: 40px;
             flex-wrap: wrap;
+            border-bottom: 1px solid #222;
         }
         .servicio-item {
-            color: #aaa;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
+            color: #aaa; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1.5px;
+            display: flex; align-items: center; gap: 10px;
         }
         .servicio-item i { color: var(--color-mostaza); font-size: 1rem; }
 
-        /* MODALES Y LOGIN (Conservando estética profesional original de tu código) */
+        /* MODALES Y LOGIN PROFESIONALES */
         .modal, .login-overlay { 
-            display: none; 
-            position: fixed; 
-            top: 0; left: 0; 
-            width: 100%; height: 100%; 
-            background: rgba(0,0,0,0.9); 
-            z-index: 2000; 
-            backdrop-filter: blur(5px);
-            justify-content: center; 
-            align-items: center;
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+            background: rgba(0,0,0,0.9); z-index: 2000; backdrop-filter: blur(5px);
+            justify-content: center; align-items: center;
         }
 
         .modal-content, .login-box { 
-            background: #0a0a0a; 
-            padding: 35px; 
-            border: 1px solid var(--color-mostaza); 
-            width: 90%; 
-            max-width: 650px; 
-            border-radius: 15px; /* Bordes originales solicitados */
-            position: relative;
-            box-shadow: var(--shadow-gold);
-            max-height: 90vh;
-            overflow-y: auto;
+            background: #0a0a0a; padding: 35px; border: 1px solid var(--color-mostaza); 
+            width: 90%; max-width: 650px; border-radius: 15px; position: relative;
+            box-shadow: var(--shadow-gold); max-height: 90vh; overflow-y: auto;
         }
-
         .login-box { max-width: 350px; text-align: center; }
 
-        /* FORMULARIO (Estilo profesional original) */
+        /* FORMULARIO */
         .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 20px; }
         .full-width { grid-column: span 2; }
         .input-group { display: flex; flex-direction: column; gap: 5px; text-align: left; }
         .input-group label { color: var(--color-mostaza); font-size: 0.7rem; text-transform: uppercase; font-weight: bold; }
         .form-control { 
-            background: var(--color-gris-input); 
-            border: 1px solid #333; 
-            color: white; 
-            padding: 12px; 
-            border-radius: 8px; /* Redondeado original solicitado */
-            outline: none;
-            width: 100%;
-            box-sizing: border-box;
+            background: var(--color-gris-input); border: 1px solid #333; color: white; 
+            padding: 12px; border-radius: 8px; outline: none; width: 100%; box-sizing: border-box;
         }
-        .login-box input { margin-bottom: 15px; text-align: center; }
 
-        /* CARGA DE ARCHIVOS (Estilo profesional original) */
+        /* CARGA DE ARCHIVOS */
         .file-upload-wrapper {
             border: 2px dashed #444; padding: 25px; text-align: center; border-radius: 10px;
             cursor: pointer; transition: 0.3s; background: #111;
         }
         .file-upload-wrapper:hover { border-color: var(--color-mostaza); background: #151515; }
-        .file-upload-wrapper i { font-size: 1.5rem; color: var(--color-mostaza); margin-bottom: 10px; }
 
         .btn-principal { 
             background: var(--color-mostaza); color: black; border: none; padding: 14px; 
@@ -149,20 +124,17 @@
             width: 100%; cursor: pointer; transition: 0.3s; margin-top: 10px;
         }
         .btn-principal:hover { background: #e2c575; transform: scale(1.02); }
-
         .close-btn { position: absolute; top: 15px; right: 15px; color: #555; font-size: 22px; cursor: pointer; }
 
-        /* CATALOGO - ESPACIADO ARRASTRADO HACIA ABAJO (Solicitado) */
-        .seccion-autos { 
-            padding: 80px 5% 50px 5%; /* Más padding arriba para separar de servicios */
-        }
+        /* CATALOGO */
+        .seccion-autos { padding: 80px 5% 50px 5%; }
         .contenedor-autos { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
         .tarjeta-auto { background: var(--color-gris-oscuro); border: 1px solid #222; border-radius: 12px; overflow: hidden; position: relative; transition: 0.3s; }
         .tarjeta-auto:hover { transform: translateY(-5px); border-color: var(--color-mostaza); }
         .tarjeta-auto img { width: 100%; height: 230px; object-fit: cover; border-bottom: 2px solid var(--color-mostaza); cursor: pointer; }
         .info-auto { padding: 20px; }
         
-        /* CONTACTO */
+        /* FOOTER Y CONTACTO */
         .contact-info-bar { padding: 40px; background: #080808; display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; border-top: 1px solid #111; margin-top: 50px; }
         .contact-item { display: flex; align-items: center; gap: 10px; }
         .hex-icon { width: 35px; height: 35px; border: 1px solid var(--color-mostaza); display: flex; align-items: center; justify-content: center; clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%); color: var(--color-mostaza); }
@@ -190,8 +162,8 @@
     <div class="promo-banner"><span>GET $15 OFF YOUR FIRST FULL DETAIL SERVICE!</span></div>
 
     <div class="hero">
-        <h1 class="animate__animated animate__fadeInDown">Catálogo Premium</h1>
-        <p>Exclusividad por Day Rojas</p>
+        <h1 class="animate__animated animate__fadeInDown">Catálogo de Servicios</h1>
+        <p>Brindamos la mejor calidad para su vehículo</p>
     </div>
 
     <div class="seccion-servicios">
@@ -233,8 +205,8 @@
     <div id="login-owner" class="login-overlay">
         <div class="login-box animate__animated animate__fadeIn">
             <h2 style="color:var(--color-mostaza); margin-bottom:20px;">ACCESO PANEL</h2>
-            <input type="text" id="user-owner" class="form-control" placeholder="USUARIO">
-            <input type="password" id="pass-owner" class="form-control" placeholder="CONTRASEÑA">
+            <input type="text" id="user-owner" class="form-control" placeholder="USUARIO" style="margin-bottom: 15px; text-align: center;">
+            <input type="password" id="pass-owner" class="form-control" placeholder="CONTRASEÑA" style="margin-bottom: 15px; text-align: center;">
             <button onclick="validarAcceso()" class="btn-principal">ENTRAR</button>
             <p onclick="document.getElementById('login-owner').style.display='none'" style="color:#555; cursor:pointer; margin-top:15px; font-size:0.8rem;">CANCELAR</p>
         </div>
@@ -252,7 +224,6 @@
     <footer style="text-align:center; padding:30px; color:#444; font-size:0.8rem;">&copy; 2024 BRILLA AUTO SPA</footer>
 
     <script>
-        // ... (Script mantenido idéntico al código base para conservar funcionalidad)
         let esOwner = false;
         let catalogo = JSON.parse(localStorage.getItem('brilla_vFinal_v2')) || {};
 

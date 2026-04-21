@@ -3,28 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BRILLA AUTO SPA | Detallado y Elegancia</title>
+    <title>Brilla Auto Spa | DumfriesDetailing</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
+
     <style>
+        /* CSS: EL DISEÑO DE TU FOLLETO */
         :root {
-            --color-negro: #0a0a0a;
-            --color-dorado: #d4af37; /* Dorado Clásico */
-            --color-dorado-brillante: #f9e272;
-            --color-gris-oscuro: #1c1c1c;
+            --color-mostaza: #eeba2a; /* Amarillo-mostaza exacto de tu folleto */
+            --color-negro: #131313;   /* Casi negro */
+            --color-gris-oscuro: #2a2a2a;
             --color-texto-blanco: #ffffff;
+            --font-main: 'Arial', sans-serif; /* Tipografía limpia */
         }
 
         body {
-            font-family: 'Georgia', serif; /* Una fuente más elegante */
+            font-family: var(--font-main);
             margin: 0;
             background-color: var(--color-negro);
             color: var(--color-texto-blanco);
         }
 
-        /* Navegación Elegante */
+        /* 1. EL ENCABEZADO (NAV) */
         nav {
-            background: linear-gradient(to bottom, #1a1a1a, #000);
-            border-bottom: 2px solid var(--color-dorado);
-            padding: 1.5rem;
+            background: linear-gradient(135deg, var(--color-negro), var(--color-gris-oscuro));
+            border-bottom: 3px solid var(--color-mostaza);
+            padding: 1rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -33,157 +39,214 @@
             z-index: 1000;
         }
 
-        .logo { 
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-icon {
+            font-size: 2rem;
+            color: var(--color-mostaza);
+        }
+
+        .logo-text { 
             font-weight: bold; 
             font-size: 1.8rem; 
-            color: var(--color-dorado);
-            letter-spacing: 2px;
+            color: var(--color-mostaza);
+            letter-spacing: 1px;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
         }
 
-        /* Sección Hero / Portada */
+        /* 2. LA PORTADA (HERO) CON ANIMACIÓN */
         .hero {
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1601362840469-51e4d8d59085?auto=format&fit=crop&w=1500&q=80');
+            background: linear-gradient(rgba(19, 19, 19, 0.8), rgba(19, 19, 19, 0.9)), 
+                        url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1500&q=80');
             background-size: cover;
             background-position: center;
-            height: 500px;
+            height: 450px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            border-bottom: 1px solid var(--color-dorado);
+            text-align: center;
+            border-bottom: 1px solid var(--color-mostaza);
         }
 
         .hero h1 { 
-            color: var(--color-dorado); 
-            font-size: 3rem; 
-            margin-bottom: 10px;
+            color: var(--color-texto-blanco); 
+            font-size: 3.5rem; 
+            margin-bottom: 5px;
             text-transform: uppercase;
         }
 
-        /* Contenedor de Autos */
+        .hero p {
+            color: var(--color-mostaza);
+            font-size: 1.2rem;
+            max-width: 600px;
+        }
+
+        /* 3. SECCIÓN DE AUTOS PÚBLICOS */
+        .seccion-autos {
+            padding: 60px 20px;
+            max-width: 1300px;
+            margin: auto;
+        }
+
+        .titulo-seccion {
+            text-align: center;
+            color: var(--color-mostaza);
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Contenedor de autos estilo "Mercado Libre" pero premium */
         .contenedor-autos {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 30px;
-            padding: 50px 20px;
-            max-width: 1200px;
-            margin: auto;
         }
 
-        /* Tarjeta de Auto Estilo Dorado */
-        .tarjeta {
+        /* Tarjeta de Auto Premium */
+        .tarjeta-auto {
             background: var(--color-gris-oscuro);
             border: 1px solid #333;
-            border-radius: 5px;
+            border-radius: 8px;
             overflow: hidden;
-            transition: all 0.4s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .tarjeta:hover { 
-            transform: scale(1.03);
-            border-color: var(--color-dorado);
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+        .tarjeta-auto:hover { 
+            transform: translateY(-8px);
+            border-color: var(--color-mostaza);
+            box-shadow: 0 10px 25px rgba(238, 186, 42, 0.2);
         }
 
-        .tarjeta img { width: 100%; height: 220px; object-fit: cover; }
+        .tarjeta-auto img { 
+            width: 100%; 
+            height: 230px; 
+            object-fit: cover; 
+            border-bottom: 2px solid var(--color-mostaza);
+        }
 
-        .info { padding: 20px; border-top: 2px solid var(--color-dorado); }
-        .info h3 { margin: 0; color: var(--color-dorado-brillante); }
-        .precio { color: white; font-weight: bold; font-size: 1.4rem; margin: 15px 0; }
+        .info-auto { padding: 20px; }
         
-        /* Botones Dorados */
-        .btn-dorado {
-            background: linear-gradient(45deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
+        .marca-modelo { 
+            font-size: 1.4rem; 
+            font-weight: bold; 
+            margin: 0; 
+            color: var(--color-mostaza);
+        }
+
+        .caracteristicas { 
+            color: #ccc; 
+            font-size: 0.95rem; 
+            margin: 10px 0; 
+            line-height: 1.4;
+        }
+
+        .precio-auto { 
+            font-size: 1.8rem; 
+            font-weight: bold; 
+            color: var(--color-texto-blanco); 
+            margin-top: 15px; 
+        }
+
+        /* Botón de Contacto Dorado */
+        .btn-contacto {
+            background: var(--color-mostaza);
             color: black;
             border: none;
-            padding: 10px 25px;
-            border-radius: 3px;
+            padding: 12px 25px;
+            border-radius: 4px;
             cursor: pointer;
             font-weight: bold;
             text-transform: uppercase;
+            margin-top: 15px;
             transition: opacity 0.3s;
+            display: inline-block;
+            text-decoration: none; /* Quitar subrayado si es link */
         }
 
-        .btn-dorado:hover { opacity: 0.8; }
+        .btn-contacto:hover { opacity: 0.9; }
 
-        /* Panel Admin */
-        #admin-panel {
-            background: #111;
-            padding: 40px;
-            margin: 40px auto;
-            max-width: 600px;
-            border: 2px dashed var(--color-dorado);
-            display: none;
-        }
-
-        form input, form textarea {
-            width: 100%;
-            padding: 12px;
-            margin-bottom: 15px;
-            background: #222;
-            border: 1px solid var(--color-dorado);
-            color: white;
-            border-radius: 4px;
-        }
+        /* Botón Secreto Admin (Owner) */
+        #admin-panel { display: none; padding: 20px; } /* Lo ocultamos por ahora */
 
         footer { 
             text-align: center; 
-            padding: 30px; 
-            border-top: 1px solid var(--color-dorado);
-            margin-top: 50px;
-            color: #888;
+            padding: 40px; 
+            border-top: 2px solid var(--color-mostaza);
+            background: #000;
+            color: #aaa;
         }
+
+        .info-contacto { margin-top: 15px; color: white; font-size: 0.9rem; }
+        .info-contacto i { color: var(--color-mostaza); margin-right: 10px; }
+
     </style>
 </head>
 <body>
 
-    <nav>
-        <div class="logo">BRILLA AUTO SPA</div>
-        <button onclick="activarAdmin()" style="background: transparent; color: var(--color-dorado); border: 1px solid var(--color-dorado); cursor: pointer; padding: 5px 10px;">Acceso Owner</button>
+    <nav class="animate__animated animate__fadeInDown">
+        <div class="logo-area">
+            <i class="fas fa-car-side logo-icon"></i>
+            <div class="logo-text">BRILLA AUTO SPA</div>
+        </div>
+        <button onclick="activarAdmin()" style="background: transparent; color: var(--color-mostaza); border: 1px solid var(--color-mostaza); cursor: pointer; padding: 5px 10px; font-size: 12px;">Acceso Owner</button>
     </nav>
 
     <div class="hero">
-        <h1>Excelencia Automotriz</h1>
-        <p style="color: #ccc; font-size: 1.2rem;">Donde el lujo se encuentra con la potencia.</p>
+        <h1 class="animate__animated animate__zoomIn">Servicio Premium de Detallado</h1>
+        <p class="animate__animated animate__fadeInUp animate__delay-1s">Experimenta la verdadera excelencia automotriz. Donde el lujo se encuentra con la potencia.</p>
     </div>
 
-    <div id="admin-panel">
-        <h2 style="color: var(--color-dorado);">Panel de Control - Brilla Auto Spa</h2>
-        <form id="formAuto">
-            <input type="text" placeholder="URL de la imagen del auto" required>
-            <input type="text" placeholder="Marca y Modelo" required>
-            <input type="text" placeholder="Características (Año, Km, Motor)" required>
-            <input type="number" placeholder="Precio ($)" required>
-            <textarea placeholder="Descripción detallada de lujo" rows="4"></textarea>
-            <button type="submit" class="btn-dorado">Publicar Vehículo</button>
-        </form>
-    </div>
-
-    <div class="contenedor-autos" id="catalogo">
-        <div class="tarjeta">
-            <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=800&q=80" alt="Auto">
-            <div class="info">
-                <h3>Chevrolet Corvette Z06</h3>
-                <p style="color: #aaa;">2024 | 0 KM | Edición Especial</p>
-                <div class="precio">$150,000</div>
-                <button class="btn-dorado">Ver Detalles</button>
+    <div class="seccion-autos animate__animated animate__fadeInUp animate__delay-2s">
+        <h2 class="titulo-seccion">Nuestros Autos Brillantemente Detallados</h2>
+        
+        <div class="contenedor-autos" id="catalogo-publico">
+            
+            <div class="tarjeta-auto">
+                <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=800&q=80" alt="Auto">
+                <div class="info-auto">
+                    <p class="marca-modelo">Chevrolet Corvette Z06</p>
+                    <p class="caracteristicas">Modelo: 2024 | Motor: V8 Supercharged | Estado: 0 KM | Edición Especial Brilla Spa.</p>
+                    <div class="precio-auto">$150,000</div>
+                    <a href="mailto:brillautospa@gmail.com?subject=Interesado en Corvette Z06" class="btn-contacto">Me Interesa</a>
+                </div>
             </div>
+
+            <div class="tarjeta-auto">
+                <img src="https://images.unsplash.com/photo-1583121274602-3e2820c69888?auto=format&fit=crop&w=800&q=80" alt="Auto">
+                <div class="info-auto">
+                    <p class="marca-modelo">Ferrari F8 Tributo</p>
+                    <p class="caracteristicas">Modelo: 2023 | Motor: V8 Twin-Turbo | Detallado de Coleccionista.</p>
+                    <div class="precio-auto">$380,000</div>
+                    <a href="mailto:brillautospa@gmail.com?subject=Interesado en Ferrari F8" class="btn-contacto">Me Interesa</a>
+                </div>
+            </div>
+
         </div>
     </div>
 
     <footer>
-        <p>&copy; 2024 BRILLA AUTO SPA - Exclusividad y Calidad</p>
+        <h3 style="color: var(--color-mostaza);">CONTÁCTANOS:</h3>
+        <div class="info-contacto"><i class="fas fa-map-marker-alt"></i>Dumfries and surrounding areas</div>
+        <div class="info-contacto"><i class="fas fa-envelope"></i>brillautospa@gmail.com</div>
+        <p style="margin-top: 30px;">&copy; 2024 BRILLA AUTO SPA - Exclusividad y Calidad</p>
     </footer>
 
     <script>
+        // Clave temporal para el panel de owner (oro2024)
         function activarAdmin() {
-            const clave = prompt("Introduzca la clave de seguridad:");
-            if (clave === "oro2024") { // Cambia esta clave a tu gusto
-                document.getElementById('admin-panel').style.display = 'block';
-                window.scrollTo(0, document.getElementById('admin-panel').offsetTop - 100);
+            const clave = prompt("Introduzca la clave de seguridad del owner:");
+            if (clave === "oro2024") { 
+                alert("Panel de Owner (próximamente) activado. ¡Prepara las fotos!");
+                // Próximamente: document.getElementById('admin-panel').style.display = 'block';
             } else {
-                alert("Acceso denegado. Solo personal autorizado.");
+                alert("Acceso denegado. Solo personal autorizado de Brilla Auto Spa.");
             }
         }
     </script>

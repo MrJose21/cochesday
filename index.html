@@ -42,7 +42,6 @@
         }
 
         .nav-logo img { height: 50px; }
-
         .nav-buttons { display: flex; align-items: center; gap: 20px; }
         #user-greeting { display: none; color: var(--color-mostaza); font-weight: bold; font-size: 0.9rem; }
         
@@ -70,7 +69,6 @@
             display: none;
         }
 
-        /* BANNER PROMO */
         .promo-bar {
             background: var(--color-mostaza);
             color: black;
@@ -91,7 +89,6 @@
         .hero h1 { font-size: 3rem; margin: 0; letter-spacing: 4px; }
         .hero p { color: var(--color-mostaza); font-size: 1.2rem; margin-top: 5px; }
 
-        /* SERVICIOS ICONOS */
         .services-strip {
             display: flex;
             justify-content: center;
@@ -103,7 +100,7 @@
         .service-tag { color: #888; font-size: 0.75rem; text-transform: uppercase; display: flex; align-items: center; gap: 8px; }
         .service-tag i { color: var(--color-mostaza); }
 
-        /* MODALES ESTILO CAPTURA */
+        /* MODALES */
         .modal {
             display: none;
             position: fixed;
@@ -123,6 +120,8 @@
             padding: 30px;
             position: relative;
             box-shadow: 0 0 20px rgba(209, 180, 100, 0.2);
+            max-height: 90vh;
+            overflow-y: auto;
         }
 
         .modal-box h2 {
@@ -133,7 +132,6 @@
             margin-bottom: 25px;
         }
 
-        /* DISEÑO DEL FORMULARIO SEGÚN CAPTURA */
         .upload-area {
             border: 1px dashed #444;
             padding: 20px;
@@ -190,9 +188,14 @@
         /* CATÁLOGO */
         .container { padding: 50px 5%; }
         .grid-autos { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-        .card { background: #0c0c0c; border: 1px solid #1a1a1a; border-radius: 12px; overflow: hidden; }
-        .card img { width: 100%; height: 220px; object-fit: cover; border-bottom: 2px solid var(--color-mostaza); }
+        .card { background: #0c0c0c; border: 1px solid #1a1a1a; border-radius: 12px; overflow: hidden; transition: 0.3s; }
+        .card:hover { border-color: var(--color-mostaza); }
+        .card img { width: 100%; height: 220px; object-fit: cover; border-bottom: 2px solid var(--color-mostaza); cursor: pointer; }
         .card-body { padding: 20px; }
+
+        /* GALERÍA DETALLES */
+        .detail-gallery { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 15px; margin-bottom: 15px; }
+        .detail-gallery img { height: 200px; border-radius: 8px; border: 1px solid #222; }
     </style>
 </head>
 <body>
@@ -231,44 +234,33 @@
 
     <div id="modal-pub" class="modal">
         <div class="modal-box">
-            <span onclick="this.parentElement.parentElement.style.display='none'" style="position:absolute; right:20px; top:15px; cursor:pointer; color:#555;">&times;</span>
+            <span onclick="this.parentElement.parentElement.style.display='none'" style="position:absolute; right:20px; top:15px; cursor:pointer; color:#555; font-size:25px;">&times;</span>
             <h2>NUEVA PUBLICACIÓN</h2>
-            
             <div class="upload-area" onclick="document.getElementById('in-fotos').click()">
                 <i class="fas fa-cloud-upload-alt"></i>
                 <p id="label-fotos">Selecciona fotos del vehículo</p>
                 <input type="file" id="in-fotos" multiple accept="image/*" style="display:none;" onchange="actualizarLabel(this)">
             </div>
-
             <label class="form-label">Nombre del Vehículo</label>
             <input type="text" id="in-titulo" class="form-input">
-
             <label class="form-label">Descripción</label>
             <textarea id="in-desc" class="form-input" rows="3"></textarea>
-
             <div class="grid-inputs">
-                <div>
-                    <label class="form-label">Precio</label>
-                    <input type="text" id="in-precio" class="form-input">
-                </div>
-                <div>
-                    <label class="form-label">Año</label>
-                    <input type="text" id="in-anio" class="form-input">
-                </div>
+                <div><label class="form-label">Precio</label><input type="text" id="in-precio" class="form-input"></div>
+                <div><label class="form-label">Año</label><input type="text" id="in-anio" class="form-input"></div>
             </div>
-
             <div class="grid-inputs">
-                <div>
-                    <label class="form-label">Motor</label>
-                    <input type="text" id="in-motor" class="form-input">
-                </div>
-                <div>
-                    <label class="form-label">Potencia</label>
-                    <input type="text" id="in-potencia" class="form-input">
-                </div>
+                <div><label class="form-label">Motor</label><input type="text" id="in-motor" class="form-input"></div>
+                <div><label class="form-label">Potencia</label><input type="text" id="in-potencia" class="form-input"></div>
             </div>
-
             <button class="btn-confirm" onclick="guardarAuto()">CONFIRMAR Y PUBLICAR</button>
+        </div>
+    </div>
+
+    <div id="modal-detalles" class="modal">
+        <div class="modal-box">
+            <span onclick="this.parentElement.parentElement.style.display='none'" style="position:absolute; right:20px; top:15px; cursor:pointer; color:#555; font-size:25px;">&times;</span>
+            <div id="detalle-contenido"></div>
         </div>
     </div>
 
@@ -284,7 +276,7 @@
 
     <script>
         let esAdmin = false;
-        let baseAutos = JSON.parse(localStorage.getItem('brilla_autos_v4')) || [];
+        let baseAutos = JSON.parse(localStorage.getItem('brilla_autos_vFinal')) || [];
 
         function actualizarLabel(input) {
             document.getElementById('label-fotos').innerText = input.files.length + " fotos seleccionadas";
@@ -307,26 +299,22 @@
         async function guardarAuto() {
             const files = document.getElementById('in-fotos').files;
             if(files.length === 0) return alert("Sube fotos");
-
             const promesas = Array.from(files).map(f => new Promise(res => {
                 const r = new FileReader(); r.onload = e => res(e.target.result); r.readAsDataURL(f);
             }));
-
             const fotosBase64 = await Promise.all(promesas);
-
             const nuevo = {
                 id: Date.now(),
-                titulo: document.getElementById('in-titulo').value,
-                desc: document.getElementById('in-desc').value,
-                precio: document.getElementById('in-precio').value,
-                anio: document.getElementById('in-anio').value,
-                motor: document.getElementById('in-motor').value,
-                potencia: document.getElementById('in-potencia').value,
+                titulo: document.getElementById('in-titulo').value || 'Sin título',
+                desc: document.getElementById('in-desc').value || '',
+                precio: document.getElementById('in-precio').value || 'Consultar',
+                anio: document.getElementById('in-anio').value || '-',
+                motor: document.getElementById('in-motor').value || '-',
+                potencia: document.getElementById('in-potencia').value || '-',
                 fotos: fotosBase64
             };
-
             baseAutos.push(nuevo);
-            localStorage.setItem('brilla_autos_v4', JSON.stringify(baseAutos));
+            localStorage.setItem('brilla_autos_vFinal', JSON.stringify(baseAutos));
             render();
             document.getElementById('modal-pub').style.display = 'none';
         }
@@ -336,26 +324,46 @@
             lista.innerHTML = "";
             baseAutos.forEach(a => {
                 lista.innerHTML += `
-                    <div class="card">
-                        <img src="${a.fotos[0]}">
+                    <div class="card animate__animated animate__fadeIn">
+                        <img src="${a.fotos[0]}" onclick="verDetalles(${a.id})">
                         <div class="card-body">
                             <h3 style="color:var(--color-mostaza); margin:0;">${a.titulo}</h3>
                             <p style="font-size:0.8rem; color:#666;">${a.motor} | ${a.anio}</p>
                             <div style="display:flex; justify-content:space-between; align-items:center; margin-top:15px;">
-                                <span style="font-weight:bold;">${a.precio}</span>
-                                <button class="btn-gold-outline" style="font-size:9px;">VER DETALLES</button>
+                                <span style="font-weight:bold; color:white;">${a.precio}</span>
+                                <button class="btn-gold-outline" onclick="verDetalles(${a.id})" style="font-size:9px;">VER DETALLES</button>
                             </div>
-                            ${esAdmin ? `<button onclick="borrar(${a.id})" style="background:red; color:white; border:none; margin-top:10px; width:100%; padding:5px; border-radius:4px; cursor:pointer; font-size:10px;">ELIMINAR</button>` : ''}
+                            ${esAdmin ? `<button onclick="borrar(${a.id})" style="background:#ff4444; color:white; border:none; margin-top:10px; width:100%; padding:8px; border-radius:4px; cursor:pointer; font-size:10px; font-weight:bold;">ELIMINAR PUBLICACIÓN</button>` : ''}
                         </div>
                     </div>
                 `;
             });
         }
 
+        function verDetalles(id) {
+            const auto = baseAutos.find(a => a.id === id);
+            const contenido = document.getElementById('detalle-contenido');
+            contenido.innerHTML = `
+                <h2 style="color:var(--color-mostaza);">${auto.titulo}</h2>
+                <div class="detail-gallery">
+                    ${auto.fotos.map(f => `<img src="${f}">`).join('')}
+                </div>
+                <p style="color:#ccc; line-height:1.5;">${auto.desc}</p>
+                <div style="background:#111; padding:20px; border-radius:10px; display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:20px;">
+                    <p><b>Año:</b> ${auto.anio}</p>
+                    <p><b>Motor:</b> ${auto.motor}</p>
+                    <p><b>Potencia:</b> ${auto.potencia}</p>
+                    <p style="color:var(--color-mostaza); font-size:1.2rem;"><b>${auto.precio}</b></p>
+                </div>
+                <a href="https://wa.me/15716600734" style="display:block; text-align:center; background:#25d366; color:white; text-decoration:none; padding:15px; border-radius:8px; margin-top:20px; font-weight:bold;">CONTACTAR POR WHATSAPP</a>
+            `;
+            document.getElementById('modal-detalles').style.display = 'flex';
+        }
+
         function borrar(id) {
-            if(confirm("¿Eliminar?")) {
+            if(confirm("¿Estás seguro de eliminar este vehículo del catálogo?")) {
                 baseAutos = baseAutos.filter(a => a.id !== id);
-                localStorage.setItem('brilla_autos_v4', JSON.stringify(baseAutos));
+                localStorage.setItem('brilla_autos_vFinal', JSON.stringify(baseAutos));
                 render();
             }
         }

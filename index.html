@@ -274,15 +274,32 @@
         </div>
     </div>
 
-    <script>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getDatabase, ref, push, onValue, remove } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyD93sZGnjTLnRnWwbONPd7Xr00Ip_D3ODk",
+            authDomain: "brillaautospa.firebaseapp.com",
+            projectId: "brillaautospa",
+            databaseURL: "https://brillaautospa-default-rtdb.firebaseio.com",
+            storageBucket: "brillaautospa.firebasestorage.app",
+            messagingSenderId: "774015478340",
+            appId: "1:774015478340:web:c096f36482374bd72c6a11"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+        const autosRef = ref(db, 'autos');
+
         let esAdmin = false;
-        let baseAutos = JSON.parse(localStorage.getItem('brilla_autos_vFinal')) || [];
 
-        function actualizarLabel(input) {
+        // FUNCIONES GLOBALES PARA QUE EL HTML LAS VEA
+        window.actualizarLabel = (input) => {
             document.getElementById('label-fotos').innerText = input.files.length + " fotos seleccionadas";
-        }
+        };
 
-        function login() {
+        window.login = () => {
             const u = document.getElementById('user').value;
             const p = document.getElementById('pass').value;
             if(u === "DAY ROJAS" && p === "POTOMAC2026") {
@@ -292,83 +309,96 @@
                 document.getElementById('btn-pub').style.display = 'block';
                 document.getElementById('user-greeting').innerText = "DAY ROJAS";
                 document.getElementById('user-greeting').style.display = 'block';
-                render();
+                // El render se dispara solo por onValue
             } else { alert("Datos incorrectos"); }
-        }
+        };
 
-        async function guardarAuto() {
+        window.guardarAuto = async () => {
             const files = document.getElementById('in-fotos').files;
             if(files.length === 0) return alert("Sube fotos");
+            
             const promesas = Array.from(files).map(f => new Promise(res => {
                 const r = new FileReader(); r.onload = e => res(e.target.result); r.readAsDataURL(f);
             }));
             const fotosBase64 = await Promise.all(promesas);
+
             const nuevo = {
-                id: Date.now(),
                 titulo: document.getElementById('in-titulo').value || 'Sin título',
                 desc: document.getElementById('in-desc').value || '',
                 precio: document.getElementById('in-precio').value || 'Consultar',
                 anio: document.getElementById('in-anio').value || '-',
                 motor: document.getElementById('in-motor').value || '-',
                 potencia: document.getElementById('in-potencia').value || '-',
-                fotos: fotosBase64
+                fotos: fotosBase64,
+                fecha: Date.now()
             };
-            baseAutos.push(nuevo);
-            localStorage.setItem('brilla_autos_vFinal', JSON.stringify(baseAutos));
-            render();
-            document.getElementById('modal-pub').style.display = 'none';
-        }
 
-        function render() {
+            push(autosRef, nuevo);
+            document.getElementById('modal-pub').style.display = 'none';
+            // Limpiar formulario
+            document.getElementById('in-titulo').value = "";
+            document.getElementById('in-desc').value = "";
+            document.getElementById('in-precio').value = "";
+            document.getElementById('in-anio').value = "";
+            document.getElementById('in-motor').value = "";
+            document.getElementById('in-potencia').value = "";
+            document.getElementById('label-fotos').innerText = "Selecciona fotos del vehículo";
+        };
+
+        // CARGA EN TIEMPO REAL DESDE FIREBASE
+        onValue(autosRef, (snapshot) => {
             const lista = document.getElementById('lista-autos');
             lista.innerHTML = "";
-            baseAutos.forEach(a => {
-                lista.innerHTML += `
-                    <div class="card animate__animated animate__fadeIn">
-                        <img src="${a.fotos[0]}" onclick="verDetalles(${a.id})">
-                        <div class="card-body">
-                            <h3 style="color:var(--color-mostaza); margin:0;">${a.titulo}</h3>
-                            <p style="font-size:0.8rem; color:#666;">${a.motor} | ${a.anio}</p>
-                            <div style="display:flex; justify-content:space-between; align-items:center; margin-top:15px;">
-                                <span style="font-weight:bold; color:white;">${a.precio}</span>
-                                <button class="btn-gold-outline" onclick="verDetalles(${a.id})" style="font-size:9px;">VER DETALLES</button>
+            const data = snapshot.val();
+            
+            if (data) {
+                Object.keys(data).forEach(key => {
+                    const a = data[key];
+                    lista.innerHTML += `
+                        <div class="card animate__animated animate__fadeIn">
+                            <img src="${a.fotos[0]}" onclick="verDetalles('${key}')">
+                            <div class="card-body">
+                                <h3 style="color:var(--color-mostaza); margin:0;">${a.titulo}</h3>
+                                <p style="font-size:0.8rem; color:#666;">${a.motor} | ${a.anio}</p>
+                                <div style="display:flex; justify-content:space-between; align-items:center; margin-top:15px;">
+                                    <span style="font-weight:bold; color:white;">${a.precio}</span>
+                                    <button class="btn-gold-outline" onclick="verDetalles('${key}')" style="font-size:9px;">VER DETALLES</button>
+                                </div>
+                                ${esAdmin ? `<button onclick="borrar('${key}')" style="background:#ff4444; color:white; border:none; margin-top:10px; width:100%; padding:8px; border-radius:4px; cursor:pointer; font-size:10px; font-weight:bold;">ELIMINAR PUBLICACIÓN</button>` : ''}
                             </div>
-                            ${esAdmin ? `<button onclick="borrar(${a.id})" style="background:#ff4444; color:white; border:none; margin-top:10px; width:100%; padding:8px; border-radius:4px; cursor:pointer; font-size:10px; font-weight:bold;">ELIMINAR PUBLICACIÓN</button>` : ''}
                         </div>
-                    </div>
-                `;
-            });
-        }
-
-        function verDetalles(id) {
-            const auto = baseAutos.find(a => a.id === id);
-            const contenido = document.getElementById('detalle-contenido');
-            contenido.innerHTML = `
-                <h2 style="color:var(--color-mostaza);">${auto.titulo}</h2>
-                <div class="detail-gallery">
-                    ${auto.fotos.map(f => `<img src="${f}">`).join('')}
-                </div>
-                <p style="color:#ccc; line-height:1.5;">${auto.desc}</p>
-                <div style="background:#111; padding:20px; border-radius:10px; display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:20px;">
-                    <p><b>Año:</b> ${auto.anio}</p>
-                    <p><b>Motor:</b> ${auto.motor}</p>
-                    <p><b>Potencia:</b> ${auto.potencia}</p>
-                    <p style="color:var(--color-mostaza); font-size:1.2rem;"><b>${auto.precio}</b></p>
-                </div>
-                <a href="https://wa.me/15716600734" style="display:block; text-align:center; background:#25d366; color:white; text-decoration:none; padding:15px; border-radius:8px; margin-top:20px; font-weight:bold;">CONTACTAR POR WHATSAPP</a>
-            `;
-            document.getElementById('modal-detalles').style.display = 'flex';
-        }
-
-        function borrar(id) {
-            if(confirm("¿Estás seguro de eliminar este vehículo del catálogo?")) {
-                baseAutos = baseAutos.filter(a => a.id !== id);
-                localStorage.setItem('brilla_autos_vFinal', JSON.stringify(baseAutos));
-                render();
+                    `;
+                });
             }
-        }
+        });
 
-        render();
+        window.verDetalles = (key) => {
+            onValue(ref(db, 'autos/' + key), (snapshot) => {
+                const auto = snapshot.val();
+                const contenido = document.getElementById('detalle-contenido');
+                contenido.innerHTML = `
+                    <h2 style="color:var(--color-mostaza);">${auto.titulo}</h2>
+                    <div class="detail-gallery">
+                        ${auto.fotos.map(f => `<img src="${f}">`).join('')}
+                    </div>
+                    <p style="color:#ccc; line-height:1.5;">${auto.desc}</p>
+                    <div style="background:#111; padding:20px; border-radius:10px; display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:20px;">
+                        <p><b>Año:</b> ${auto.anio}</p>
+                        <p><b>Motor:</b> ${auto.motor}</p>
+                        <p><b>Potencia:</b> ${auto.potencia}</p>
+                        <p style="color:var(--color-mostaza); font-size:1.2rem;"><b>${auto.precio}</b></p>
+                    </div>
+                    <a href="https://wa.me/15716600734" target="_blank" style="display:block; text-align:center; background:#25d366; color:white; text-decoration:none; padding:15px; border-radius:8px; margin-top:20px; font-weight:bold;">CONTACTAR POR WHATSAPP</a>
+                `;
+                document.getElementById('modal-detalles').style.display = 'flex';
+            }, { onlyOnce: true });
+        };
+
+        window.borrar = (key) => {
+            if(confirm("¿Estás seguro de eliminar este vehículo del catálogo?")) {
+                remove(ref(db, 'autos/' + key));
+            }
+        };
     </script>
 </body>
 </html>

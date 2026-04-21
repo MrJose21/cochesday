@@ -9,691 +9,202 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
 
     <style>
-        /* CSS: EL DISEÑO DE TU LOGO Y FOLLETO */
         :root {
-            --color-mostaza: #d1b464; /* Dorado texturizado similar a tu logo */
-            --color-negro: #000000;   /* Negro puro */
+            --color-mostaza: #d1b464;
+            --color-negro: #000000;
             --color-gris-oscuro: #121212;
             --color-texto-blanco: #ffffff;
-            --font-main: 'Georgia', serif; /* Una fuente Serif con clase como la de tu logo */
+            --font-main: 'Georgia', serif;
         }
 
-        body {
-            font-family: var(--font-main);
-            margin: 0;
-            background-color: var(--color-negro);
-            color: var(--color-texto-blanco);
-        }
+        body { font-family: var(--font-main); margin: 0; background-color: var(--color-negro); color: var(--color-texto-blanco); }
 
-        /* 1. EL ENCABEZADO (NAV) CON TU LOGO */
+        /* NAV */
         nav {
             background: linear-gradient(to bottom, #111, #000);
             border-bottom: 3px solid var(--color-mostaza);
             padding: 1rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
+            display: flex; justify-content: space-between; align-items: center;
+            position: sticky; top: 0; z-index: 1000;
         }
 
-        .logo-area {
-            display: flex;
-            flex-direction: column; /* Apilar texto */
-            align-items: center;
-            gap: 5px;
-        }
+        .logo-area { display: flex; flex-direction: column; align-items: center; }
+        .logo-text { font-weight: bold; font-size: 1.6rem; color: var(--color-mostaza); letter-spacing: 2px; }
+        .logo-subtext { font-size: 0.9rem; color: #aaa; letter-spacing: 3px; text-transform: uppercase; }
 
-        /* Silueta de auto dorada similar a tu logo */
-        .logo-icon-svg {
-            fill: var(--color-mostaza);
-            width: 70px; /* Tamaño del auto */
-            filter: drop-shadow(0 0 5px rgba(209, 180, 100, 0.5));
-        }
-
-        /* Texto de logo Serif con clase */
-        .logo-text { 
-            font-weight: bold; 
-            font-size: 1.6rem; 
-            color: var(--color-mostaza);
-            letter-spacing: 2px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-        }
-
-        .logo-subtext {
-            font-size: 0.9rem;
-            color: #aaa;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-        }
-
-        /* 2. LA PORTADA (HERO) CON ANIMACIÓN */
+        /* HERO */
         .hero {
-            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.9)), 
-                        url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1500&q=80');
-            background-size: cover;
-            background-position: center;
-            height: 450px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            border-bottom: 1px solid var(--color-mostaza);
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.9)), url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1500&q=80');
+            background-size: cover; background-position: center;
+            height: 350px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;
         }
 
-        .hero h1 { 
-            color: var(--color-texto-blanco); 
-            font-size: 3.5rem; 
-            margin-bottom: 5px;
-            text-transform: uppercase;
-        }
-
-        .hero p {
-            color: var(--color-mostaza);
-            font-size: 1.2rem;
-            max-width: 600px;
-        }
-
-        /* 3. SECCIÓN DE AUTOS */
-        .seccion-autos {
-            padding: 60px 20px;
-            max-width: 1300px;
-            margin: auto;
-        }
-
-        .titulo-seccion {
-            text-align: center;
-            color: var(--color-mostaza);
-            font-size: 2.5rem;
-            margin-bottom: 40px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        /* Contenedor de autos estilo "Mercado Libre" pero premium */
-        .contenedor-autos {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 30px;
-        }
-
-        /* Tarjeta de Auto Premium, ahora clickable */
-        .tarjeta-auto {
-            background: var(--color-gris-oscuro);
-            border: 1px solid #333;
-            border-radius: 8px;
-            overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            cursor: pointer; /* Indicar que se puede hacer clic */
-        }
-
-        .tarjeta-auto:hover { 
-            transform: translateY(-8px);
-            border-color: var(--color-mostaza);
-            box-shadow: 0 10px 25px rgba(209, 180, 100, 0.2);
-        }
-
-        .tarjeta-auto img { 
-            width: 100%; 
-            height: 230px; 
-            object-fit: cover; 
-            border-bottom: 2px solid var(--color-mostaza);
-        }
-
+        /* CATALOGO */
+        .seccion-autos { padding: 60px 20px; max-width: 1300px; margin: auto; }
+        .contenedor-autos { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
+        .tarjeta-auto { background: var(--color-gris-oscuro); border: 1px solid #333; border-radius: 8px; overflow: hidden; cursor: pointer; transition: 0.3s; }
+        .tarjeta-auto:hover { transform: translateY(-8px); border-color: var(--color-mostaza); }
+        .tarjeta-auto img { width: 100%; height: 230px; object-fit: cover; border-bottom: 2px solid var(--color-mostaza); }
         .info-auto { padding: 20px; }
+        .marca-modelo { font-size: 1.4rem; color: var(--color-mostaza); margin: 0; }
+        .precio-auto { font-size: 1.8rem; font-weight: bold; margin-top: 15px; }
+
+        /* MODAL PREMIUM */
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 2000; overflow: auto; }
+        .modal-content { background: #111; margin: 5% auto; padding: 40px; border: 1px solid var(--color-mostaza); width: 80%; max-width: 900px; border-radius: 8px; position: relative; }
+        .close-modal { position: absolute; top: 15px; right: 25px; font-size: 28px; cursor: pointer; color: #aaa; }
+        .galeria-modal img { width: 100%; height: 400px; object-fit: cover; border-radius: 4px; border: 1px solid #333; }
         
-        .marca-modelo { 
-            font-size: 1.4rem; 
-            font-weight: bold; 
-            margin: 0; 
-            color: var(--color-mostaza);
-        }
+        /* BOTONES EDITAR (Solo visibles para DAY ROJAS) */
+        .btn-edit-inline { display: none; background: #222; color: var(--color-mostaza); border: 1px solid var(--color-mostaza); border-radius: 4px; padding: 4px 8px; font-size: 0.7rem; cursor: pointer; margin-left: 10px; }
+        .btn-edit-inline:hover { background: var(--color-mostaza); color: black; }
 
-        .caracteristicas-basicas { 
-            color: #ccc; 
-            font-size: 0.95rem; 
-            margin: 10px 0; 
-        }
+        /* LOGIN OVERLAY */
+        .login-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.98); z-index: 3000; justify-content: center; align-items: center; }
+        .login-box { background: #000; padding: 40px; border: 2px solid var(--color-mostaza); border-radius: 10px; text-align: center; width: 320px; }
+        .login-box input { width: 100%; padding: 12px; margin-bottom: 15px; background: #111; border: 1px solid var(--color-mostaza); color: white; border-radius: 5px; box-sizing: border-box; }
+        #user-greeting { display: none; color: var(--color-mostaza); font-weight: bold; margin-right: 15px; }
 
-        .precio-auto { 
-            font-size: 1.8rem; 
-            font-weight: bold; 
-            color: var(--color-texto-blanco); 
-            margin-top: 15px; 
-        }
-
-        /* Botón Secreto Admin (Owner) */
-        #admin-panel { display: none; padding: 20px; } /* Lo ocultamos por ahora */
-
-        footer { 
-            text-align: center; 
-            padding: 40px; 
-            border-top: 2px solid var(--color-mostaza);
-            background: #000;
-            color: #aaa;
-        }
-
-        .info-contacto { margin-top: 15px; color: white; font-size: 0.9rem; }
-        .info-contacto i { color: var(--color-mostaza); margin-right: 10px; }
-
-
-        /* -----------------------------------------------------------
-           MODAL (VENTANA EMERGENTE DE DETALLES) - Premium
-           ----------------------------------------------------------- */
-        .modal {
-            display: none; /* Oculto por defecto */
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.9);
-            z-index: 2000;
-            overflow: auto; /* Permitir scroll si el contenido es largo */
-        }
-
-        .modal-content {
-            background-color: #111;
-            margin: 5% auto;
-            padding: 40px;
-            border: 1px solid var(--color-mostaza);
-            width: 80%;
-            max-width: 1000px;
-            border-radius: 8px;
-            position: relative;
-        }
-
-        .close-modal {
-            color: #aaa;
-            position: absolute;
-            top: 15px;
-            right: 25px;
-            font-size: 28px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        .close-modal:hover { color: var(--color-mostaza); }
-
-        .galeria-modal img {
-            width: 100%;
-            height: 300px;
-            object-fit: cover;
-            border-radius: 4px;
-            border: 1px solid #333;
-        }
-
-        .info-modal {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 30px;
-            margin-top: 30px;
-        }
-
-        .descripcion-larga {
-            color: #ccc;
-            line-height: 1.6;
-        }
-
-        .lista-caracteristicas {
-            background: #222;
-            padding: 20px;
-            border-radius: 4px;
-        }
-
-        .lista-caracteristicas li {
-            list-style: none;
-            margin-bottom: 10px;
-            color: white;
-            border-bottom: 1px solid #333;
-            padding-bottom: 5px;
-        }
-
-        .lista-caracteristicas li strong { color: var(--color-mostaza); }
-
-        /* Botón de Contacto WhatsApp Dorado */
-        .btn-whatsapp {
-            background: var(--color-mostaza);
-            color: black;
-            border: none;
-            padding: 12px 25px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-weight: bold;
-            text-transform: uppercase;
-            margin-top: 25px;
-            transition: opacity 0.3s;
-            display: inline-block;
-            text-decoration: none; /* Quitar subrayado si es link */
-            text-align: center;
-        }
-
-        .btn-whatsapp:hover { opacity: 0.9; }
-
+        footer { text-align: center; padding: 40px; border-top: 2px solid var(--color-mostaza); background: #000; color: #aaa; }
     </style>
 </head>
 <body>
 
-    <nav class="animate__animated animate__fadeInDown">
+    <nav>
         <div class="logo-area">
-            <i class="fas fa-car-side" style="font-size: 2.5rem; color: var(--color-mostaza); filter: drop-shadow(0 0 8px rgba(209, 176, 100, 0.6));"></i>
             <div class="logo-text">BRILLA</div>
             <div class="logo-subtext">AUTO SPA</div>
         </div>
-        <button onclick="activarAdmin()" style="background: transparent; color: var(--color-mostaza); border: 1px solid var(--color-mostaza); cursor: pointer; padding: 5px 10px; font-size: 12px; border-radius: 3px;">Acceso Owner</button>
+        <div>
+            <span id="user-greeting"></span>
+            <button id="btn-admin-nav" onclick="document.getElementById('login-owner').style.display='flex'" style="background: transparent; color: var(--color-mostaza); border: 1px solid var(--color-mostaza); cursor: pointer; padding: 5px 10px; font-size: 12px; border-radius: 3px;">Acceso Owner</button>
+        </div>
     </nav>
+
     <div class="hero">
-        <h1 class="animate__animated animate__zoomIn">Servicio Premium de Detallado</h1>
-        <p class="animate__animated animate__fadeInUp animate__delay-1s">Experimenta la verdadera excelencia automotriz. Donde el lujo se encuentra con la potencia.</p>
+        <h1>Servicio Premium</h1>
+        <p>Donde el lujo se encuentra con la potencia.</p>
     </div>
 
-    <div class="seccion-autos animate__animated animate__fadeInUp animate__delay-2s">
-        <h2 class="titulo-seccion">Autos Brillantemente Detallados</h2>
-        
+    <div class="seccion-autos">
+        <h2 style="text-align:center; color:var(--color-mostaza);">CATÁLOGO EXCLUSIVO</h2>
         <div class="contenedor-autos" id="catalogo-publico">
-            
             <div class="tarjeta-auto" onclick="abrirModal('corvette')">
-                <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=800&q=80" alt="Auto">
+                <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=800&q=80">
                 <div class="info-auto">
-                    <p class="marca-modelo">Chevrolet Corvette Z06</p>
-                    <p class="caracteristicas-basicas">2024 | 0 KM | Edición Brilla Spa.</p>
-                    <div class="precio-auto">$150,000</div>
+                    <p class="marca-modelo" id="card-titulo-corvette">Chevrolet Corvette Z06</p>
+                    <div class="precio-auto" id="card-precio-corvette">$150,000</div>
                 </div>
             </div>
-
             <div class="tarjeta-auto" onclick="abrirModal('ferrari')">
-                <img src="https://images.unsplash.com/photo-1583121274602-3e2820c69888?auto=format&fit=crop&w=800&q=80" alt="Auto">
+                <img src="https://images.unsplash.com/photo-1583121274602-3e2820c69888?auto=format&fit=crop&w=800&q=80">
                 <div class="info-auto">
-                    <p class="marca-modelo">Ferrari F8 Tributo</p>
-                    <p class="caracteristicas-basicas">2023 | 2,500 KM | Colección Privada.</p>
-                    <div class="precio-auto">$380,000</div>
+                    <p class="marca-modelo" id="card-titulo-ferrari">Ferrari F8 Tributo</p>
+                    <div class="precio-auto" id="card-precio-ferrari">$380,000</div>
                 </div>
             </div>
-
         </div>
     </div>
-
 
     <div id="modal-detalles" class="modal">
-        <div class="modal-content animate__animated animate__fadeInDown">
+        <div class="modal-content">
             <span class="close-modal" onclick="cerrarModal()">&times;</span>
-            
             <div id="contenido-modal"></div>
-            
         </div>
     </div>
 
+    <div id="login-owner" class="login-overlay">
+        <div class="login-box">
+            <i class="fas fa-crown" style="font-size: 3rem; color: var(--color-mostaza); margin-bottom: 15px;"></i>
+            <h2 style="color:var(--color-mostaza);">ACCESO PRIVADO</h2>
+            <input type="text" id="user-owner" placeholder="USUARIO">
+            <input type="password" id="pass-owner" placeholder="CONTRASEÑA">
+            <button onclick="validarAcceso()" style="background:var(--color-mostaza); border:none; padding:10px; width:100%; font-weight:bold; cursor:pointer;">ENTRAR</button>
+            <button onclick="document.getElementById('login-owner').style.display='none'" style="background:transparent; color:#666; border:none; margin-top:10px; cursor:pointer;">Cerrar</button>
+        </div>
+    </div>
 
     <footer>
-        <h3 style="color: var(--color-mostaza);">CONTÁCTANOS:</h3>
-        <div class="info-contacto"><i class="fas fa-map-marker-alt"></i>Dumfries and surrounding areas</div>
-        <div class="info-contacto"><i class="fas fa-envelope"></i>brillautospa@gmail.com</div>
-        <p style="margin-top: 30px;">&copy; 2024 BRILLA AUTO SPA - Exclusividad y Calidad</p>
+        <p>&copy; 2024 BRILLA AUTO SPA - Exclusividad y Calidad</p>
     </footer>
 
     <script>
-        // Clave temporal para el panel de owner (oro2024)
-        function activarAdmin() {
-            const clave = prompt("Introduzca la clave de seguridad del owner:");
-            if (clave === "oro2024") { 
-                alert("Panel de Owner (próximamente) activado. ¡Prepara las fotos!");
-                // Próximamente: document.getElementById('admin-panel').style.display = 'block';
-            } else {
-                alert("Acceso denegado. Solo personal autorizado de Brilla Auto Spa.");
-            }
-        }
+        let esOwner = false;
+        let autoActualId = "";
 
-        // -----------------------------------------------------------
-        // LÓGICA DE DETALLES DEL AUTO (MODAL)
-        // -----------------------------------------------------------
         const catalogo = {
             'corvette': {
-                titulo: 'Chevrolet Corvette Z06 - Edición Brilla Spa.',
-                img_grande: 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=1000&q=80',
-                descripcion: 'El pináculo del rendimiento estadounidense. Este Corvette Z06 ha recibido un detallado de pintura premium de 3 etapas, sellado con coating cerámico de grafeno. Interior en cuero Nappa impecablemente tratado. El auto está en estado de exhibición.',
-                caracteristicas: [
-                    '<strong>Modelo:</strong> 2024',
-                    '<strong>Motor:</strong> 5.5L LT6 V8 Supercharged',
-                    '<strong>Potencia:</strong> 670 HP',
-                    '<strong>Kilometraje:</strong> 0 KM',
-                    '<strong>Estado Exterior:</strong> 10/10 (Coating Cerámico 5 años)',
-                    '<strong>Estado Interior:</strong> 10/10 (Tratamiento Cuero Premium)'
-                ]
+                titulo: 'Chevrolet Corvette Z06',
+                precio: '$150,000',
+                descripcion: 'Detallado de pintura premium de 3 etapas.',
+                modelo: '2024',
+                motor: '5.5L LT6 V8',
+                potencia: '670 HP'
             },
             'ferrari': {
-                titulo: 'Ferrari F8 Tributo - Detallado de Coleccionista',
-                img_grande: 'https://images.unsplash.com/photo-1583121274602-3e2820c69888?auto=format&fit=crop&w=1000&q=80',
-                descripcion: 'Homenaje al motor V8 más icónico de la historia. Este F8 Tributo ha pasado por un proceso de corrección de pintura total para eliminar cualquier defecto. Acabado espejo perfecto. Se incluye funda original y cargador de batería.',
-                caracteristicas: [
-                    '<strong>Modelo:</strong> 2023',
-                    '<strong>Motor:</strong> 3.9L Twin-Turbo V8',
-                    '<strong>Potencia:</strong> 710 HP',
-                    '<strong>Kilometraje:</strong> 2,500 KM',
-                    '<strong>Tracción:</strong> Trasera',
-                    '<strong>Color:</strong> Rosso Corsa (Tratado)'
-                ]
+                titulo: 'Ferrari F8 Tributo',
+                precio: '$380,000',
+                descripcion: 'Homenaje al motor V8 más icónico.',
+                modelo: '2023',
+                motor: '3.9L Twin-Turbo V8',
+                potencia: '710 HP'
             }
         };
 
-        function abrirModal(id_auto) {
-            const auto = catalogo[id_auto];
-            if (!auto) return;
+        function abrirModal(id) {
+            autoActualId = id;
+            const auto = catalogo[id];
+            const displayBtn = esOwner ? 'inline-block' : 'none';
 
-            // Dibujar el contenido dinámico dentro del modal
             document.getElementById('contenido-modal').innerHTML = `
-                <h2 style="color: var(--color-mostaza);">${auto.titulo}</h2>
-                <div class="galeria-modal">
-                    <img src="${auto.img_grande}" alt="Auto Detalle">
-                </div>
-                <div class="info-modal">
-                    <div class="descripcion-larga">
-                        <h3>Descripción</h3>
-                        <p>${auto.descripcion}</p>
+                <h2 style="color: var(--color-mostaza);">${auto.titulo} <button class="btn-edit-inline" style="display:${displayBtn}" onclick="editar('titulo')">EDITAR</button></h2>
+                <img src="${id === 'corvette' ? 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=1000' : 'https://images.unsplash.com/photo-1583121274602-3e2820c69888?w=1000'}" style="width:100%; border-radius:8px; margin-bottom:20px;">
+                <div style="display:grid; grid-template-columns: 1fr 1fr; gap:20px;">
+                    <div>
+                        <h3>Descripción <button class="btn-edit-inline" style="display:${displayBtn}" onclick="editar('descripcion')">EDITAR</button></h3>
+                        <p id="desc-text">${auto.descripcion}</p>
+                        <h3>Precio <button class="btn-edit-inline" style="display:${displayBtn}" onclick="editar('precio')">EDITAR</button></h3>
+                        <p style="font-size:1.5rem; color:var(--color-mostaza);">${auto.precio}</p>
                     </div>
-                    <div class="lista-caracteristicas">
-                        <h3>Características Técnicas</h3>
-                        <ul>
-                            ${auto.caracteristicas.map(item => `<li>${item}</li>`).join('')}
-                        </ul>
+                    <div style="background:#222; padding:20px; border-radius:8px;">
+                        <h3>Ficha Técnica</h3>
+                        <p><strong>Modelo:</strong> ${auto.modelo} <button class="btn-edit-inline" style="display:${displayBtn}" onclick="editar('modelo')">EDITAR</button></p>
+                        <p><strong>Motor:</strong> ${auto.motor} <button class="btn-edit-inline" style="display:${displayBtn}" onclick="editar('motor')">EDITAR</button></p>
+                        <p><strong>Potencia:</strong> ${auto.potencia} <button class="btn-edit-inline" style="display:${displayBtn}" onclick="editar('potencia')">EDITAR</button></p>
                     </div>
                 </div>
-                <a href="https://wa.me/5712345678?text=Hola Brilla Spa, me interesa mucho el ${auto.titulo}. Quisiera agendar una cita para verlo." target="_blank" class="btn-whatsapp">Consultar Disponibilidad (WhatsApp)</a>
             `;
-
             document.getElementById('modal-detalles').style.display = 'block';
         }
 
-        function cerrarModal() {
-            document.getElementById('modal-detalles').style.display = 'none';
-        }
-
-        // Cerrar modal si se hace clic fuera del contenido
-        window.onclick = function(event) {
-            const modal = document.getElementById('modal-detalles');
-            if (event.target == modal) {
-                modal.style.display = 'none';
+        function editar(campo) {
+            const nuevoValor = prompt("Nuevo valor para " + campo + ":", catalogo[autoActualId][campo]);
+            if (nuevoValor) {
+                catalogo[autoActualId][campo] = nuevoValor;
+                // Actualizar tarjeta exterior
+                if(campo === 'titulo') document.getElementById('card-titulo-' + autoActualId).innerText = nuevoValor;
+                if(campo === 'precio') document.getElementById('card-precio-' + autoActualId).innerText = nuevoValor;
+                // Refrescar modal
+                abrirModal(autoActualId);
             }
         }
-    </script>
-    <style>
-    /* Estilos para el Login del Owner */
-    .login-overlay {
-        display: none; /* Oculto por defecto */
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.95);
-        z-index: 3000;
-        justify-content: center;
-        align-items: center;
-    }
 
-    .login-box {
-        background: #111;
-        padding: 40px;
-        border: 2px solid var(--color-mostaza);
-        border-radius: 10px;
-        text-align: center;
-        width: 320px;
-        box-shadow: 0 0 20px rgba(209, 180, 100, 0.3);
-    }
-
-    .login-box h2 {
-        color: var(--color-mostaza);
-        margin-bottom: 25px;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-    }
-
-    .login-box input {
-        width: 100%;
-        padding: 12px;
-        margin-bottom: 15px;
-        background: #222;
-        border: 1px solid #444;
-        color: white;
-        border-radius: 5px;
-        outline: none;
-    }
-
-    .login-box input:focus {
-        border-color: var(--color-mostaza);
-    }
-
-    .btn-login {
-        width: 100%;
-        background: var(--color-mostaza);
-        color: black;
-        border: none;
-        padding: 12px;
-        font-weight: bold;
-        cursor: pointer;
-        border-radius: 5px;
-        text-transform: uppercase;
-    }
-
-    /* Estilo para el panel de gestión que aparecerá después del login */
-    #panel-edicion {
-        display: none;
-        background: #1a1a1a;
-        border: 1px dashed var(--color-mostaza);
-        padding: 20px;
-        margin: 20px auto;
-        max-width: 1200px;
-        text-align: center;
-    }
-<style>
-    /* Estilos para el Login */
-    .login-overlay {
-        display: none;
-        position: fixed;
-        top: 0; left: 0; width: 100%; height: 100%;
-        background: rgba(0, 0, 0, 0.98);
-        z-index: 3000;
-        justify-content: center; align-items: center;
-    }
-
-    .login-box {
-        background: #000;
-        padding: 40px;
-        border: 2px solid var(--color-mostaza);
-        border-radius: 10px;
-        text-align: center;
-        width: 320px;
-        box-shadow: 0 0 30px rgba(209, 180, 100, 0.2);
-    }
-
-    .login-box input {
-        width: 100%; padding: 12px; margin-bottom: 15px;
-        background: #111; border: 1px solid var(--color-mostaza);
-        color: white; border-radius: 5px; box-sizing: border-box;
-    }
-
-    /* Mensajes de éxito/error */
-    #msg-login { font-size: 14px; margin-top: 15px; display: none; font-weight: bold; }
-    .msg-error { color: #ff4d4d; }
-    .msg-exito { color: #d1b464; }
-
-    /* Saludo del Owner en el Nav */
-    #user-greeting {
-        display: none;
-        color: var(--color-mostaza);
-        font-size: 0.9rem;
-        font-weight: bold;
-        margin-right: 15px;
-        border-right: 1px solid #444;
-        padding-right: 15px;
-    }
-
-    /* Botones de edición en las tarjetas */
-    .btn-editar-admin {
-        display: none; /* Solo visible para admin */
-        background: #222;
-        color: var(--color-mostaza);
-        border: 1px solid var(--color-mostaza);
-        padding: 8px;
-        width: 100%;
-        margin-top: 10px;
-        cursor: pointer;
-        font-weight: bold;
-        text-transform: uppercase;
-        border-radius: 4px;
-    }
-
-    .btn-editar-admin:hover { background: var(--color-mostaza); color: black; }
-        <div id="login-owner" class="login-overlay">
-        <div class="login-box animate__animated animate__fadeInUp">
-            <i class="fas fa-crown" style="font-size: 3rem; color: var(--color-mostaza); margin-bottom: 15px;"></i>
-            <h2 style="color:var(--color-mostaza); letter-spacing: 2px;">ACCESO PRIVADO</h2>
-            <input type="text" id="user-owner" placeholder="USUARIO">
-            <input type="password" id="pass-owner" placeholder="CONTRASEÑA">
-            <button class="btn-whatsapp" style="width:100%; margin:0;" onclick="validarAcceso()">Entrar al Sistema</button>
-            <div id="msg-login"></div>
-            <button onclick="cerrarLogin()" style="background:transparent; color:#666; border:none; margin-top:15px; cursor:pointer;">Cerrar</button>
-        </div>
-    </div>
-
-    <div id="editor-publicacion" class="editor-overlay">
-        <div class="editor-box animate__animated animate__fadeInDown">
-            <h3><i class="fas fa-edit"></i> Editar Publicación</h3>
-            <p style="color: #666; font-size: 0.8rem; margin-top: -10px;">Sesión activa: DAY ROJAS</p>
-            
-            <label>Nombre del Vehículo</label>
-            <input type="text" id="edit-nombre">
-
-            <label>Características (Resumen)</label>
-            <input type="text" id="edit-caract">
-
-            <label>Precio ($)</label>
-            <input type="text" id="edit-precio">
-
-            <button class="btn-guardar" onclick="aplicarCambios()">Guardar Cambios</button>
-            <button onclick="cerrarEditor()" style="background:transparent; color:#666; border:none; width:100%; margin-top:10px; cursor:pointer;">Cancelar</button>
-        </div>
-    </div>
-</style>
-
-<div id="login-owner" class="login-overlay">
-    <div class="login-box animate__animated animate__fadeInUp">
-        <i class="fas fa-crown" style="font-size: 3rem; color: var(--color-mostaza); margin-bottom: 15px;"></i>
-        <h2 style="color:var(--color-mostaza); letter-spacing: 2px;">ACCESO PRIVADO</h2>
-        <input type="text" id="user-owner" placeholder="USUARIO">
-        <input type="password" id="pass-owner" placeholder="CONTRASEÑA">
-        <button class="btn-whatsapp" style="width:100%; margin:0;" onclick="validarAcceso()">Entrar al Sistema</button>
-        <div id="msg-login"></div>
-        <button onclick="cerrarLogin()" style="background:transparent; color:#666; border:none; margin-top:15px; cursor:pointer;">Cerrar</button>
-    </div>
-</div>
-
-<script>
-    // Inyectar saludo en el Nav al cargar (busca el nav)
-    const navRight = document.querySelector('nav');
-    if(!document.getElementById('user-greeting')){
-        const span = document.createElement('span');
-        span.id = 'user-greeting';
-        navRight.insertBefore(span, navRight.lastElementChild);
-    }
-
-    // Inyectar botones de edición en las tarjetas actuales
-    document.querySelectorAll('.info-auto').forEach(div => {
-        const btn = document.createElement('button');
-        btn.className = 'btn-editar-admin';
-        btn.innerHTML = '<i class="fas fa-edit"></i> Editar Publicación';
-        btn.onclick = function() { alert('Abriendo editor para: ' + div.querySelector('.marca-modelo').innerText); };
-        div.appendChild(btn);
-    });
-
-    function activarAdmin() {
-        document.getElementById('login-owner').style.display = 'flex';
-    }
-
-    function cerrarLogin() {
-        document.getElementById('login-owner').style.display = 'none';
-    }
-
-    function validarAcceso() {
-        const user = document.getElementById('user-owner').value;
-        const pass = document.getElementById('pass-owner').value;
-        const msg = document.getElementById('msg-login');
-
-        if (user === "DAY ROJAS" && pass === "POTOMAC2026") {
-            // Mostrar mensaje de éxito
-            msg.innerHTML = "¡INICIO CON ÉXITO!";
-            msg.className = "msg-exito";
-            msg.style.display = "block";
-
-            setTimeout(() => {
+        function validarAcceso() {
+            const user = document.getElementById('user-owner').value;
+            const pass = document.getElementById('pass-owner').value;
+            if (user === "DAY ROJAS" && pass === "POTOMAC2026") {
+                esOwner = true;
                 document.getElementById('login-owner').style.display = 'none';
-                
-                // Mostrar nombre arriba a la derecha
-                const greeting = document.getElementById('user-greeting');
-                greeting.innerHTML = '<i class="fas fa-user-check"></i> DAY ROJAS';
-                greeting.style.display = 'inline-block';
-
-                // Mostrar botones de edición en las tarjetas
-                document.querySelectorAll('.btn-editar-admin').forEach(btn => btn.style.display = 'block');
-                
-                // Ocultar botón original de admin para limpiar el menú
-                document.querySelector('nav button').style.display = 'none';
-            }, 1500);
-
-        } else {
-            msg.innerHTML = "DATOS INCORRECTOS";
-            msg.className = "msg-error";
-            msg.style.display = "block";
+                document.getElementById('user-greeting').innerHTML = "BIENVENIDO, DAY ROJAS";
+                document.getElementById('user-greeting').style.display = 'inline-block';
+                document.getElementById('btn-admin-nav').style.display = 'none';
+                alert("Modo Edición Activado. Abre cualquier auto para ver los botones dorados.");
+            } else {
+                alert("Datos incorrectos");
+            }
         }
-    }
-   let autoSiendoEditado = null;
 
-function abrirEditor(elementoBtn) {
-    autoSiendoEditado = elementoBtn.closest('.tarjeta-auto');
-    document.getElementById('edit-nombre').value = autoSiendoEditado.querySelector('.marca-modelo').innerText;
-    document.getElementById('edit-caract').value = autoSiendoEditado.querySelector('.caracteristicas-basicas').innerText;
-    document.getElementById('edit-precio').value = autoSiendoEditado.querySelector('.precio-auto').innerText;
-    document.getElementById('editor-publicacion').style.display = 'flex';
-}
-
-function aplicarCambios() {
-    if (!autoSiendoEditado) return;
-    autoSiendoEditado.querySelector('.marca-modelo').innerText = document.getElementById('edit-nombre').value;
-    autoSiendoEditado.querySelector('.caracteristicas-basicas').innerText = document.getElementById('edit-caract').value;
-    autoSiendoEditado.querySelector('.precio-auto').innerText = document.getElementById('edit-precio').value;
-
-    const btn = document.querySelector('.btn-guardar');
-    btn.innerText = "¡Sincronizado!";
-    setTimeout(() => {
-        btn.innerText = "Guardar Cambios";
-        cerrarEditor();
-    }, 1000);
-}
-
-function cerrarEditor() {
-    document.getElementById('editor-publicacion').style.display = 'none';
-}
-</script>
-    <div id="editor-publicacion" class="editor-overlay">
-    <div class="editor-box animate__animated animate__fadeInDown">
-        <h3><i class="fas fa-edit"></i> Editar Publicación</h3>
-        <p style="color: #666; font-size: 0.8rem; margin-top: -10px;">Sesión activa: DAY ROJAS</p>
-        
-        <label>Nombre del Vehículo</label>
-        <input type="text" id="edit-nombre">
-
-        <label>Características (Resumen)</label>
-        <input type="text" id="edit-caract">
-
-        <label>Precio ($)</label>
-        <input type="text" id="edit-precio">
-
-        <button class="btn-guardar" onclick="aplicarCambios()">Guardar Cambios</button>
-        <button onclick="cerrarEditor()" style="background:transparent; color:#666; border:none; width:100%; margin-top:10px; cursor:pointer;">Cancelar</button>
-    </div>
-</div>
-
+        function cerrarModal() { document.getElementById('modal-detalles').style.display = 'none'; }
+    </script>
 </body>
 </html>
-</body>

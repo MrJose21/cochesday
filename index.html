@@ -51,14 +51,10 @@
             font-weight: bold; font-size: 0.9rem; text-align: center;
         }
 
-        /* HERO - NUEVO ENLACE DE FONDO UNIFICADO (NEGRO) */
+        /* HERO - SOLUCIÓN DEFINITIVA: FONDO NEGRO SÓLIDO, SIN IMAGEN */
         .hero {
-            background-color: var(--color-negro);
-            /* Se actualizó el enlace a la imagen con fondo negro unificado */
-            background-image: url('https://raw.githubusercontent.com/MrJose21/cochesday/a1cd9ae7f49c7ad8b21f263263c59bba4eb20693/logo%20de%20fondo.jpg');
-            background-size: contain;
-            background-position: left center;
-            background-repeat: no-repeat;
+            background-color: var(--color-negro); /* Fondo negro puro */
+            /* Se ha eliminado por completo la imagen de fondo para evitar errores */
             height: 350px; 
             display: flex; 
             flex-direction: column; 
@@ -67,8 +63,8 @@
             text-align: center; 
             border-bottom: 1px solid var(--color-mostaza);
         }
-        .hero h1 { font-size: 3.5rem; text-transform: uppercase; margin: 0; letter-spacing: 3px; text-shadow: 2px 2px 10px #000; }
-        .hero p { color: var(--color-mostaza); letter-spacing: 2px; font-size: 1.2rem; margin-top: 10px; text-shadow: 1px 1px 5px #000; }
+        .hero h1 { font-size: 3.5rem; text-transform: uppercase; margin: 0; letter-spacing: 3px; color: var(--color-texto-blanco); }
+        .hero p { color: var(--color-mostaza); letter-spacing: 2px; font-size: 1.2rem; margin-top: 10px; }
 
         /* SECCIÓN SERVICIOS */
         .seccion-servicios {

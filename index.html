@@ -19,7 +19,7 @@
 
         body { font-family: var(--font-main); margin: 0; background-color: var(--color-negro); color: var(--color-texto-blanco); overflow-x: hidden; }
 
-        /* NAV CON LOGO MINIMALISTA */
+        /* NAV ESTILO ORIGINAL */
         nav {
             background: linear-gradient(to bottom, #111, #000);
             border-bottom: 3px solid var(--color-mostaza);
@@ -37,9 +37,9 @@
         .text-brilla-nav { font-size: 1.1rem; color: var(--color-mostaza); font-weight: bold; letter-spacing: 1px; margin: 0; font-family: 'Times New Roman', Times, serif; }
         .text-autospa-nav { font-size: 0.6rem; color: #aaa; letter-spacing: 2px; text-transform: uppercase; margin: -2px 0 0 0; }
 
-        /* ÁREA DE ADMINISTRACIÓN */
-        .area-admin-nav { display: flex; align-items: center; gap: 15px; }
-        #btn-nueva-pub { display: none; background: var(--color-mostaza); color: black; border: none; padding: 8px 15px; border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 0.75rem; text-transform: uppercase; }
+        .area-login-nav { display: flex; align-items: center; gap: 10px; }
+        #user-greeting { display: none; color: var(--color-mostaza); font-weight: bold; font-size: 0.85rem; }
+        #btn-nueva-pub { display: none; background: var(--color-mostaza); color: black; border: none; padding: 6px 12px; font-size: 11px; border-radius: 3px; font-weight: bold; text-transform: uppercase; cursor: pointer; }
 
         /* HERO */
         .hero {
@@ -64,29 +64,33 @@
         .preview-tech { font-size: 0.8rem; color: var(--color-mostaza); border-top: 1px solid #333; padding-top: 10px; display: flex; justify-content: space-between; }
         .precio-auto { font-size: 1.6rem; font-weight: bold; margin-top: 15px; color: white; }
 
+        /* BOTÓN BORRAR (Solo Owner) */
+        .btn-borrar-card { position: absolute; top: 10px; right: 10px; background: rgba(255, 0, 0, 0.8); color: white; border: none; padding: 5px 10px; border-radius: 4px; font-size: 10px; font-weight: bold; cursor: pointer; z-index: 10; }
+
         /* MODALES */
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 2000; overflow-y: auto; }
         .modal-content { background: #111; margin: 5% auto; padding: 40px; border: 1px solid var(--color-mostaza); width: 85%; max-width: 900px; border-radius: 10px; position: relative; }
         .close-modal { position: absolute; top: 15px; right: 25px; font-size: 30px; cursor: pointer; color: #666; }
         
+        /* BOTÓN EDITAR INLINE */
+        .btn-edit-inline { display: none; background: transparent; color: var(--color-mostaza); border: 1px solid var(--color-mostaza); border-radius: 4px; padding: 2px 6px; font-size: 0.7rem; cursor: pointer; margin-left: 10px; }
+
         /* LOGIN */
         .login-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.98); z-index: 3000; justify-content: center; align-items: center; }
         .login-box { background: #000; padding: 40px; border: 2px solid var(--color-mostaza); border-radius: 10px; text-align: center; width: 320px; }
         .login-box input { width: 100%; padding: 12px; margin-bottom: 15px; background: #111; border: 1px solid var(--color-mostaza); color: white; border-radius: 5px; box-sizing: border-box; }
-        
+
         /* FORMULARIO CREACIÓN */
         .form-crear { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; color: white; text-align: left; }
         .form-crear label { color: var(--color-mostaza); font-size: 0.8rem; text-transform: uppercase; }
         .form-crear input, .form-crear textarea { width: 100%; padding: 10px; background: #000; border: 1px solid #333; color: white; border-radius: 4px; margin-top: 5px; box-sizing: border-box; }
-        
-        .btn-edit-inline { display: none; background: #000; color: var(--color-mostaza); border: 1px solid var(--color-mostaza); border-radius: 4px; padding: 3px 8px; font-size: 0.65rem; cursor: pointer; margin-left: 8px; }
 
         footer { text-align: center; padding: 40px; border-top: 2px solid var(--color-mostaza); background: #000; color: #aaa; margin-top: 50px; }
     </style>
 </head>
 <body>
 
-    <nav class="animate__animated animate__fadeInDown">
+    <nav>
         <a href="#" class="logo-minimal-brilla">
             <svg class="svg-carrito-dorado" viewBox="0 0 512 512">
                 <path d="M472.1,348.6c13.7,0,24.8-11.1,24.8-24.8V188.2c0-13.7-11.1-24.8-24.8-24.8H188.2c-13.7,0-24.8,11.1-24.8,24.8v135.6c0,13.7,11.1,24.8,24.8,24.8h60v50H60c-13.7,0-24.8,11.1-24.8,24.8v50c0,13.7,11.1,24.8,24.8,24.8h400c13.7,0,24.8-11.1,24.8-24.8v-50c0-13.7-11.1-24.8-24.8-24.8h-70v-50C472.1,348.6,472.1,348.6,472.1,348.6z M188.2,188.2h283.9v135.6H188.2V188.2z M60,400h400v50H60V400z M273.9,348.6h100v50h-100V348.6z"/>
@@ -95,25 +99,25 @@
             <p class="text-autospa-nav">AUTO SPA</p>
         </a>
 
-        <div class="area-admin-nav">
-            <button id="btn-nueva-pub" onclick="abrirModalCrear()"><i class="fas fa-plus"></i> Nueva Publicación</button>
+        <div class="area-login-nav">
+            <button id="btn-nueva-pub" onclick="document.getElementById('modal-crear').style.display='block'"><i class="fas fa-plus"></i> Nueva Publicación</button>
             <span id="user-greeting"></span>
             <button id="btn-admin-nav" onclick="document.getElementById('login-owner').style.display='flex'" style="background: transparent; color: var(--color-mostaza); border: 1px solid var(--color-mostaza); cursor: pointer; padding: 6px 12px; font-size: 11px; border-radius: 3px; font-weight: bold; text-transform: uppercase;">Owner</button>
         </div>
     </nav>
 
     <div class="hero">
-        <h1 class="animate__animated animate__zoomIn">Servicio Premium</h1>
-        <p class="animate__animated animate__fadeInUp animate__delay-1s">Brilla Auto Spa by Day Rojas</p>
+        <h1>Servicio Premium</h1>
+        <p>Brilla Auto Spa by Day Rojas</p>
     </div>
 
     <div class="seccion-autos">
-        <h2 style="text-align:center; color:var(--color-mostaza); margin-bottom: 40px;" class="animate__animated animate__fadeIn">CATÁLOGO EXCLUSIVO</h2>
+        <h2 style="text-align:center; color:var(--color-mostaza); margin-bottom: 40px;">CATÁLOGO EXCLUSIVO</h2>
         <div id="grid-autos" class="contenedor-autos"></div>
     </div>
 
     <div id="modal-detalles" class="modal">
-        <div class="modal-content animate__animated animate__fadeInDown">
+        <div class="modal-content">
             <span class="close-modal" onclick="cerrarModal()">&times;</span>
             <div id="contenido-modal"></div>
         </div>
@@ -122,31 +126,29 @@
     <div id="modal-crear" class="modal">
         <div class="modal-content animate__animated animate__zoomIn">
             <span class="close-modal" onclick="document.getElementById('modal-crear').style.display='none'">&times;</span>
-            <h2 style="color:var(--color-mostaza); border-bottom:1px solid #333; padding-bottom:10px;">Nueva Publicación</h2>
+            <h2 style="color:var(--color-mostaza);">Nueva Publicación</h2>
             <div class="form-crear">
                 <div style="grid-column: span 2;">
-                    <label>Imagen del Vehículo</label>
-                    <input type="file" id="new-foto" accept="image/*" onchange="procesarImagen(this)">
+                    <label>Imagen</label>
+                    <input type="file" id="new-foto" accept="image/*" onchange="procesarImg(this)">
                 </div>
                 <div style="grid-column: span 2;"><label>Título</label><input type="text" id="new-titulo"></div>
                 <div style="grid-column: span 2;"><label>Descripción</label><textarea id="new-desc" rows="3"></textarea></div>
                 <div><label>Precio</label><input type="text" id="new-precio"></div>
-                <div><label>Año/Modelo</label><input type="text" id="new-modelo"></div>
+                <div><label>Año</label><input type="text" id="new-modelo"></div>
                 <div><label>Motor</label><input type="text" id="new-motor"></div>
                 <div><label>Potencia</label><input type="text" id="new-potencia"></div>
             </div>
-            <button onclick="guardarNuevaPublicacion()" style="width:100%; margin-top:20px; background:var(--color-mostaza); color:black; padding:15px; border:none; font-weight:bold; cursor:pointer; border-radius:5px;">PUBLICAR AHORA</button>
+            <button onclick="crearPublicacion()" style="width:100%; margin-top:20px; background:var(--color-mostaza); padding:15px; border:none; font-weight:bold; cursor:pointer; border-radius:5px;">PUBLICAR</button>
         </div>
     </div>
 
     <div id="login-owner" class="login-overlay">
-        <div class="login-box animate__animated animate__pulse">
-            <i class="fas fa-car-on" style="font-size: 2rem; color: var(--color-mostaza); margin-bottom: 15px;"></i>
+        <div class="login-box">
             <h2 style="color:var(--color-mostaza);">IDENTIFICACIÓN</h2>
             <input type="text" id="user-owner" placeholder="USUARIO">
             <input type="password" id="pass-owner" placeholder="CONTRASEÑA">
             <button onclick="validarAcceso()" style="background:var(--color-mostaza); color:black; border:none; padding:12px; width:100%; font-weight:bold; cursor:pointer; border-radius:5px;">Entrar</button>
-            <p onclick="document.getElementById('login-owner').style.display='none'" style="color:#555; cursor:pointer; margin-top:15px; font-size: 0.8rem;">Cerrar</p>
         </div>
     </div>
 
@@ -154,27 +156,24 @@
 
     <script>
         let esOwner = false;
-        let fotoTemporal = "";
+        let fotoTemp = "";
+        let autoActivo = "";
         
-        const defaultCatalogo = {
-            '1': { titulo: 'Chevrolet Corvette Z06', precio: '$150,000', descripcion: 'Detallado premium de 3 etapas con sellado cerámico de grafeno.', modelo: '2024', motor: '5.5L LT6 V8', potencia: '670 HP', foto: 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=800' }
+        let catalogo = JSON.parse(localStorage.getItem('brilla_vFinal')) || {
+            '1': { titulo: 'Chevrolet Corvette Z06', precio: '$150,000', descripcion: 'Detallado premium de 3 etapas.', modelo: '2024', motor: '5.5L V8', potencia: '670 HP', foto: 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=800' }
         };
 
-        let catalogo = JSON.parse(localStorage.getItem('brilla_v9')) || defaultCatalogo;
+        function guardar() { localStorage.setItem('brilla_vFinal', JSON.stringify(catalogo)); }
 
-        function guardar() { localStorage.setItem('brilla_v9', JSON.stringify(catalogo)); }
-
-        function procesarImagen(input) {
+        function procesarImg(input) {
             if (input.files && input.files[0]) {
                 const reader = new FileReader();
-                reader.onload = e => fotoTemporal = e.target.result;
+                reader.onload = e => fotoTemp = e.target.result;
                 reader.readAsDataURL(input.files[0]);
             }
         }
 
-        function abrirModalCrear() { document.getElementById('modal-crear').style.display = 'block'; }
-
-        function guardarNuevaPublicacion() {
+        function crearPublicacion() {
             const id = "auto_" + Date.now();
             catalogo[id] = {
                 titulo: document.getElementById('new-titulo').value,
@@ -183,27 +182,25 @@
                 modelo: document.getElementById('new-modelo').value,
                 motor: document.getElementById('new-motor').value,
                 potencia: document.getElementById('new-potencia').value,
-                foto: fotoTemporal || 'https://via.placeholder.com/800x500?text=Brilla+Auto+Spa'
+                foto: fotoTemp || 'https://via.placeholder.com/800x500?text=Brilla+Auto+Spa'
             };
             guardar();
-            renderizarCatalogo();
+            renderizar();
             document.getElementById('modal-crear').style.display = 'none';
-            alert("¡Publicado con éxito!");
         }
 
-        function renderizarCatalogo() {
+        function renderizar() {
             const grid = document.getElementById('grid-autos');
             grid.innerHTML = ""; 
-            Object.keys(catalogo).reverse().forEach((id, index) => {
+            Object.keys(catalogo).reverse().forEach(id => {
                 const auto = catalogo[id];
-                const delayClass = `animate__delay-${index}s`;
                 grid.innerHTML += `
-                    <div class="tarjeta-auto animate__animated animate__fadeInUp ${delayClass}" onclick="abrirModal('${id}')">
-                        ${esOwner ? `<button onclick="event.stopPropagation(); eliminar('${id}')" style="position:absolute; top:10px; right:10px; background:red; color:white; border:none; padding:5px; border-radius:3px; cursor:pointer; font-size:10px;">BORRAR</button>` : ''}
+                    <div class="tarjeta-auto animate__animated animate__fadeInUp" onclick="abrirDetalle('${id}')">
+                        ${esOwner ? `<button class="btn-borrar-card" onclick="event.stopPropagation(); borrar('${id}')">BORRAR</button>` : ''}
                         <img src="${auto.foto}">
                         <div class="info-auto">
                             <p class="marca-modelo">${auto.titulo}</p>
-                            <p class="preview-info">${auto.descripcion.substring(0, 75)}...</p>
+                            <p class="preview-info">${auto.descripcion.substring(0, 70)}...</p>
                             <div class="preview-tech">
                                 <span><i class="fas fa-bolt"></i> ${auto.motor}</span>
                                 <span><i class="fas fa-calendar-alt"></i> ${auto.modelo}</span>
@@ -214,35 +211,37 @@
             });
         }
 
-        function abrirModal(id) {
+        function abrirDetalle(id) {
+            autoActivo = id;
             const auto = catalogo[id];
-            const displayEdit = esOwner ? 'inline-block' : 'none';
+            const btnEdit = esOwner ? 'inline-block' : 'none';
             document.getElementById('contenido-modal').innerHTML = `
-                <h2 style="color:var(--color-mostaza); font-size:2rem;">${auto.titulo}</h2>
+                <h2 style="color:var(--color-mostaza); font-size:2rem;">${auto.titulo} <button class="btn-edit-inline" style="display:${btnEdit}" onclick="editar('titulo')"><i class="fas fa-edit"></i></button></h2>
                 <img src="${auto.foto}" style="width:100%; border-radius:8px; margin-bottom:20px; border:1px solid #222;">
                 <div style="display:grid; grid-template-columns: 1.2fr 0.8fr; gap:30px; text-align:left;">
                     <div>
-                        <h3 style="color:var(--color-mostaza);">Descripción</h3>
+                        <h3 style="color:var(--color-mostaza);">Descripción <button class="btn-edit-inline" style="display:${btnEdit}" onclick="editar('descripcion')"><i class="fas fa-edit"></i></button></h3>
                         <p style="color:#ccc; line-height:1.6;">${auto.descripcion}</p>
-                        <h3 style="color:white; margin-top:20px;">Precio Sugerido</h3>
+                        <h3 style="color:white; margin-top:20px;">Precio Sugerido <button class="btn-edit-inline" style="display:${btnEdit}" onclick="editar('precio')"><i class="fas fa-edit"></i></button></h3>
                         <p style="font-size:2.2rem; color:var(--color-mostaza); font-weight:bold; margin:0;">${auto.precio}</p>
                     </div>
                     <div style="background:#1a1a1a; padding:25px; border-radius:10px; border:1px solid #333;">
                         <h3 style="margin-top:0; border-bottom:1px solid var(--color-mostaza); padding-bottom:10px;">Ficha Técnica</h3>
-                        <p><strong>Modelo:</strong> ${auto.modelo}</p>
-                        <p><strong>Motor:</strong> ${auto.motor}</p>
-                        <p><strong>Potencia:</strong> ${auto.potencia}</p>
+                        <p><strong>Modelo:</strong> ${auto.modelo} <button class="btn-edit-inline" style="display:${btnEdit}" onclick="editar('modelo')"><i class="fas fa-edit"></i></button></p>
+                        <p><strong>Motor:</strong> ${auto.motor} <button class="btn-edit-inline" style="display:${btnEdit}" onclick="editar('motor')"><i class="fas fa-edit"></i></button></p>
+                        <p><strong>Potencia:</strong> ${auto.potencia} <button class="btn-edit-inline" style="display:${btnEdit}" onclick="editar('potencia')"><i class="fas fa-edit"></i></button></p>
                     </div>
                 </div>`;
             document.getElementById('modal-detalles').style.display = 'block';
         }
 
-        function eliminar(id) {
-            if(confirm("¿Seguro que quieres eliminar este auto?")) {
-                delete catalogo[id];
-                guardar();
-                renderizarCatalogo();
-            }
+        function editar(campo) {
+            const valor = prompt("Nuevo valor para " + campo, catalogo[autoActivo][campo]);
+            if(valor) { catalogo[autoActivo][campo] = valor; guardar(); renderizar(); abrirDetalle(autoActivo); }
+        }
+
+        function borrar(id) {
+            if(confirm("¿Vendido? ¿Quieres eliminar esta publicación?")) { delete catalogo[id]; guardar(); renderizar(); }
         }
 
         function validarAcceso() {
@@ -253,12 +252,12 @@
                 document.getElementById('user-greeting').innerHTML = "DAY ROJAS";
                 document.getElementById('user-greeting').style.display = 'inline-block';
                 document.getElementById('btn-admin-nav').style.display = 'none';
-                renderizarCatalogo();
+                renderizar();
             } else { alert("Acceso Denegado."); }
         }
 
         function cerrarModal() { document.getElementById('modal-detalles').style.display = 'none'; }
-        renderizarCatalogo();
+        renderizar();
     </script>
 </body>
 </html>

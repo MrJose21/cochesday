@@ -545,6 +545,36 @@
     }
 
     .btn-editar-admin:hover { background: var(--color-mostaza); color: black; }
+        <div id="login-owner" class="login-overlay">
+        <div class="login-box animate__animated animate__fadeInUp">
+            <i class="fas fa-crown" style="font-size: 3rem; color: var(--color-mostaza); margin-bottom: 15px;"></i>
+            <h2 style="color:var(--color-mostaza); letter-spacing: 2px;">ACCESO PRIVADO</h2>
+            <input type="text" id="user-owner" placeholder="USUARIO">
+            <input type="password" id="pass-owner" placeholder="CONTRASEÑA">
+            <button class="btn-whatsapp" style="width:100%; margin:0;" onclick="validarAcceso()">Entrar al Sistema</button>
+            <div id="msg-login"></div>
+            <button onclick="cerrarLogin()" style="background:transparent; color:#666; border:none; margin-top:15px; cursor:pointer;">Cerrar</button>
+        </div>
+    </div>
+
+    <div id="editor-publicacion" class="editor-overlay">
+        <div class="editor-box animate__animated animate__fadeInDown">
+            <h3><i class="fas fa-edit"></i> Editar Publicación</h3>
+            <p style="color: #666; font-size: 0.8rem; margin-top: -10px;">Sesión activa: DAY ROJAS</p>
+            
+            <label>Nombre del Vehículo</label>
+            <input type="text" id="edit-nombre">
+
+            <label>Características (Resumen)</label>
+            <input type="text" id="edit-caract">
+
+            <label>Precio ($)</label>
+            <input type="text" id="edit-precio">
+
+            <button class="btn-guardar" onclick="aplicarCambios()">Guardar Cambios</button>
+            <button onclick="cerrarEditor()" style="background:transparent; color:#666; border:none; width:100%; margin-top:10px; cursor:pointer;">Cancelar</button>
+        </div>
+    </div>
 </style>
 
 <div id="login-owner" class="login-overlay">
@@ -617,6 +647,54 @@
             msg.style.display = "block";
         }
     }
+   let autoSiendoEditado = null;
+
+function abrirEditor(elementoBtn) {
+    autoSiendoEditado = elementoBtn.closest('.tarjeta-auto');
+    document.getElementById('edit-nombre').value = autoSiendoEditado.querySelector('.marca-modelo').innerText;
+    document.getElementById('edit-caract').value = autoSiendoEditado.querySelector('.caracteristicas-basicas').innerText;
+    document.getElementById('edit-precio').value = autoSiendoEditado.querySelector('.precio-auto').innerText;
+    document.getElementById('editor-publicacion').style.display = 'flex';
+}
+
+function aplicarCambios() {
+    if (!autoSiendoEditado) return;
+    autoSiendoEditado.querySelector('.marca-modelo').innerText = document.getElementById('edit-nombre').value;
+    autoSiendoEditado.querySelector('.caracteristicas-basicas').innerText = document.getElementById('edit-caract').value;
+    autoSiendoEditado.querySelector('.precio-auto').innerText = document.getElementById('edit-precio').value;
+
+    const btn = document.querySelector('.btn-guardar');
+    btn.innerText = "¡Sincronizado!";
+    setTimeout(() => {
+        btn.innerText = "Guardar Cambios";
+        cerrarEditor();
+    }, 1000);
+}
+
+function cerrarEditor() {
+    document.getElementById('editor-publicacion').style.display = 'none';
+}
 </script>
+    <div id="editor-publicacion" class="editor-overlay">
+    <div class="editor-box animate__animated animate__fadeInDown">
+        <h3><i class="fas fa-edit"></i> Editar Publicación</h3>
+        <p style="color: #666; font-size: 0.8rem; margin-top: -10px;">Sesión activa: DAY ROJAS</p>
+        
+        <label>Nombre del Vehículo</label>
+        <input type="text" id="edit-nombre">
+
+        <label>Características (Resumen)</label>
+        <input type="text" id="edit-caract">
+
+        <label>Precio ($)</label>
+        <input type="text" id="edit-precio">
+
+        <button class="btn-guardar" onclick="aplicarCambios()">Guardar Cambios</button>
+        <button onclick="cerrarEditor()" style="background:transparent; color:#666; border:none; width:100%; margin-top:10px; cursor:pointer;">Cancelar</button>
+    </div>
+</div>
+
+</body>
+</html>
 </body>
 </html>

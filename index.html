@@ -19,7 +19,7 @@
 
         body { font-family: var(--font-main); margin: 0; background-color: var(--color-negro); color: var(--color-texto-blanco); overflow-x: hidden; }
 
-        /* NAV ESTILO ORIGINAL */
+        /* NAV */
         nav {
             background: linear-gradient(to bottom, #111, #000);
             border-bottom: 3px solid var(--color-mostaza);
@@ -30,261 +30,208 @@
 
         .logo-minimal-brilla {
             display: flex; flex-direction: column; align-items: center; gap: 2px;
-            cursor: pointer; text-decoration: none; filter: drop-shadow(0 0 5px rgba(209, 180, 100, 0.4));
+            cursor: pointer; text-decoration: none;
         }
 
-        .svg-carrito-dorado { fill: var(--color-mostaza); width: 50px; height: auto; }
-        .text-brilla-nav { font-size: 1.1rem; color: var(--color-mostaza); font-weight: bold; letter-spacing: 1px; margin: 0; font-family: 'Times New Roman', Times, serif; }
+        .svg-carrito-dorado { fill: var(--color-mostaza); width: 45px; height: auto; }
+        .text-brilla-nav { font-size: 1.1rem; color: var(--color-mostaza); font-weight: bold; letter-spacing: 1px; margin: 0; }
         .text-autospa-nav { font-size: 0.6rem; color: #aaa; letter-spacing: 2px; text-transform: uppercase; margin: -2px 0 0 0; }
 
-        .area-login-nav { display: flex; align-items: center; gap: 10px; }
-        #user-greeting { display: none; color: var(--color-mostaza); font-weight: bold; font-size: 0.85rem; }
-        #btn-nueva-pub { display: none; background: var(--color-mostaza); color: black; border: none; padding: 6px 12px; font-size: 11px; border-radius: 3px; font-weight: bold; text-transform: uppercase; cursor: pointer; }
-
-        /* HERO */
-        .hero {
-            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.9)), url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1500&q=80');
-            background-size: cover; background-position: center;
-            height: 300px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; border-bottom: 1px solid var(--color-mostaza);
-        }
-        .hero h1 { font-size: 3rem; text-transform: uppercase; margin: 0; }
-        .hero p { color: var(--color-mostaza); letter-spacing: 2px; }
-
         /* CATALOGO */
-        .seccion-autos { padding: 60px 20px; max-width: 1300px; margin: auto; }
-        .contenedor-autos { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
+        .seccion-autos { padding: 40px 20px; max-width: 1300px; margin: auto; }
+        .contenedor-autos { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; }
         
-        .tarjeta-auto { background: var(--color-gris-oscuro); border: 1px solid #333; border-radius: 12px; overflow: hidden; transition: 0.4s; cursor: pointer; position: relative; }
-        .tarjeta-auto:hover { transform: translateY(-10px); border-color: var(--color-mostaza); box-shadow: 0 10px 20px rgba(209, 180, 100, 0.1); }
-        .tarjeta-auto img { width: 100%; height: 230px; object-fit: cover; border-bottom: 2px solid var(--color-mostaza); }
+        .tarjeta-auto { background: var(--color-gris-oscuro); border: 1px solid #333; border-radius: 12px; overflow: hidden; transition: 0.4s; position: relative; display: flex; flex-direction: column; }
+        .tarjeta-auto:hover { transform: translateY(-5px); border-color: var(--color-mostaza); }
+        .tarjeta-auto img { width: 100%; height: 230px; object-fit: cover; border-bottom: 2px solid var(--color-mostaza); cursor: pointer; }
         
-        .info-auto { padding: 20px; }
-        .marca-modelo { font-size: 1.4rem; color: var(--color-mostaza); margin-bottom: 8px; font-weight: bold; }
-        .preview-info { font-size: 0.85rem; color: #bbb; margin-bottom: 15px; line-height: 1.4; height: 40px; overflow: hidden; }
-        .preview-tech { font-size: 0.8rem; color: var(--color-mostaza); border-top: 1px solid #333; padding-top: 10px; display: flex; justify-content: space-between; }
-        .precio-auto { font-size: 1.6rem; font-weight: bold; margin-top: 15px; color: white; }
+        .info-auto { padding: 20px; flex-grow: 1; display: flex; flex-direction: column; }
+        .marca-modelo { font-size: 1.4rem; color: var(--color-mostaza); margin: 0 0 10px 0; font-weight: bold; }
+        
+        /* FOOTER DE LA TARJETA (Novedad) */
+        .card-footer-action { display: flex; justify-content: space-between; align-items: center; margin-top: auto; padding-top: 15px; border-top: 1px solid #333; }
+        .precio-auto { font-size: 1.6rem; font-weight: bold; color: white; }
+        .btn-interesa-whatsapp { background: #25d366; color: white; border: none; padding: 8px 15px; border-radius: 5px; font-weight: bold; font-size: 0.8rem; cursor: pointer; text-decoration: none; display: flex; align-items: center; gap: 8px; transition: 0.3s; }
+        .btn-interesa-whatsapp:hover { background: #128c7e; transform: scale(1.05); }
 
-        /* BOTÓN BORRAR (Solo Owner) */
-        .btn-borrar-card { position: absolute; top: 10px; right: 10px; background: rgba(255, 0, 0, 0.8); color: white; border: none; padding: 5px 10px; border-radius: 4px; font-size: 10px; font-weight: bold; cursor: pointer; z-index: 10; }
-
-        /* MODALES */
-        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 2000; overflow-y: auto; }
-        .modal-content { background: #111; margin: 5% auto; padding: 40px; border: 1px solid var(--color-mostaza); width: 85%; max-width: 900px; border-radius: 10px; position: relative; }
-        .close-modal { position: absolute; top: 15px; right: 25px; font-size: 30px; cursor: pointer; color: #666; }
-        
-        /* BOTÓN EDITAR INLINE */
-        .btn-edit-inline { display: none; background: transparent; color: var(--color-mostaza); border: 1px solid var(--color-mostaza); border-radius: 4px; padding: 2px 6px; font-size: 0.7rem; cursor: pointer; margin-left: 10px; }
+        /* GALERIA EN MODAL */
+        .galeria-contenedor { display: flex; overflow-x: auto; gap: 10px; padding: 10px 0; scroll-snap-type: x mandatory; }
+        .galeria-contenedor img { height: 400px; scroll-snap-align: center; border-radius: 8px; flex-shrink: 0; }
 
         /* CONTACTO Y PROMO */
         .hex-icon { width: 40px; height: 40px; border: 2px solid var(--color-mostaza); display: flex; align-items: center; justify-content: center; margin-right: 15px; clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%); background: #000; }
-        .banner-promo { background-color: var(--color-mostaza); padding: 30px; border-radius: 10px; position: relative; overflow: hidden; display: flex; flex-direction: column; align-items: center; text-align: center; color: #000; flex: 1; min-width: 300px; }
+        .banner-promo { background-color: var(--color-mostaza); padding: 30px; border-radius: 10px; color: #000; flex: 1; min-width: 300px; text-align: center; }
 
-        /* LOGIN */
-        .login-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.98); z-index: 3000; justify-content: center; align-items: center; }
-        .login-box { background: #000; padding: 40px; border: 2px solid var(--color-mostaza); border-radius: 10px; text-align: center; width: 320px; }
-        .login-box input { width: 100%; padding: 12px; margin-bottom: 15px; background: #111; border: 1px solid var(--color-mostaza); color: white; border-radius: 5px; box-sizing: border-box; }
+        /* BOTONES ADMIN */
+        .btn-borrar-card { position: absolute; top: 10px; right: 10px; background: rgba(255, 0, 0, 0.9); color: white; border: none; padding: 5px 10px; border-radius: 4px; font-size: 10px; font-weight: bold; cursor: pointer; z-index: 10; }
+        .area-login-nav button { background: var(--color-mostaza); color: black; border: none; padding: 8px 15px; border-radius: 4px; font-weight: bold; cursor: pointer; }
 
-        /* FORMULARIO CREACIÓN */
-        .form-crear { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; color: white; text-align: left; }
-        .form-crear label { color: var(--color-mostaza); font-size: 0.8rem; text-transform: uppercase; }
-        .form-crear input, .form-crear textarea { width: 100%; padding: 10px; background: #000; border: 1px solid #333; color: white; border-radius: 4px; margin-top: 5px; box-sizing: border-box; }
-
-        footer { text-align: center; padding: 40px; border-top: 2px solid var(--color-mostaza); background: #000; color: #aaa; margin-top: 0; }
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 2000; overflow-y: auto; }
+        .modal-content { background: #111; margin: 2% auto; padding: 30px; border: 1px solid var(--color-mostaza); width: 90%; max-width: 1000px; border-radius: 10px; }
     </style>
 </head>
 <body>
 
     <nav>
-        <a href="#" class="logo-minimal-brilla">
-            <svg class="svg-carrito-dorado" viewBox="0 0 512 512">
-                <path d="M472.1,348.6c13.7,0,24.8-11.1,24.8-24.8V188.2c0-13.7-11.1-24.8-24.8-24.8H188.2c-13.7,0-24.8,11.1-24.8,24.8v135.6c0,13.7,11.1,24.8,24.8,24.8h60v50H60c-13.7,0-24.8,11.1-24.8,24.8v50c0,13.7,11.1,24.8,24.8,24.8h400c13.7,0,24.8-11.1,24.8-24.8v-50c0-13.7-11.1-24.8-24.8-24.8h-70v-50C472.1,348.6,472.1,348.6,472.1,348.6z M188.2,188.2h283.9v135.6H188.2V188.2z M60,400h400v50H60V400z M273.9,348.6h100v50h-100V348.6z"/>
-            </svg>
-            <p class="text-brilla-nav">BRILLA</p>
-            <p class="text-autospa-nav">AUTO SPA</p>
-        </a>
-
+        <div class="logo-minimal-brilla">
+            <svg class="svg-carrito-dorado" viewBox="0 0 512 512"><path d="M472.1,348.6c13.7,0,24.8-11.1,24.8-24.8V188.2c0-13.7-11.1-24.8-24.8-24.8H188.2c-13.7,0-24.8,11.1-24.8,24.8v135.6c0,13.7,11.1,24.8,24.8,24.8h60v50H60c-13.7,0-24.8,11.1-24.8,24.8v50c0,13.7,11.1,24.8,24.8,24.8h400c13.7,0,24.8-11.1,24.8-24.8v-50c0-13.7-11.1-24.8-24.8-24.8h-70v-50C472.1,348.6,472.1,348.6,472.1,348.6z M188.2,188.2h283.9v135.6H188.2V188.2z M60,400h400v50H60V400z M273.9,348.6h100v50h-100V348.6z"/></svg>
+            <p class="text-brilla-nav">BRILLA AUTO SPA</p>
+        </div>
         <div class="area-login-nav">
-            <button id="btn-nueva-pub" onclick="document.getElementById('modal-crear').style.display='block'"><i class="fas fa-plus"></i> Nueva Publicación</button>
-            <span id="user-greeting"></span>
-            <button id="btn-admin-nav" onclick="document.getElementById('login-owner').style.display='flex'" style="background: transparent; color: var(--color-mostaza); border: 1px solid var(--color-mostaza); cursor: pointer; padding: 6px 12px; font-size: 11px; border-radius: 3px; font-weight: bold; text-transform: uppercase;">Owner</button>
+            <button id="btn-nueva-pub" style="display:none;" onclick="document.getElementById('modal-crear').style.display='block'">+ Nueva Venta</button>
+            <button id="btn-admin-nav" onclick="login()">Acceso Owner</button>
         </div>
     </nav>
 
-    <div class="hero">
-        <h1>Servicio Premium</h1>
-        <p>Brilla Auto Spa by Day Rojas</p>
-    </div>
-
     <div class="seccion-autos">
-        <h2 style="text-align:center; color:var(--color-mostaza); margin-bottom: 40px;">CATÁLOGO EXCLUSIVO</h2>
+        <h2 style="text-align:center; color:var(--color-mostaza); text-transform:uppercase; letter-spacing:4px;">Catálogo Exclusivo</h2>
         <div id="grid-autos" class="contenedor-autos"></div>
     </div>
 
     <section style="background-color: var(--color-gris-oscuro); border-top: 1px solid var(--color-mostaza); padding: 50px 20px;">
-        <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 40px;">
-            
+        <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 40px;">
             <div style="flex: 1; min-width: 300px;">
-                <h3 style="color: var(--color-mostaza); text-transform: uppercase; letter-spacing: 3px; margin-bottom: 30px;">CONTACT US:</h3>
-                
-                <div style="display: flex; align-items: center; margin-bottom: 25px;">
+                <h3 style="color: var(--color-mostaza);">CONTACT US:</h3>
+                <div style="display: flex; align-items: center; margin-bottom: 20px;">
                     <div class="hex-icon"><i class="fas fa-map-marker-alt" style="color: var(--color-mostaza);"></i></div>
-                    <p style="margin: 0; color: white; font-size: 1.1rem;">Dumfries and surrounding areas</p>
+                    <p>Dumfries and surrounding areas</p>
                 </div>
-
                 <div style="display: flex; align-items: center;">
                     <div class="hex-icon"><i class="fas fa-envelope" style="color: var(--color-mostaza);"></i></div>
-                    <p style="margin: 0; color: white; font-size: 1.1rem;">brillautospa@gmail.com</p>
+                    <p>brillautospa@gmail.com</p>
                 </div>
             </div>
-
             <div class="banner-promo">
-                <i class="fas fa-car-side" style="font-size: 90px; color: rgba(0,0,0,0.05); position: absolute; right: -15px; top: -10px;"></i>
-                <h2 style="margin: 0; font-size: 1.8rem; font-weight: bold; position: relative; z-index: 1; line-height: 1.2;">
-                    Get $15 OFF your first full detail service with Brilla Auto Spa!
-                </h2>
-                <div style="margin-top: 20px; width: 60px; height: 4px; background: black;"></div>
+                <h2>Get $15 OFF your first full detail service!</h2>
             </div>
         </div>
     </section>
 
+    <div id="modal-crear" class="modal">
+        <div class="modal-content">
+            <h2 style="color:var(--color-mostaza);">Publicar Vehículo</h2>
+            <div style="display:grid; grid-template-columns: 1fr 1fr; gap:15px;">
+                <div style="grid-column: span 2;">
+                    <label>Subir Imágenes (Puedes seleccionar varias)</label>
+                    <input type="file" id="new-fotos" multiple accept="image/*" style="width:100%; margin-top:10px;">
+                </div>
+                <input type="text" id="new-titulo" placeholder="Nombre del Vehículo">
+                <input type="text" id="new-precio" placeholder="Precio ($)">
+                <textarea id="new-desc" placeholder="Descripción breve" style="grid-column: span 2; height:80px;"></textarea>
+                <input type="text" id="new-modelo" placeholder="Año">
+                <input type="text" id="new-motor" placeholder="Motor">
+            </div>
+            <button onclick="crearPublicacion()" style="width:100%; margin-top:20px; padding:15px; background:var(--color-mostaza); border:none; font-weight:bold; cursor:pointer;">SUBIR AL CATÁLOGO</button>
+            <button onclick="document.getElementById('modal-crear').style.display='none'" style="width:100%; margin-top:10px; background:transparent; border:1px solid #444; color:white; padding:10px; cursor:pointer;">Cancelar</button>
+        </div>
+    </div>
+
     <div id="modal-detalles" class="modal">
         <div class="modal-content">
-            <span class="close-modal" onclick="cerrarModal()">&times;</span>
+            <span style="float:right; cursor:pointer; font-size:2rem;" onclick="this.parentElement.parentElement.style.display='none'">&times;</span>
             <div id="contenido-modal"></div>
         </div>
     </div>
 
-    <div id="modal-crear" class="modal">
-        <div class="modal-content">
-            <span class="close-modal" onclick="document.getElementById('modal-crear').style.display='none'">&times;</span>
-            <h2 style="color:var(--color-mostaza);">Nueva Publicación</h2>
-            <div class="form-crear">
-                <div style="grid-column: span 2;"><label>Imagen</label><input type="file" id="new-foto" accept="image/*" onchange="procesarImg(this)"></div>
-                <div style="grid-column: span 2;"><label>Título</label><input type="text" id="new-titulo"></div>
-                <div style="grid-column: span 2;"><label>Descripción</label><textarea id="new-desc" rows="3"></textarea></div>
-                <div><label>Precio</label><input type="text" id="new-precio"></div>
-                <div><label>Año</label><input type="text" id="new-modelo"></div>
-                <div><label>Motor</label><input type="text" id="new-motor"></div>
-                <div><label>Potencia</label><input type="text" id="new-potencia"></div>
-            </div>
-            <button onclick="crearPublicacion()" style="width:100%; margin-top:20px; background:var(--color-mostaza); padding:15px; border:none; font-weight:bold; cursor:pointer; border-radius:5px;">PUBLICAR</button>
-        </div>
-    </div>
-
-    <div id="login-owner" class="login-overlay">
-        <div class="login-box">
-            <h2 style="color:var(--color-mostaza);">IDENTIFICACIÓN</h2>
-            <input type="text" id="user-owner" placeholder="USUARIO">
-            <input type="password" id="pass-owner" placeholder="CONTRASEÑA">
-            <button onclick="validarAcceso()" style="background:var(--color-mostaza); color:black; border:none; padding:12px; width:100%; font-weight:bold; cursor:pointer; border-radius:5px;">Entrar</button>
-        </div>
-    </div>
-
-    <footer><p>&copy; 2024 BRILLA AUTO SPA - Exclusividad y Calidad</p></footer>
-
     <script>
         let esOwner = false;
-        let fotoTemp = "";
-        let autoActivo = "";
-        
-        let catalogo = JSON.parse(localStorage.getItem('brilla_vFinal')) || {
-            '1': { titulo: 'Chevrolet Corvette Z06', precio: '$150,000', descripcion: 'Detallado premium de pintura de 3 etapas.', modelo: '2024', motor: '5.5L LT6 V8', potencia: '670 HP', foto: 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=800' }
-        };
+        let catalogo = JSON.parse(localStorage.getItem('brilla_v3')) || {};
 
-        function guardar() { localStorage.setItem('brilla_vFinal', JSON.stringify(catalogo)); }
-
-        function procesarImg(input) {
-            if (input.files && input.files[0]) {
-                const reader = new FileReader();
-                reader.onload = e => fotoTemp = e.target.result;
-                reader.readAsDataURL(input.files[0]);
+        function login() {
+            let pass = prompt("Introduzca la clave de seguridad:");
+            if(pass === "POTOMAC2026") {
+                esOwner = true;
+                document.getElementById('btn-nueva-pub').style.display = 'block';
+                document.getElementById('btn-admin-nav').innerHTML = "DAY ROJAS";
+                renderizar();
             }
         }
 
-        function crearPublicacion() {
+        async function crearPublicacion() {
+            const files = document.getElementById('new-fotos').files;
+            const promesasImgs = Array.from(files).map(file => {
+                return new Promise(resolve => {
+                    const reader = new FileReader();
+                    reader.onload = e => resolve(e.target.result);
+                    reader.readAsDataURL(file);
+                });
+            });
+
+            const imagenesCargadas = await Promise.all(promesasImgs);
             const id = "auto_" + Date.now();
+            
             catalogo[id] = {
                 titulo: document.getElementById('new-titulo').value,
                 precio: document.getElementById('new-precio').value,
                 descripcion: document.getElementById('new-desc').value,
                 modelo: document.getElementById('new-modelo').value,
                 motor: document.getElementById('new-motor').value,
-                potencia: document.getElementById('new-potencia').value,
-                foto: fotoTemp || 'https://via.placeholder.com/800x500?text=Brilla+Auto+Spa'
+                fotos: imagenesCargadas.length > 0 ? imagenesCargadas : ['https://via.placeholder.com/800x500']
             };
-            guardar();
-            renderizar();
+
+            localStorage.setItem('brilla_v3', JSON.stringify(catalogo));
             document.getElementById('modal-crear').style.display = 'none';
+            renderizar();
         }
 
         function renderizar() {
             const grid = document.getElementById('grid-autos');
-            grid.innerHTML = ""; 
+            grid.innerHTML = "";
             Object.keys(catalogo).reverse().forEach(id => {
                 const auto = catalogo[id];
+                const msgWhatsapp = `Hola Brilla Auto Spa, me interesa el ${auto.titulo}`;
+                const urlWa = `https://wa.me/1234567890?text=${encodeURIComponent(msgWhatsapp)}`;
+
                 grid.innerHTML += `
-                    <div class="tarjeta-auto animate__animated animate__fadeInUp" onclick="abrirDetalle('${id}')">
-                        ${esOwner ? `<button class="btn-borrar-card" onclick="event.stopPropagation(); borrar('${id}')">BORRAR</button>` : ''}
-                        <img src="${auto.foto}">
+                    <div class="tarjeta-auto">
+                        ${esOwner ? `<button class="btn-borrar-card" onclick="borrar('${id}')">BORRAR</button>` : ''}
+                        <img src="${auto.fotos[0]}" onclick="abrirDetalle('${id}')">
                         <div class="info-auto">
                             <p class="marca-modelo">${auto.titulo}</p>
-                            <p class="preview-info">${auto.descripcion.substring(0, 70)}...</p>
-                            <div class="preview-tech">
-                                <span><i class="fas fa-bolt"></i> ${auto.motor}</span>
-                                <span><i class="fas fa-calendar-alt"></i> ${auto.modelo}</span>
+                            <p style="font-size:0.8rem; color:#888;">${auto.motor} | ${auto.modelo}</p>
+                            <div class="card-footer-action">
+                                <div class="precio-auto">${auto.precio}</div>
+                                <a href="${urlWa}" target="_blank" class="btn-interesa-whatsapp">
+                                    <i class="fab fa-whatsapp"></i> ME INTERESA
+                                </a>
                             </div>
-                            <div class="precio-auto">${auto.precio}</div>
                         </div>
                     </div>`;
             });
         }
 
         function abrirDetalle(id) {
-            autoActivo = id;
             const auto = catalogo[id];
-            const btnEdit = esOwner ? 'inline-block' : 'none';
+            let galeriaHtml = `<div class="galeria-contenedor">`;
+            auto.fotos.forEach(f => galeriaHtml += `<img src="${f}">`);
+            galeriaHtml += `</div>`;
+
             document.getElementById('contenido-modal').innerHTML = `
-                <h2 style="color:var(--color-mostaza); font-size:2rem;">${auto.titulo} <button class="btn-edit-inline" style="display:${btnEdit}" onclick="editar('titulo')"><i class="fas fa-edit"></i></button></h2>
-                <img src="${auto.foto}" style="width:100%; border-radius:8px; margin-bottom:20px; border:1px solid #222;">
-                <div style="display:grid; grid-template-columns: 1.2fr 0.8fr; gap:30px; text-align:left;">
+                <h2 style="color:var(--color-mostaza); margin-bottom:10px;">${auto.titulo}</h2>
+                ${galeriaHtml}
+                <div style="display:grid; grid-template-columns: 1fr 1fr; gap:20px; margin-top:20px;">
                     <div>
-                        <h3 style="color:var(--color-mostaza);">Descripción <button class="btn-edit-inline" style="display:${btnEdit}" onclick="editar('descripcion')"><i class="fas fa-edit"></i></button></h3>
-                        <p style="color:#ccc; line-height:1.6;">${auto.descripcion}</p>
-                        <h3 style="color:white; margin-top:20px;">Precio Sugerido <button class="btn-edit-inline" style="display:${btnEdit}" onclick="editar('precio')"><i class="fas fa-edit"></i></button></h3>
-                        <p style="font-size:2.2rem; color:var(--color-mostaza); font-weight:bold; margin:0;">${auto.precio}</p>
+                        <h3 style="color:var(--color-mostaza);">Descripción</h3>
+                        <p>${auto.descripcion}</p>
                     </div>
-                    <div style="background:#1a1a1a; padding:25px; border-radius:10px; border:1px solid #333;">
-                        <h3 style="margin-top:0; border-bottom:1px solid var(--color-mostaza); padding-bottom:10px;">Ficha Técnica</h3>
-                        <p><strong>Modelo:</strong> ${auto.modelo} <button class="btn-edit-inline" style="display:${btnEdit}" onclick="editar('modelo')"><i class="fas fa-edit"></i></button></p>
-                        <p><strong>Motor:</strong> ${auto.motor} <button class="btn-edit-inline" style="display:${btnEdit}" onclick="editar('motor')"><i class="fas fa-edit"></i></button></p>
-                        <p><strong>Potencia:</strong> ${auto.potencia} <button class="btn-edit-inline" style="display:${btnEdit}" onclick="editar('potencia')"><i class="fas fa-edit"></i></button></p>
+                    <div style="background:#1a1a1a; padding:20px; border-radius:10px;">
+                        <h3 style="margin-top:0;">Ficha Técnica</h3>
+                        <p><strong>Año:</strong> ${auto.modelo}</p>
+                        <p><strong>Motor:</strong> ${auto.motor}</p>
+                        <p style="font-size:1.8rem; color:var(--color-mostaza); font-weight:bold;">${auto.precio}</p>
                     </div>
                 </div>`;
             document.getElementById('modal-detalles').style.display = 'block';
         }
 
-        function editar(campo) {
-            const valor = prompt("Nuevo valor para " + campo, catalogo[autoActivo][campo]);
-            if(valor) { catalogo[autoActivo][campo] = valor; guardar(); renderizar(); abrirDetalle(autoActivo); }
-        }
-
         function borrar(id) {
-            if(confirm("¿Vendido? ¿Quieres eliminar esta publicación?")) { delete catalogo[id]; guardar(); renderizar(); }
-        }
-
-        function validarAcceso() {
-            if (document.getElementById('user-owner').value === "DAY ROJAS" && document.getElementById('pass-owner').value === "POTOMAC2026") {
-                esOwner = true;
-                document.getElementById('login-owner').style.display = 'none';
-                document.getElementById('btn-nueva-pub').style.display = 'block';
-                document.getElementById('user-greeting').innerHTML = "DAY ROJAS";
-                document.getElementById('user-greeting').style.display = 'inline-block';
-                document.getElementById('btn-admin-nav').style.display = 'none';
+            if(confirm("¿Eliminar publicación?")) {
+                delete catalogo[id];
+                localStorage.setItem('brilla_v3', JSON.stringify(catalogo));
                 renderizar();
-            } else { alert("Acceso Denegado."); }
+            }
         }
 
-        function cerrarModal() { document.getElementById('modal-detalles').style.display = 'none'; }
         renderizar();
     </script>
 </body>

@@ -75,6 +75,10 @@
         /* BOTÓN EDITAR INLINE */
         .btn-edit-inline { display: none; background: transparent; color: var(--color-mostaza); border: 1px solid var(--color-mostaza); border-radius: 4px; padding: 2px 6px; font-size: 0.7rem; cursor: pointer; margin-left: 10px; }
 
+        /* CONTACTO Y PROMO */
+        .hex-icon { width: 40px; height: 40px; border: 2px solid var(--color-mostaza); display: flex; align-items: center; justify-content: center; margin-right: 15px; clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%); background: #000; }
+        .banner-promo { background-color: var(--color-mostaza); padding: 30px; border-radius: 10px; position: relative; overflow: hidden; display: flex; flex-direction: column; align-items: center; text-align: center; color: #000; flex: 1; min-width: 300px; }
+
         /* LOGIN */
         .login-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.98); z-index: 3000; justify-content: center; align-items: center; }
         .login-box { background: #000; padding: 40px; border: 2px solid var(--color-mostaza); border-radius: 10px; text-align: center; width: 320px; }
@@ -85,7 +89,7 @@
         .form-crear label { color: var(--color-mostaza); font-size: 0.8rem; text-transform: uppercase; }
         .form-crear input, .form-crear textarea { width: 100%; padding: 10px; background: #000; border: 1px solid #333; color: white; border-radius: 4px; margin-top: 5px; box-sizing: border-box; }
 
-        footer { text-align: center; padding: 40px; border-top: 2px solid var(--color-mostaza); background: #000; color: #aaa; margin-top: 50px; }
+        footer { text-align: center; padding: 40px; border-top: 2px solid var(--color-mostaza); background: #000; color: #aaa; margin-top: 0; }
     </style>
 </head>
 <body>
@@ -116,6 +120,33 @@
         <div id="grid-autos" class="contenedor-autos"></div>
     </div>
 
+    <section style="background-color: var(--color-gris-oscuro); border-top: 1px solid var(--color-mostaza); padding: 50px 20px;">
+        <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 40px;">
+            
+            <div style="flex: 1; min-width: 300px;">
+                <h3 style="color: var(--color-mostaza); text-transform: uppercase; letter-spacing: 3px; margin-bottom: 30px;">CONTACT US:</h3>
+                
+                <div style="display: flex; align-items: center; margin-bottom: 25px;">
+                    <div class="hex-icon"><i class="fas fa-map-marker-alt" style="color: var(--color-mostaza);"></i></div>
+                    <p style="margin: 0; color: white; font-size: 1.1rem;">Dumfries and surrounding areas</p>
+                </div>
+
+                <div style="display: flex; align-items: center;">
+                    <div class="hex-icon"><i class="fas fa-envelope" style="color: var(--color-mostaza);"></i></div>
+                    <p style="margin: 0; color: white; font-size: 1.1rem;">brillautospa@gmail.com</p>
+                </div>
+            </div>
+
+            <div class="banner-promo">
+                <i class="fas fa-car-side" style="font-size: 90px; color: rgba(0,0,0,0.05); position: absolute; right: -15px; top: -10px;"></i>
+                <h2 style="margin: 0; font-size: 1.8rem; font-weight: bold; position: relative; z-index: 1; line-height: 1.2;">
+                    Get $15 OFF your first full detail service with Brilla Auto Spa!
+                </h2>
+                <div style="margin-top: 20px; width: 60px; height: 4px; background: black;"></div>
+            </div>
+        </div>
+    </section>
+
     <div id="modal-detalles" class="modal">
         <div class="modal-content">
             <span class="close-modal" onclick="cerrarModal()">&times;</span>
@@ -124,14 +155,11 @@
     </div>
 
     <div id="modal-crear" class="modal">
-        <div class="modal-content animate__animated animate__zoomIn">
+        <div class="modal-content">
             <span class="close-modal" onclick="document.getElementById('modal-crear').style.display='none'">&times;</span>
             <h2 style="color:var(--color-mostaza);">Nueva Publicación</h2>
             <div class="form-crear">
-                <div style="grid-column: span 2;">
-                    <label>Imagen</label>
-                    <input type="file" id="new-foto" accept="image/*" onchange="procesarImg(this)">
-                </div>
+                <div style="grid-column: span 2;"><label>Imagen</label><input type="file" id="new-foto" accept="image/*" onchange="procesarImg(this)"></div>
                 <div style="grid-column: span 2;"><label>Título</label><input type="text" id="new-titulo"></div>
                 <div style="grid-column: span 2;"><label>Descripción</label><textarea id="new-desc" rows="3"></textarea></div>
                 <div><label>Precio</label><input type="text" id="new-precio"></div>
@@ -160,7 +188,7 @@
         let autoActivo = "";
         
         let catalogo = JSON.parse(localStorage.getItem('brilla_vFinal')) || {
-            '1': { titulo: 'Chevrolet Corvette Z06', precio: '$150,000', descripcion: 'Detallado premium de 3 etapas.', modelo: '2024', motor: '5.5L V8', potencia: '670 HP', foto: 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=800' }
+            '1': { titulo: 'Chevrolet Corvette Z06', precio: '$150,000', descripcion: 'Detallado premium de pintura de 3 etapas.', modelo: '2024', motor: '5.5L LT6 V8', potencia: '670 HP', foto: 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=800' }
         };
 
         function guardar() { localStorage.setItem('brilla_vFinal', JSON.stringify(catalogo)); }

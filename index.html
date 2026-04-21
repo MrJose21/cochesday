@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Brilla Auto Spa | Catálogo de Exclusividad</title>
+    <title>Brilla Auto Spa | Catálogo Premium</title>
     
     <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/MrJose21/cochesday/2fc9948b3ad68451d7661ea1d7c6692337e8bd41/logo%20de%20fondo.jpg">
     
@@ -14,297 +14,353 @@
         :root {
             --color-mostaza: #d1b464;
             --color-negro: #000000;
-            --color-gris-oscuro: #121212;
-            --color-gris-input: #1e1e1e;
-            --color-texto-blanco: #ffffff;
+            --color-gris-oscuro: #0a0a0a;
+            --color-input: #151515;
+            --color-texto: #ffffff;
             --font-main: 'Georgia', serif;
-            --shadow-gold: 0 0 15px rgba(209, 180, 100, 0.2);
         }
 
-        body { font-family: var(--font-main); margin: 0; background-color: var(--color-negro); color: var(--color-texto-blanco); overflow-x: hidden; }
+        body { 
+            font-family: var(--font-main); 
+            margin: 0; 
+            background-color: var(--color-negro); 
+            color: var(--color-texto); 
+            overflow-x: hidden; 
+        }
 
-        /* NAV */
+        /* NAVEGACIÓN */
         nav {
-            background: linear-gradient(to bottom, #111, #000);
-            border-bottom: 3px solid var(--color-mostaza);
-            padding: 0.8rem 2rem;
-            display: flex; justify-content: space-between; align-items: center;
-            position: sticky; top: 0; z-index: 1000;
-        }
-
-        .logo-img-link { display: flex; align-items: center; text-decoration: none; }
-        .logo-img-link img { height: 60px; filter: drop-shadow(0 0 5px rgba(209, 180, 100, 0.3)); }
-
-        .area-login-nav { display: flex; align-items: center; gap: 15px; }
-        #user-greeting { display: none; color: var(--color-mostaza); font-weight: bold; font-size: 0.85rem; text-transform: uppercase; border-right: 1px solid #333; padding-right: 15px; }
-        
-        #btn-nueva-pub { 
-            display: none; background: var(--color-mostaza); color: black; border: none; 
-            padding: 8px 16px; font-size: 11px; border-radius: 4px; font-weight: bold; 
-            text-transform: uppercase; cursor: pointer; transition: 0.3s;
-        }
-        #btn-nueva-pub:hover { transform: scale(1.05); box-shadow: var(--shadow-gold); }
-
-        .promo-banner {
-            background-color: var(--color-mostaza); color: #000; padding: 12px;
-            display: flex; align-items: center; justify-content: center; gap: 15px;
-            font-weight: bold; font-size: 0.9rem; text-align: center;
-        }
-
-        /* HERO - LOGO TRANSPARENTE SOBRE FONDO NEGRO */
-        .hero {
-            background-color: var(--color-negro);
-            padding: 60px 20px;
+            background: #000;
+            border-bottom: 2px solid var(--color-mostaza);
+            padding: 10px 30px;
             display: flex; 
-            flex-direction: column; 
-            justify-content: center; 
-            align-items: center; 
-            text-align: center; 
-            border-bottom: 1px solid var(--color-mostaza);
-            position: relative;
-        }
-        
-        /* Contenedor para el logo transparente */
-        .hero-logo-container {
-            width: 100%;
-            max-width: 500px;
-            margin-bottom: 20px;
-        }
-        
-        .hero-logo-container img {
-            width: 100%;
-            height: auto;
-            object-fit: contain;
+            justify-content: space-between; 
+            align-items: center;
+            position: sticky; 
+            top: 0; 
+            z-index: 1000;
         }
 
-        .hero h1 { font-size: 3rem; text-transform: uppercase; margin: 0; letter-spacing: 3px; color: var(--color-texto-blanco); font-weight: bold; }
-        .hero p { color: var(--color-mostaza); letter-spacing: 2px; font-size: 1.4rem; margin-top: 5px; font-style: italic; }
+        .nav-logo img { height: 50px; }
 
-        /* SECCIÓN SERVICIOS */
-        .seccion-servicios {
-            background: #080808;
-            padding: 25px 20px;
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            flex-wrap: wrap;
+        .nav-buttons { display: flex; align-items: center; gap: 20px; }
+        #user-greeting { display: none; color: var(--color-mostaza); font-weight: bold; font-size: 0.9rem; }
+        
+        .btn-gold-outline {
+            background: transparent;
+            color: var(--color-mostaza);
+            border: 1px solid var(--color-mostaza);
+            padding: 5px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 11px;
+            text-transform: uppercase;
+        }
+
+        .btn-gold-fill {
+            background: var(--color-mostaza);
+            color: black;
+            border: none;
+            padding: 6px 16px;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 11px;
+            cursor: pointer;
+            display: none;
+        }
+
+        /* BANNER PROMO */
+        .promo-bar {
+            background: var(--color-mostaza);
+            color: black;
+            text-align: center;
+            padding: 8px;
+            font-weight: bold;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            text-align: center;
+            padding: 50px 20px;
             border-bottom: 1px solid #222;
         }
-        .servicio-item {
-            color: #ccc; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px;
-            display: flex; align-items: center; gap: 8px;
-        }
-        .servicio-item i { color: var(--color-mostaza); font-size: 0.9rem; }
+        .hero img { max-width: 450px; width: 100%; margin-bottom: 20px; }
+        .hero h1 { font-size: 3rem; margin: 0; letter-spacing: 4px; }
+        .hero p { color: var(--color-mostaza); font-size: 1.2rem; margin-top: 5px; }
 
-        /* MODALES */
-        .modal, .login-overlay { 
-            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
-            background: rgba(0,0,0,0.95); z-index: 2000; backdrop-filter: blur(8px);
-            justify-content: center; align-items: center;
+        /* SERVICIOS ICONOS */
+        .services-strip {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            padding: 20px;
+            flex-wrap: wrap;
+            border-bottom: 1px solid #111;
+        }
+        .service-tag { color: #888; font-size: 0.75rem; text-transform: uppercase; display: flex; align-items: center; gap: 8px; }
+        .service-tag i { color: var(--color-mostaza); }
+
+        /* MODALES ESTILO CAPTURA */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 3000;
+            justify-content: center;
+            align-items: center;
         }
 
-        .modal-content, .login-box { 
-            background: #0a0a0a; padding: 35px; border: 1px solid var(--color-mostaza); 
-            width: 90%; max-width: 650px; border-radius: 15px; position: relative;
-            box-shadow: 0 0 30px rgba(209, 180, 100, 0.15); max-height: 90vh; overflow-y: auto;
+        .modal-box {
+            background: var(--color-negro);
+            width: 90%;
+            max-width: 700px;
+            border: 1px solid var(--color-mostaza);
+            border-radius: 15px;
+            padding: 30px;
+            position: relative;
+            box-shadow: 0 0 20px rgba(209, 180, 100, 0.2);
         }
-        .login-box { max-width: 400px; text-align: center; }
 
-        /* INPUTS ESTILO PROFESIONAL */
-        .form-control { 
-            background: #151515; border: 1px solid #333; color: white; 
-            padding: 14px; border-radius: 8px; outline: none; width: 100%; box-sizing: border-box;
-            transition: 0.3s; margin-bottom: 15px;
+        .modal-box h2 {
+            color: var(--color-mostaza);
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 25px;
         }
-        .form-control:focus { border-color: var(--color-mostaza); box-shadow: 0 0 10px rgba(209, 180, 100, 0.2); }
 
-        .btn-principal { 
-            background: var(--color-mostaza); color: black; border: none; padding: 16px; 
-            border-radius: 8px; font-weight: bold; text-transform: uppercase; 
-            width: 100%; cursor: pointer; transition: 0.3s; font-size: 0.9rem;
+        /* DISEÑO DEL FORMULARIO SEGÚN CAPTURA */
+        .upload-area {
+            border: 1px dashed #444;
+            padding: 20px;
+            text-align: center;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            cursor: pointer;
+            transition: 0.3s;
         }
-        .btn-principal:hover { background: #e2c575; transform: translateY(-2px); }
+        .upload-area:hover { border-color: var(--color-mostaza); }
+        .upload-area i { font-size: 1.5rem; color: var(--color-mostaza); margin-bottom: 10px; display: block; }
+        .upload-area p { font-size: 0.8rem; color: #777; margin: 0; }
 
-        /* CATALOGO */
-        .seccion-autos { padding: 60px 5%; }
-        .contenedor-autos { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; }
-        .tarjeta-auto { background: #0c0c0c; border: 1px solid #1a1a1a; border-radius: 12px; overflow: hidden; transition: 0.4s; }
-        .tarjeta-auto:hover { border-color: var(--color-mostaza); transform: translateY(-10px); }
-        .tarjeta-auto img { width: 100%; height: 250px; object-fit: cover; border-bottom: 2px solid var(--color-mostaza); cursor: pointer; }
-        
-        .contact-info-bar { padding: 40px; background: #050505; display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; border-top: 1px solid #111; }
-        
-        .loading-overlay { display: none; position: fixed; top:0; left:0; width:100%; height:100%; background:black; z-index:5000; flex-direction:column; justify-content:center; align-items:center; }
-        .loader { border: 3px solid #222; border-top: 3px solid var(--color-mostaza); border-radius: 50%; width: 50px; height: 50px; animation: spin 1s linear infinite; }
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        .form-label {
+            display: block;
+            color: var(--color-mostaza);
+            font-size: 0.7rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
+
+        .form-input {
+            width: 100%;
+            background: var(--color-input);
+            border: 1px solid #333;
+            color: white;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+            outline: none;
+        }
+
+        .grid-inputs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .btn-confirm {
+            background: var(--color-mostaza);
+            color: black;
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            text-transform: uppercase;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        /* CATÁLOGO */
+        .container { padding: 50px 5%; }
+        .grid-autos { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .card { background: #0c0c0c; border: 1px solid #1a1a1a; border-radius: 12px; overflow: hidden; }
+        .card img { width: 100%; height: 220px; object-fit: cover; border-bottom: 2px solid var(--color-mostaza); }
+        .card-body { padding: 20px; }
     </style>
 </head>
 <body>
 
-    <div id="loading-screen" class="loading-overlay"><div class="loader"></div><h3 style="color:var(--color-mostaza); margin-top:20px; font-size:0.8rem; letter-spacing:2px;">AUTENTICANDO...</h3></div>
-
     <nav>
-        <a href="#" class="logo-img-link">
-            <img src="https://raw.githubusercontent.com/MrJose21/cochesday/850bcbb51601be4a3a685ab1c271e31096074419/Brilla%20Auto%20Spa%20LOGO.png" alt="Brilla Auto Spa">
-        </a>
-        <div class="area-login-nav">
+        <div class="nav-logo">
+            <img src="https://raw.githubusercontent.com/MrJose21/cochesday/850bcbb51601be4a3a685ab1c271e31096074419/Brilla%20Auto%20Spa%20LOGO.png" alt="Logo">
+        </div>
+        <div class="nav-buttons">
             <span id="user-greeting"></span>
-            <button id="btn-nueva-pub" onclick="document.getElementById('modal-crear').style.display='flex'"><i class="fas fa-plus"></i> PUBLICAR</button>
-            <button id="btn-admin-nav" onclick="document.getElementById('login-owner').style.display='flex'" style="background:transparent; color:var(--color-mostaza); border:1px solid var(--color-mostaza); cursor:pointer; padding:8px 15px; border-radius:4px; font-weight:bold; font-size:10px; letter-spacing:1px;">OWNER</button>
+            <button id="btn-pub" class="btn-gold-fill" onclick="document.getElementById('modal-pub').style.display='flex'">+ PUBLICAR</button>
+            <button id="btn-login" class="btn-gold-outline" onclick="document.getElementById('modal-login').style.display='flex'">OWNER</button>
         </div>
     </nav>
 
-    <div class="promo-banner"><span>GET $15 OFF YOUR FIRST FULL DETAIL SERVICE!</span></div>
+    <div class="promo-bar">GET $15 OFF YOUR FIRST FULL DETAIL SERVICE!</div>
 
     <div class="hero">
-        <div class="hero-logo-container animate__animated animate__fadeIn">
-            <img src="https://raw.githubusercontent.com/MrJose21/cochesday/1a562aa7f60a3f2cea6a5107fc5a288a2d6195d0/Brilla_Auto_Spa_LOGO-removebg-preview.png" alt="Logo Brilla Auto Spa">
-        </div>
-        <h1 class="animate__animated animate__fadeInUp">CATÁLOGO PREMIUM</h1>
-        <p class="animate__animated animate__fadeInUp">Exclusividad por Day Rojas</p>
+        <img src="https://raw.githubusercontent.com/MrJose21/cochesday/1a562aa7f60a3f2cea6a5107fc5a288a2d6195d0/Brilla_Auto_Spa_LOGO-removebg-preview.png" alt="Logo Hero">
+        <h1>CATÁLOGO PREMIUM</h1>
+        <p>Exclusividad por Day Rojas</p>
     </div>
 
-    <div class="seccion-servicios">
-        <div class="servicio-item"><i class="fas fa-tools"></i> Light Mechanical</div>
-        <div class="servicio-item"><i class="fas fa-broom"></i> Foam Wash</div>
-        <div class="servicio-item"><i class="fas fa-car"></i> Premium Wash</div>
-        <div class="servicio-item"><i class="fas fa-couch"></i> Full Interior</div>
-        <div class="servicio-item"><i class="fas fa-magic"></i> Full Detailed</div>
+    <div class="services-strip">
+        <div class="service-tag"><i class="fas fa-tools"></i> Light Mechanical</div>
+        <div class="service-tag"><i class="fas fa-broom"></i> Foam Wash</div>
+        <div class="service-tag"><i class="fas fa-car"></i> Premium Wash</div>
+        <div class="service-tag"><i class="fas fa-couch"></i> Full Interior</div>
+        <div class="service-tag"><i class="fas fa-magic"></i> Full Detailed</div>
     </div>
 
-    <div class="seccion-autos">
-        <h2 style="text-align: center; color: var(--color-mostaza); margin-bottom: 50px; letter-spacing: 3px; font-size: 1.8rem;">VEHÍCULOS DISPONIBLES</h2>
-        <div id="grid-autos" class="contenedor-autos"></div>
+    <div class="container">
+        <h2 style="text-align: center; color: var(--color-mostaza); letter-spacing: 3px; margin-bottom: 40px;">VEHÍCULOS DISPONIBLES</h2>
+        <div id="lista-autos" class="grid-autos"></div>
     </div>
 
-    <div id="modal-crear" class="modal">
-        <div class="modal-content">
-            <span style="position:absolute; top:20px; right:20px; cursor:pointer; color:#555; font-size:24px;" onclick="document.getElementById('modal-crear').style.display='none'">&times;</span>
-            <h2 style="color:var(--color-mostaza); text-align:center; margin-bottom:30px; letter-spacing:2px;">NUEVA PUBLICACIÓN</h2>
-            <div style="border:2px dashed #333; padding:30px; text-align:center; border-radius:10px; margin-bottom:20px; cursor:pointer;" onclick="document.getElementById('new-fotos').click()">
-                <i class="fas fa-camera" style="font-size:2rem; color:var(--color-mostaza); margin-bottom:10px;"></i>
-                <p id="file-label" style="margin:0; font-size:0.9rem; color:#888;">Selecciona fotos del vehículo</p>
-                <input type="file" id="new-fotos" multiple accept="image/*" onchange="actualizarLabel(this)" style="display:none;">
+    <div id="modal-pub" class="modal">
+        <div class="modal-box">
+            <span onclick="this.parentElement.parentElement.style.display='none'" style="position:absolute; right:20px; top:15px; cursor:pointer; color:#555;">&times;</span>
+            <h2>NUEVA PUBLICACIÓN</h2>
+            
+            <div class="upload-area" onclick="document.getElementById('in-fotos').click()">
+                <i class="fas fa-cloud-upload-alt"></i>
+                <p id="label-fotos">Selecciona fotos del vehículo</p>
+                <input type="file" id="in-fotos" multiple accept="image/*" style="display:none;" onchange="actualizarLabel(this)">
             </div>
-            <input type="text" id="new-titulo" class="form-control" placeholder="NOMBRE DEL VEHÍCULO">
-            <textarea id="new-desc" class="form-control" rows="3" placeholder="DESCRIPCIÓN"></textarea>
-            <div style="display:grid; grid-template-columns:1fr 1fr; gap:15px;">
-                <input type="text" id="new-precio" class="form-control" placeholder="PRECIO">
-                <input type="text" id="new-modelo" class="form-control" placeholder="AÑO">
+
+            <label class="form-label">Nombre del Vehículo</label>
+            <input type="text" id="in-titulo" class="form-input">
+
+            <label class="form-label">Descripción</label>
+            <textarea id="in-desc" class="form-input" rows="3"></textarea>
+
+            <div class="grid-inputs">
+                <div>
+                    <label class="form-label">Precio</label>
+                    <input type="text" id="in-precio" class="form-input">
+                </div>
+                <div>
+                    <label class="form-label">Año</label>
+                    <input type="text" id="in-anio" class="form-input">
+                </div>
             </div>
-            <button onclick="crearPublicacion()" class="btn-principal">CONFIRMAR Y PUBLICAR</button>
+
+            <div class="grid-inputs">
+                <div>
+                    <label class="form-label">Motor</label>
+                    <input type="text" id="in-motor" class="form-input">
+                </div>
+                <div>
+                    <label class="form-label">Potencia</label>
+                    <input type="text" id="in-potencia" class="form-input">
+                </div>
+            </div>
+
+            <button class="btn-confirm" onclick="guardarAuto()">CONFIRMAR Y PUBLICAR</button>
         </div>
     </div>
 
-    <div id="login-owner" class="login-overlay">
-        <div class="login-box animate__animated animate__zoomIn">
-            <h2 style="color:var(--color-mostaza); margin-bottom:30px; letter-spacing:2px;">ACCESO PANEL</h2>
-            <input type="text" id="user-owner" class="form-control" placeholder="USUARIO" style="text-align:center;">
-            <input type="password" id="pass-owner" class="form-control" placeholder="CONTRASEÑA" style="text-align:center;">
-            <button onclick="validarAcceso()" class="btn-principal">ENTRAR</button>
-            <p onclick="document.getElementById('login-owner').style.display='none'" style="color:#444; cursor:pointer; margin-top:20px; font-size:0.8rem; text-transform:uppercase;">Cancelar</p>
+    <div id="modal-login" class="modal">
+        <div class="modal-box" style="max-width: 400px;">
+            <h2>ACCESO PANEL</h2>
+            <input type="text" id="user" class="form-input" placeholder="USUARIO" style="text-align:center;">
+            <input type="password" id="pass" class="form-input" placeholder="CONTRASEÑA" style="text-align:center;">
+            <button class="btn-confirm" onclick="login()">ENTRAR</button>
+            <p onclick="document.getElementById('modal-login').style.display='none'" style="text-align:center; color:#444; font-size:0.8rem; cursor:pointer; margin-top:15px;">CANCELAR</p>
         </div>
     </div>
-
-    <div id="modal-detalles" class="modal">
-        <div class="modal-content"><span style="position:absolute; top:20px; right:20px; cursor:pointer; color:#555; font-size:24px;" onclick="this.parentElement.parentElement.style.display='none'">&times;</span><div id="contenido-modal"></div></div>
-    </div>
-
-    <div class="contact-info-bar">
-        <div style="display:flex; align-items:center; gap:12px;"><i class="fas fa-envelope" style="color:var(--color-mostaza)"></i><span style="font-size:0.8rem;">brillautospa@gmail.com</span></div>
-        <div style="display:flex; align-items:center; gap:12px;"><i class="fab fa-whatsapp" style="color:var(--color-mostaza)"></i><span style="font-size:0.8rem;">+1 (571) 660-0734</span></div>
-    </div>
-
-    <footer style="text-align:center; padding:40px; color:#333; font-size:0.7rem; letter-spacing:1px;">&copy; 2026 BRILLA AUTO SPA | BY DAY ROJAS</footer>
 
     <script>
-        let esOwner = false;
-        let catalogo = JSON.parse(localStorage.getItem('brilla_vFinal_v3')) || {};
+        let esAdmin = false;
+        let baseAutos = JSON.parse(localStorage.getItem('brilla_autos_v4')) || [];
 
         function actualizarLabel(input) {
-            document.getElementById('file-label').innerHTML = input.files.length > 0 ? `<b>${input.files.length} ARCHIVOS SELECCIONADOS</b>` : 'Selecciona fotos';
+            document.getElementById('label-fotos').innerText = input.files.length + " fotos seleccionadas";
         }
 
-        function validarAcceso() {
-            const u = document.getElementById('user-owner').value;
-            const p = document.getElementById('pass-owner').value;
-            const loading = document.getElementById('loading-screen');
-            loading.style.display = 'flex';
-            
-            setTimeout(() => {
-                if (u === "DAY ROJAS" && p === "POTOMAC2026") {
-                    esOwner = true;
-                    loading.style.display = 'none';
-                    document.getElementById('login-owner').style.display = 'none';
-                    document.getElementById('btn-nueva-pub').style.display = 'block';
-                    document.getElementById('user-greeting').innerText = "DAY ROJAS";
-                    document.getElementById('user-greeting').style.display = 'inline-block';
-                    document.getElementById('btn-admin-nav').style.display = 'none';
-                    renderizar();
-                } else {
-                    loading.style.display = 'none';
-                    alert("Credenciales incorrectas");
-                }
-            }, 1200);
+        function login() {
+            const u = document.getElementById('user').value;
+            const p = document.getElementById('pass').value;
+            if(u === "DAY ROJAS" && p === "POTOMAC2026") {
+                esAdmin = true;
+                document.getElementById('modal-login').style.display = 'none';
+                document.getElementById('btn-login').style.display = 'none';
+                document.getElementById('btn-pub').style.display = 'block';
+                document.getElementById('user-greeting').innerText = "DAY ROJAS";
+                document.getElementById('user-greeting').style.display = 'block';
+                render();
+            } else { alert("Datos incorrectos"); }
         }
 
-        async function crearPublicacion() {
-            const files = document.getElementById('new-fotos').files;
-            if(files.length === 0) return alert("Por favor sube al menos una foto");
+        async function guardarAuto() {
+            const files = document.getElementById('in-fotos').files;
+            if(files.length === 0) return alert("Sube fotos");
+
             const promesas = Array.from(files).map(f => new Promise(res => {
                 const r = new FileReader(); r.onload = e => res(e.target.result); r.readAsDataURL(f);
             }));
-            const fotos = await Promise.all(promesas);
-            const id = "auto_" + Date.now();
-            catalogo[id] = {
-                titulo: document.getElementById('new-titulo').value || 'Sin Nombre',
-                precio: document.getElementById('new-precio').value || 'Consultar',
-                descripcion: document.getElementById('new-desc').value || '',
-                modelo: document.getElementById('new-modelo').value || '-',
-                fotos: fotos
+
+            const fotosBase64 = await Promise.all(promesas);
+
+            const nuevo = {
+                id: Date.now(),
+                titulo: document.getElementById('in-titulo').value,
+                desc: document.getElementById('in-desc').value,
+                precio: document.getElementById('in-precio').value,
+                anio: document.getElementById('in-anio').value,
+                motor: document.getElementById('in-motor').value,
+                potencia: document.getElementById('in-potencia').value,
+                fotos: fotosBase64
             };
-            localStorage.setItem('brilla_vFinal_v3', JSON.stringify(catalogo));
-            renderizar();
-            document.getElementById('modal-crear').style.display = 'none';
+
+            baseAutos.push(nuevo);
+            localStorage.setItem('brilla_autos_v4', JSON.stringify(baseAutos));
+            render();
+            document.getElementById('modal-pub').style.display = 'none';
         }
 
-        function renderizar() {
-            const grid = document.getElementById('grid-autos');
-            grid.innerHTML = ""; 
-            Object.keys(catalogo).reverse().forEach(id => {
-                const auto = catalogo[id];
-                grid.innerHTML += `
-                    <div class="tarjeta-auto animate__animated animate__fadeIn">
-                        ${esOwner ? `<button onclick="borrar('${id}')" style="position:absolute; top:15px; right:15px; background:rgba(255,0,0,0.8); color:white; border:none; padding:5px 10px; border-radius:5px; font-size:10px; cursor:pointer; z-index:10;">BORRAR</button>` : ''}
-                        <img src="${auto.fotos[0]}" onclick="abrirDetalle('${id}')">
-                        <div style="padding:20px;">
-                            <h3 style="color:var(--color-mostaza); margin:0 0 10px 0; font-size:1.1rem;">${auto.titulo}</h3>
-                            <div style="display:flex; justify-content:space-between; align-items:center;">
-                                <span style="font-weight:bold; color:white;">${auto.precio}</span>
-                                <a href="https://wa.me/15716600734" style="color:var(--color-mostaza); text-decoration:none; font-size:0.8rem; border:1px solid var(--color-mostaza); padding:5px 10px; border-radius:4px;">CONTACTAR</a>
+        function render() {
+            const lista = document.getElementById('lista-autos');
+            lista.innerHTML = "";
+            baseAutos.forEach(a => {
+                lista.innerHTML += `
+                    <div class="card">
+                        <img src="${a.fotos[0]}">
+                        <div class="card-body">
+                            <h3 style="color:var(--color-mostaza); margin:0;">${a.titulo}</h3>
+                            <p style="font-size:0.8rem; color:#666;">${a.motor} | ${a.anio}</p>
+                            <div style="display:flex; justify-content:space-between; align-items:center; margin-top:15px;">
+                                <span style="font-weight:bold;">${a.precio}</span>
+                                <button class="btn-gold-outline" style="font-size:9px;">VER DETALLES</button>
                             </div>
+                            ${esAdmin ? `<button onclick="borrar(${a.id})" style="background:red; color:white; border:none; margin-top:10px; width:100%; padding:5px; border-radius:4px; cursor:pointer; font-size:10px;">ELIMINAR</button>` : ''}
                         </div>
-                    </div>`;
+                    </div>
+                `;
             });
         }
 
-        function abrirDetalle(id) {
-            const auto = catalogo[id];
-            document.getElementById('contenido-modal').innerHTML = `
-                <h2 style="color:var(--color-mostaza); margin-top:0;">${auto.titulo}</h2>
-                <div style="display:flex; gap:10px; overflow-x:auto; padding-bottom:15px; margin-bottom:15px;">
-                    ${auto.fotos.map(f => `<img src="${f}" style="height:280px; border-radius:8px; border:1px solid #222;">`).join('')}
-                </div>
-                <p style="color:#ccc; line-height:1.6;">${auto.descripcion}</p>
-                <div style="background:#111; padding:20px; border-radius:10px; display:grid; grid-template-columns:1fr 1fr; margin-top:20px;">
-                    <div><span style="color:#555; font-size:0.7rem; display:block;">AÑO</span><b>${auto.modelo}</b></div>
-                    <div style="text-align:right;"><span style="color:#555; font-size:0.7rem; display:block;">INVERSIÓN</span><b style="color:var(--color-mostaza); font-size:1.3rem;">${auto.precio}</b></div>
-                </div>`;
-            document.getElementById('modal-detalles').style.display = 'flex';
+        function borrar(id) {
+            if(confirm("¿Eliminar?")) {
+                baseAutos = baseAutos.filter(a => a.id !== id);
+                localStorage.setItem('brilla_autos_v4', JSON.stringify(baseAutos));
+                render();
+            }
         }
 
-        function borrar(id) { if(confirm("¿Seguro que deseas eliminar esta publicación?")) { delete catalogo[id]; localStorage.setItem('brilla_vFinal_v3', JSON.stringify(catalogo)); renderizar(); } }
-        renderizar();
+        render();
     </script>
 </body>
 </html>

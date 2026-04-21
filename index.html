@@ -27,19 +27,13 @@
         nav {
             background: linear-gradient(to bottom, #111, #000);
             border-bottom: 3px solid var(--color-mostaza);
-            padding: 0.5rem 2rem;
+            padding: 0.8rem 2rem;
             display: flex; justify-content: space-between; align-items: center;
             position: sticky; top: 0; z-index: 1000;
         }
 
-        .logo-container {
-            display: flex; align-items: center; gap: 10px; text-decoration: none;
-        }
-
-        .img-logo-nav {
-            height: 60px; /* Tamaño del logo de la imagen 1 */
-            filter: drop-shadow(0 0 5px rgba(209, 180, 100, 0.3));
-        }
+        .logo-img-link { display: flex; align-items: center; text-decoration: none; }
+        .logo-img-link img { height: 60px; filter: drop-shadow(0 0 5px rgba(209, 180, 100, 0.3)); }
 
         .area-login-nav { display: flex; align-items: center; gap: 15px; }
         #user-greeting { display: none; color: var(--color-mostaza); font-weight: bold; font-size: 0.85rem; text-transform: uppercase; border-right: 1px solid #333; padding-right: 15px; }
@@ -49,8 +43,8 @@
             padding: 8px 16px; font-size: 11px; border-radius: 4px; font-weight: bold; 
             text-transform: uppercase; cursor: pointer; transition: 0.3s;
         }
+        #btn-nueva-pub:hover { transform: scale(1.05); box-shadow: var(--shadow-gold); }
 
-        /* PROMO BANNER */
         .promo-banner {
             background-color: var(--color-mostaza); color: #000; padding: 12px;
             display: flex; align-items: center; justify-content: center; gap: 15px;
@@ -58,203 +52,242 @@
             text-transform: uppercase;
         }
 
-        /* HERO - FONDO ACTUALIZADO */
+        /* HERO - FONDO LOGO */
         .hero {
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.85)), url('https://raw.githubusercontent.com/MrJose21/cochesday/2fc9948b3ad68451d7661ea1d7c6692337e8bd41/logo%20de%20fondo.jpg');
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.85)), url('https://raw.githubusercontent.com/MrJose21/cochesday/2fc9948b3ad68451d7661ea1d7c6692337e8bd41/logo%20de%20fondo.jpg');
             background-size: cover; background-position: center;
-            height: 350px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; border-bottom: 1px solid var(--color-mostaza);
+            height: 300px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; border-bottom: 1px solid var(--color-mostaza);
         }
-        .hero h1 { font-size: 3.5rem; text-transform: uppercase; margin: 0; letter-spacing: 4px; }
+        .hero h1 { font-size: 3rem; text-transform: uppercase; margin: 0; letter-spacing: 3px; }
         .hero p { color: var(--color-mostaza); letter-spacing: 2px; font-size: 1.2rem; margin-top: 10px; }
 
-        /* SECCIÓN SERVICIOS (Imagen 2) */
+        /* SECCIÓN SERVICIOS (Espaciada) */
         .seccion-servicios {
-            background: #0a0a0a;
-            padding: 40px 20px;
+            background: #080808;
+            padding: 35px 20px;
             display: flex;
-            justify-content: space-around;
+            justify-content: center;
+            gap: 40px;
             flex-wrap: wrap;
-            gap: 20px;
             border-bottom: 1px solid #222;
         }
-        .servicio-card {
-            text-align: center;
-            max-width: 180px;
+        .servicio-item {
+            color: #aaa; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1.5px;
+            display: flex; align-items: center; gap: 10px;
         }
-        .servicio-card i {
-            color: var(--color-mostaza);
-            font-size: 1.5rem;
-            margin-bottom: 10px;
-            display: block;
-        }
-        .servicio-card h4 {
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin: 0;
-            color: var(--color-texto-blanco);
+        .servicio-item i { color: var(--color-mostaza); font-size: 1rem; }
+
+        /* MODALES Y LOGIN (Estilo Profesional solicitado) */
+        .modal, .login-overlay { 
+            display: none; 
+            position: fixed; 
+            top: 0; left: 0; 
+            width: 100%; height: 100%; 
+            background: rgba(0,0,0,0.9); 
+            z-index: 2000; 
+            backdrop-filter: blur(5px);
+            justify-content: center; 
+            align-items: center;
         }
 
-        /* CATALOGO - MÁS ABAJO Y ESPACIADO */
+        .modal-content, .login-box { 
+            background: #0a0a0a; 
+            padding: 35px; 
+            border: 1px solid var(--color-mostaza); 
+            width: 90%; 
+            max-width: 650px; 
+            border-radius: 15px; 
+            position: relative;
+            box-shadow: var(--shadow-gold);
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .login-box { max-width: 350px; text-align: center; }
+
+        /* FORMULARIO */
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 20px; }
+        .full-width { grid-column: span 2; }
+        .input-group { display: flex; flex-direction: column; gap: 5px; text-align: left; }
+        .input-group label { color: var(--color-mostaza); font-size: 0.7rem; text-transform: uppercase; font-weight: bold; }
+        .form-control { 
+            background: var(--color-gris-input); 
+            border: 1px solid #333; 
+            color: white; 
+            padding: 12px; 
+            border-radius: 8px; 
+            outline: none;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .login-box input { margin-bottom: 15px; text-align: center; }
+
+        /* CARGA DE ARCHIVOS */
+        .file-upload-wrapper {
+            border: 2px dashed #444; padding: 25px; text-align: center; border-radius: 10px;
+            cursor: pointer; transition: 0.3s; background: #111;
+        }
+        .file-upload-wrapper:hover { border-color: var(--color-mostaza); background: #151515; }
+        .file-upload-wrapper i { font-size: 1.5rem; color: var(--color-mostaza); margin-bottom: 10px; }
+
+        .btn-principal { 
+            background: var(--color-mostaza); color: black; border: none; padding: 14px; 
+            border-radius: 8px; font-weight: bold; text-transform: uppercase; 
+            width: 100%; cursor: pointer; transition: 0.3s; margin-top: 10px;
+        }
+        .btn-principal:hover { background: #e2c575; transform: scale(1.02); }
+
+        .close-btn { position: absolute; top: 15px; right: 15px; color: #555; font-size: 22px; cursor: pointer; }
+
+        /* CATALOGO - ESPACIADO ARRASTRADO HACIA ABAJO */
         .seccion-autos { 
-            padding: 100px 5% 60px 5%; /* Más espacio arriba (100px) */
+            padding: 80px 5% 50px 5%; /* Más padding arriba para separar */
         }
-        .titulo-cat {
-            text-align: center;
-            color: var(--color-mostaza);
-            letter-spacing: 5px;
-            margin-bottom: 50px;
-            text-transform: uppercase;
-            font-size: 1.8rem;
-        }
-        .contenedor-autos { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; }
+        .contenedor-autos { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .tarjeta-auto { background: var(--color-gris-oscuro); border: 1px solid #222; border-radius: 12px; overflow: hidden; position: relative; transition: 0.3s; }
+        .tarjeta-auto:hover { transform: translateY(-5px); border-color: var(--color-mostaza); }
+        .tarjeta-auto img { width: 100%; height: 230px; object-fit: cover; border-bottom: 2px solid var(--color-mostaza); cursor: pointer; }
+        .info-auto { padding: 20px; }
         
-        .tarjeta-auto { 
-            background: #080808; 
-            border: 1px solid #222; 
-            border-radius: 4px; 
-            overflow: hidden; 
-            transition: 0.4s;
-        }
-        .tarjeta-auto:hover { border-color: var(--color-mostaza); transform: translateY(-10px); }
-        .tarjeta-auto img { width: 100%; height: 250px; object-fit: cover; cursor: pointer; }
-        
-        .info-auto { padding: 25px; border-top: 1px solid var(--color-mostaza); }
-
         /* CONTACTO */
-        .contact-info-bar { padding: 50px; background: #050505; display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; border-top: 1px solid #111; }
-        .contact-item { display: flex; align-items: center; gap: 12px; }
-        .hex-icon { width: 40px; height: 40px; border: 1px solid var(--color-mostaza); display: flex; align-items: center; justify-content: center; clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%); color: var(--color-mostaza); }
-
-        /* MODALES */
-        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 2000; justify-content: center; align-items: center; backdrop-filter: blur(8px); }
-        .modal-content { background: #0a0a0a; padding: 40px; border: 1px solid var(--color-mostaza); width: 90%; max-width: 700px; border-radius: 4px; position: relative; }
-        .close-btn { position: absolute; top: 20px; right: 20px; color: var(--color-mostaza); font-size: 30px; cursor: pointer; }
+        .contact-info-bar { padding: 40px; background: #080808; display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; border-top: 1px solid #111; margin-top: 50px; }
+        .contact-item { display: flex; align-items: center; gap: 10px; }
+        .hex-icon { width: 35px; height: 35px; border: 1px solid var(--color-mostaza); display: flex; align-items: center; justify-content: center; clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%); color: var(--color-mostaza); }
+        
+        .loading-overlay { display: none; position: fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); z-index:5000; flex-direction:column; justify-content:center; align-items:center; }
+        .loader { border: 4px solid #111; border-top: 4px solid var(--color-mostaza); border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
     </style>
 </head>
 <body>
 
+    <div id="loading-screen" class="loading-overlay"><div class="loader"></div><h3 id="loading-text" style="color:var(--color-mostaza)">VERIFICANDO...</h3></div>
+
     <nav>
-        <a href="#" class="logo-container">
-            <img src="https://raw.githubusercontent.com/MrJose21/cochesday/2fc9948b3ad68451d7661ea1d7c6692337e8bd41/logo%20de%20fondo.jpg" alt="Brilla Logo" class="img-logo-nav">
+        <a href="#" class="logo-img-link">
+            <img src="https://raw.githubusercontent.com/MrJose21/cochesday/850bcbb51601be4a3a685ab1c271e31096074419/Brilla%20Auto%20Spa%20LOGO.png" alt="Brilla Auto Spa">
         </a>
         <div class="area-login-nav">
             <span id="user-greeting"></span>
-            <button id="btn-nueva-pub" onclick="document.getElementById('modal-crear').style.display='flex'"><i class="fas fa-plus"></i> NUEVA PUBLICACIÓN</button>
-            <button id="btn-admin-nav" onclick="document.getElementById('login-owner').style.display='flex'" style="background:transparent; color:var(--color-mostaza); border:1px solid var(--color-mostaza); cursor:pointer; padding:8px 15px; border-radius:2px; font-weight:bold; font-size:11px; letter-spacing:1px;">OWNER ACCESS</button>
+            <button id="btn-nueva-pub" onclick="document.getElementById('modal-crear').style.display='flex'"><i class="fas fa-plus"></i> Publicar</button>
+            <button id="btn-admin-nav" onclick="document.getElementById('login-owner').style.display='flex'" style="background:transparent; color:var(--color-mostaza); border:1px solid var(--color-mostaza); cursor:pointer; padding:6px 12px; border-radius:3px; font-weight:bold; font-size:10px;">OWNER</button>
         </div>
     </nav>
 
-    <div class="promo-banner">
-        <i class="fas fa-star"></i> GET $15 OFF YOUR FIRST FULL DETAIL SERVICE WITH BRILLA AUTO SPA! <i class="fas fa-star"></i>
-    </div>
+    <div class="promo-banner"><span>GET $15 OFF YOUR FIRST FULL DETAIL SERVICE!</span></div>
 
     <div class="hero">
-        <h1 class="animate__animated animate__fadeIn">CATÁLOGO PREMIUM</h1>
-        <p>Brilla Auto Spa by Day Rojas</p>
+        <h1 class="animate__animated animate__fadeInDown">Catálogo Premium</h1>
+        <p>Exclusividad por Day Rojas</p>
     </div>
 
     <div class="seccion-servicios">
-        <div class="servicio-card">
-            <i class="fas fa-tools"></i>
-            <h4>Light Mechanical Services</h4>
-        </div>
-        <div class="servicio-card">
-            <i class="fas fa-broom"></i>
-            <h4>Foam Wash</h4>
-        </div>
-        <div class="servicio-card">
-            <i class="fas fa-car"></i>
-            <h4>Premium Wash</h4>
-        </div>
-        <div class="servicio-card">
-            <i class="fas fa-couch"></i>
-            <h4>Full Interior Detailed</h4>
-        </div>
-        <div class="servicio-card">
-            <i class="fas fa-magic"></i>
-            <h4>Full Interior & Exterior Detailed</h4>
-        </div>
+        <div class="servicio-item"><i class="fas fa-tools"></i> Light Mechanical</div>
+        <div class="servicio-item"><i class="fas fa-broom"></i> Foam Wash</div>
+        <div class="servicio-item"><i class="fas fa-car"></i> Premium Wash</div>
+        <div class="servicio-item"><i class="fas fa-couch"></i> Full Interior</div>
+        <div class="servicio-item"><i class="fas fa-magic"></i> Full Detailed</div>
     </div>
 
     <div class="seccion-autos">
-        <h2 class="titulo-cat">Exclusividad en cada detalle</h2>
-        <div id="grid-autos" class="contenedor-autos">
-            </div>
+        <h2 style="text-align: center; color: var(--color-mostaza); margin-bottom: 40px; letter-spacing: 2px;">VEHÍCULOS DISPONIBLES</h2>
+        <div id="grid-autos" class="contenedor-autos"></div>
     </div>
 
     <div id="modal-crear" class="modal">
-        <div class="modal-content">
+        <div class="modal-content animate__animated animate__zoomIn">
             <span class="close-btn" onclick="document.getElementById('modal-crear').style.display='none'">&times;</span>
-            <h2 style="color:var(--color-mostaza); margin-bottom:30px;">NUEVA PUBLICACIÓN</h2>
-            <input type="file" id="new-fotos" multiple accept="image/*" style="margin-bottom:20px; color:white;">
-            <input type="text" id="new-titulo" placeholder="Título del vehículo" style="width:100%; padding:12px; margin-bottom:10px; background:#1a1a1a; border:1px solid #333; color:white;">
-            <textarea id="new-desc" placeholder="Descripción" style="width:100%; padding:12px; margin-bottom:10px; background:#1a1a1a; border:1px solid #333; color:white; height:80px;"></textarea>
-            <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
-                <input type="text" id="new-precio" placeholder="Precio ($)" style="padding:12px; background:#1a1a1a; border:1px solid #333; color:white;">
-                <input type="text" id="new-modelo" placeholder="Año" style="padding:12px; background:#1a1a1a; border:1px solid #333; color:white;">
+            <h2 style="color:var(--color-mostaza); text-align:center; margin:0 0 20px 0;">NUEVA PUBLICACIÓN</h2>
+            <div class="form-grid">
+                <div class="full-width">
+                    <div class="file-upload-wrapper" onclick="document.getElementById('new-fotos').click()">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <p id="file-label" style="margin:0; font-size:0.8rem; color:#888;">Selecciona fotos del vehículo</p>
+                        <input type="file" id="new-fotos" multiple accept="image/*" onchange="actualizarLabelArchivos(this)" style="display:none;">
+                    </div>
+                </div>
+                <div class="input-group full-width"><label>Nombre del Vehículo</label><input type="text" id="new-titulo" class="form-control"></div>
+                <div class="input-group full-width"><label>Descripción</label><textarea id="new-desc" class="form-control" rows="2"></textarea></div>
+                <div class="input-group"><label>Precio</label><input type="text" id="new-precio" class="form-control"></div>
+                <div class="input-group"><label>Año</label><input type="text" id="new-modelo" class="form-control"></div>
+                <div class="input-group"><label>Motor</label><input type="text" id="new-motor" class="form-control"></div>
+                <div class="input-group"><label>Potencia</label><input type="text" id="new-potencia" class="form-control"></div>
             </div>
-            <button onclick="crearPublicacion()" style="width:100%; padding:15px; background:var(--color-mostaza); border:none; margin-top:20px; font-weight:bold; cursor:pointer;">PUBLICAR AHORA</button>
+            <button onclick="crearPublicacion()" class="btn-principal">CONFIRMAR Y PUBLICAR</button>
         </div>
     </div>
 
-    <div id="login-owner" class="modal">
-        <div class="modal-content" style="max-width:350px; text-align:center;">
-            <h2 style="color:var(--color-mostaza);">ACCESO PANEL</h2>
-            <input type="text" id="user-owner" placeholder="USUARIO" style="width:100%; padding:12px; margin-bottom:10px; background:#1a1a1a; border:1px solid #333; color:white; text-align:center;">
-            <input type="password" id="pass-owner" placeholder="CONTRASEÑA" style="width:100%; padding:12px; margin-bottom:20px; background:#1a1a1a; border:1px solid #333; color:white; text-align:center;">
-            <button onclick="validarAcceso()" style="width:100%; padding:12px; background:var(--color-mostaza); border:none; font-weight:bold; cursor:pointer;">ENTRAR</button>
-            <p onclick="document.getElementById('login-owner').style.display='none'" style="cursor:pointer; color:#555; margin-top:15px; font-size:0.8rem;">CANCELAR</p>
+    <div id="login-owner" class="login-overlay">
+        <div class="login-box animate__animated animate__fadeIn">
+            <h2 style="color:var(--color-mostaza); margin-bottom:20px;">ACCESO PANEL</h2>
+            <input type="text" id="user-owner" class="form-control" placeholder="USUARIO">
+            <input type="password" id="pass-owner" class="form-control" placeholder="CONTRASEÑA">
+            <button onclick="validarAcceso()" class="btn-principal">ENTRAR</button>
+            <p onclick="document.getElementById('login-owner').style.display='none'" style="color:#555; cursor:pointer; margin-top:15px; font-size:0.8rem;">CANCELAR</p>
         </div>
+    </div>
+
+    <div id="modal-detalles" class="modal">
+        <div class="modal-content"><span class="close-btn" onclick="this.parentElement.parentElement.style.display='none'">&times;</span><div id="contenido-modal"></div></div>
     </div>
 
     <div class="contact-info-bar">
-        <div class="contact-item"><div class="hex-icon"><i class="fas fa-map-marker-alt"></i></div><p style="margin:0; font-size:0.9rem;">Dumfries and surrounding areas</p></div>
-        <div class="contact-item"><div class="hex-icon"><i class="fas fa-envelope"></i></div><p style="margin:0; font-size:0.9rem;">brillautospa@gmail.com</p></div>
-        <div class="contact-item"><div class="hex-icon"><i class="fab fa-whatsapp"></i></div><p style="margin:0; font-size:0.9rem;">?????</p></div>
+        <div class="contact-item"><div class="hex-icon"><i class="fas fa-envelope"></i></div><p style="margin:0; font-size:0.8rem;">brillautospa@gmail.com</p></div>
+        <div class="contact-item"><div class="hex-icon"><i class="fab fa-whatsapp"></i></div><p style="margin:0; font-size:0.8rem;">+1 (571) 660-0734</p></div>
     </div>
 
-    <footer style="text-align:center; padding:40px; color:#333; font-size:0.8rem; border-top:1px solid #111;">
-        © 2024 BRILLA AUTO SPA - Exclusividad y Calidad
-    </footer>
+    <footer style="text-align:center; padding:30px; color:#444; font-size:0.8rem;">&copy; 2024 BRILLA AUTO SPA</footer>
 
     <script>
         let esOwner = false;
-        let catalogo = JSON.parse(localStorage.getItem('brilla_db_v3')) || {};
+        let catalogo = JSON.parse(localStorage.getItem('brilla_vFinal_v2')) || {};
+
+        function actualizarLabelArchivos(input) {
+            const label = document.getElementById('file-label');
+            label.innerHTML = input.files.length > 0 ? `<b style="color:var(--color-mostaza)">${input.files.length} seleccionadas</b>` : 'Selecciona fotos';
+        }
 
         function validarAcceso() {
             const u = document.getElementById('user-owner').value;
             const p = document.getElementById('pass-owner').value;
-            if (u === "DAY ROJAS" && p === "POTOMAC2026") {
-                esOwner = true;
-                document.getElementById('login-owner').style.display = 'none';
-                document.getElementById('btn-nueva-pub').style.display = 'block';
-                document.getElementById('user-greeting').innerText = "BIENVENIDO, DAY";
-                document.getElementById('user-greeting').style.display = 'block';
-                document.getElementById('btn-admin-nav').style.display = 'none';
-                renderizar();
-            } else { alert("Credenciales incorrectas"); }
+            const loading = document.getElementById('loading-screen');
+            loading.style.display = 'flex';
+            
+            setTimeout(() => {
+                if (u === "DAY ROJAS" && p === "POTOMAC2026") {
+                    esOwner = true;
+                    loading.style.display = 'none';
+                    document.getElementById('login-owner').style.display = 'none';
+                    document.getElementById('btn-nueva-pub').style.display = 'block';
+                    document.getElementById('user-greeting').innerText = "DAY ROJAS";
+                    document.getElementById('user-greeting').style.display = 'inline-block';
+                    document.getElementById('btn-admin-nav').style.display = 'none';
+                    renderizar();
+                } else {
+                    loading.style.display = 'none';
+                    alert("Error de acceso");
+                }
+            }, 1000);
         }
 
         async function crearPublicacion() {
             const files = document.getElementById('new-fotos').files;
-            if(files.length === 0) return alert("Sube al menos una foto");
-            
+            if(files.length === 0) return alert("Sube fotos");
             const promesas = Array.from(files).map(f => new Promise(res => {
                 const r = new FileReader(); r.onload = e => res(e.target.result); r.readAsDataURL(f);
             }));
             const fotos = await Promise.all(promesas);
-            const id = "car_" + Date.now();
-            
+            const id = "auto_" + Date.now();
             catalogo[id] = {
-                titulo: document.getElementById('new-titulo').value || 'Sin Nombre',
-                precio: document.getElementById('new-precio').value || 'Consultar',
-                desc: document.getElementById('new-desc').value || '',
+                titulo: document.getElementById('new-titulo').value || 'Sin Título',
+                precio: document.getElementById('new-precio').value || '-',
+                descripcion: document.getElementById('new-desc').value || '',
                 modelo: document.getElementById('new-modelo').value || '-',
+                motor: document.getElementById('new-motor').value || '-',
+                potencia: document.getElementById('new-potencia').value || '-',
                 fotos: fotos
             };
-            
-            localStorage.setItem('brilla_db_v3', JSON.stringify(catalogo));
+            localStorage.setItem('brilla_vFinal_v2', JSON.stringify(catalogo));
             renderizar();
             document.getElementById('modal-crear').style.display = 'none';
         }
@@ -263,25 +296,39 @@
             const grid = document.getElementById('grid-autos');
             grid.innerHTML = ""; 
             Object.keys(catalogo).reverse().forEach(id => {
-                const car = catalogo[id];
+                const auto = catalogo[id];
                 grid.innerHTML += `
-                    <div class="tarjeta-auto animate__animated animate__fadeInUp">
-                        <img src="${car.fotos[0]}" onclick="alert('Ver galería completa próximamente')">
+                    <div class="tarjeta-auto">
+                        ${esOwner ? `<button onclick="borrar('${id}')" style="position:absolute; top:10px; right:10px; background:red; color:white; border:none; padding:4px 8px; border-radius:4px; font-size:9px; cursor:pointer; z-index:10;">BORRAR</button>` : ''}
+                        <img src="${auto.fotos[0]}" onclick="abrirDetalle('${id}')">
                         <div class="info-auto">
-                            <h3 style="color:var(--color-mostaza); margin:0 0 10px 0; font-family:serif;">${car.titulo}</h3>
-                            <p style="color:#888; font-size:0.85rem; height:40px; overflow:hidden;">${car.desc}</p>
-                            <div style="display:flex; justify-content:space-between; align-items:center; margin-top:20px;">
-                                <span style="font-size:1.3rem; font-weight:bold;">${car.precio}</span>
-                                <span style="color:#444;">${car.modelo}</span>
+                            <h3 style="color:var(--color-mostaza); margin:0;">${auto.titulo}</h3>
+                            <p style="color:#666; font-size:0.75rem;">${auto.descripcion.substring(0,50)}...</p>
+                            <div style="display:flex; justify-content:space-between; align-items:center; margin-top:10px;">
+                                <span style="font-weight:bold;">${auto.precio}</span>
+                                <a href="https://wa.me/15716600734" style="background:#25d366; color:white; padding:5px 10px; border-radius:5px; text-decoration:none; font-size:0.7rem;">WHATSAPP</a>
                             </div>
-                            ${esOwner ? `<button onclick="borrar('${id}')" style="margin-top:15px; background:red; color:white; border:none; padding:5px 10px; cursor:pointer; width:100%;">BORRAR</button>` : ''}
                         </div>
                     </div>`;
             });
         }
 
-        function borrar(id) { if(confirm("¿Eliminar publicación?")) { delete catalogo[id]; localStorage.setItem('brilla_db_v3', JSON.stringify(catalogo)); renderizar(); } }
-        
+        function abrirDetalle(id) {
+            const auto = catalogo[id];
+            document.getElementById('contenido-modal').innerHTML = `
+                <h2 style="color:var(--color-mostaza);">${auto.titulo}</h2>
+                <div style="display:flex; gap:10px; overflow-x:auto; padding-bottom:10px;">
+                    ${auto.fotos.map(f => `<img src="${f}" style="height:250px; border-radius:8px;">`).join('')}
+                </div>
+                <p>${auto.descripcion}</p>
+                <div style="background:#111; padding:15px; border-radius:8px; display:grid; grid-template-columns:1fr 1fr; font-size:0.85rem;">
+                    <p><b>Año:</b> ${auto.modelo}</p><p><b>Motor:</b> ${auto.motor}</p>
+                    <p><b>Potencia:</b> ${auto.potencia}</p><p style="color:var(--color-mostaza); font-size:1.2rem;"><b>${auto.precio}</b></p>
+                </div>`;
+            document.getElementById('modal-detalles').style.display = 'flex';
+        }
+
+        function borrar(id) { if(confirm("¿Eliminar?")) { delete catalogo[id]; localStorage.setItem('brilla_vFinal_v2', JSON.stringify(catalogo)); renderizar(); } }
         renderizar();
     </script>
 </body>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Brilla Auto Spa | Panel Owner</title>
+    <title>Brilla Auto Spa | Catálogo de Exclusividad</title>
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
@@ -19,6 +19,7 @@
 
         body { font-family: var(--font-main); margin: 0; background-color: var(--color-negro); color: var(--color-texto-blanco); overflow-x: hidden; }
 
+        /* NAV ANIMADO */
         nav {
             background: linear-gradient(to bottom, #111, #000);
             border-bottom: 3px solid var(--color-mostaza);
@@ -27,223 +28,221 @@
             position: sticky; top: 0; z-index: 1000;
         }
 
-        .logo-minimal-brilla { display: flex; flex-direction: column; align-items: center; cursor: pointer; text-decoration: none; }
-        .svg-carrito-dorado { fill: var(--color-mostaza); width: 40px; height: auto; }
-        .text-brilla-nav { font-size: 1rem; color: var(--color-mostaza); font-weight: bold; margin: 0; }
+        /* -----------------------------------------------------------
+           EL NUEVO LOGO MINIMALISTA CON CARRITO (Arriba a la Izquierda)
+           ----------------------------------------------------------- */
+        .logo-minimal-brilla {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+            cursor: pointer;
+            text-decoration: none;
+            filter: drop-shadow(0 0 5px rgba(209, 180, 100, 0.4)); /* Brillo dorado */
+        }
 
-        /* BOTÓN CREAR - Solo visible para Owner */
-        #btn-crear-publicacion { 
-            display: none; 
-            background: var(--color-mostaza); 
-            color: black; 
-            border: none; 
-            padding: 10px 20px; 
-            font-weight: bold; 
-            border-radius: 5px; 
-            cursor: pointer; 
-            margin-right: 15px;
-            transition: 0.3s;
+        /* Recreación del carrito minimalista en SVG dorado */
+        .svg-carrito-dorado {
+            fill: var(--color-mostaza);
+            width: 50px; /* Tamaño del icono */
+            height: auto;
         }
-        #btn-crear-publicacion:hover { transform: scale(1.05); background: #e2c575; }
 
-        /* FORMULARIO DE CREACIÓN (MODAL ESPECIAL) */
-        .admin-panel {
-            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.98); z-index: 4000; overflow-y: auto; padding: 40px 20px;
+        .text-brilla-nav {
+            font-size: 1.1rem;
+            color: var(--color-mostaza);
+            font-weight: bold;
+            letter-spacing: 1px;
+            margin: 0;
+            font-family: 'Times New Roman', Times, serif; /* Fuente más parecida a */
         }
-        .form-crear {
-            max-width: 800px; margin: auto; background: #111; padding: 30px;
-            border: 1px solid var(--color-mostaza); border-radius: 10px;
-        }
-        .form-crear h2 { color: var(--color-mostaza); margin-top: 0; border-bottom: 1px solid #333; padding-bottom: 10px; }
-        .grid-form { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px; }
-        .campo { display: flex; flex-direction: column; gap: 8px; }
-        .campo label { font-size: 0.8rem; color: var(--color-mostaza); text-transform: uppercase; }
-        .campo input, .campo textarea {
-            padding: 12px; background: #000; border: 1px solid #333; color: white; border-radius: 4px;
-        }
-        .campo input:focus { border-color: var(--color-mostaza); outline: none; }
-        
-        /* ESTILO CARGA DE IMAGEN */
-        .input-file-custom {
-            border: 2px dashed #444; padding: 20px; text-align: center; cursor: pointer; transition: 0.3s;
-        }
-        .input-file-custom:hover { border-color: var(--color-mostaza); background: #1a1a1a; }
 
-        /* CATALOGO Y TARJETAS */
-        .seccion-autos { padding: 40px 20px; max-width: 1300px; margin: auto; }
+        .text-autospa-nav {
+            font-size: 0.6rem;
+            color: #aaa;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin: -2px 0 0 0;
+        }
+
+        /* -----------------------------------------------------------
+           ÁREA DE LOGIN (Arriba a la Derecha)
+           ----------------------------------------------------------- */
+        .area-login-nav {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        #user-greeting { display: none; color: var(--color-mostaza); font-weight: bold; font-size: 0.85rem; }
+
+        /* HERO ANIMADO */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.9)), url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1500&q=80');
+            background-size: cover; background-position: center;
+            height: 300px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;
+            border-bottom: 1px solid var(--color-mostaza);
+        }
+
+        .hero h1 { font-size: 3rem; text-transform: uppercase; margin: 0; }
+        .hero p { color: var(--color-mostaza); letter-spacing: 2px; }
+
+        /* CATALOGO */
+        .seccion-autos { padding: 60px 20px; max-width: 1300px; margin: auto; }
         .contenedor-autos { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
-        .tarjeta-auto { background: var(--color-gris-oscuro); border: 1px solid #333; border-radius: 12px; overflow: hidden; transition: 0.4s; cursor: pointer; position: relative;}
+        
+        .tarjeta-auto { background: var(--color-gris-oscuro); border: 1px solid #333; border-radius: 12px; overflow: hidden; transition: 0.4s; cursor: pointer; }
+        .tarjeta-auto:hover { transform: translateY(-10px); border-color: var(--color-mostaza); box-shadow: 0 10px 20px rgba(209, 180, 100, 0.1); }
         .tarjeta-auto img { width: 100%; height: 230px; object-fit: cover; border-bottom: 2px solid var(--color-mostaza); }
+        
         .info-auto { padding: 20px; }
-        .marca-modelo { font-size: 1.4rem; color: var(--color-mostaza); font-weight: bold; margin-bottom: 8px; }
-        .precio-auto { font-size: 1.5rem; font-weight: bold; color: white; }
-        .btn-borrar { position: absolute; top: 10px; right: 10px; background: rgba(255,0,0,0.7); color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; display: none; }
+        .marca-modelo { font-size: 1.4rem; color: var(--color-mostaza); margin-bottom: 8px; font-weight: bold; }
+        .preview-info { font-size: 0.85rem; color: #bbb; margin-bottom: 15px; line-height: 1.4; height: 40px; overflow: hidden; }
+        .preview-tech { font-size: 0.8rem; color: var(--color-mostaza); border-top: 1px solid #333; padding-top: 10px; display: flex; justify-content: space-between; }
+        .precio-auto { font-size: 1.6rem; font-weight: bold; margin-top: 15px; color: white; }
 
-        /* MODAL DETALLES */
+        /* BOTONES EDITAR (Solo DAY ROJAS) */
+        .btn-edit-inline { display: none; background: #000; color: var(--color-mostaza); border: 1px solid var(--color-mostaza); border-radius: 4px; padding: 3px 8px; font-size: 0.65rem; cursor: pointer; margin-left: 8px; font-family: sans-serif; }
+
+        /* MODAL */
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 2000; overflow: auto; }
         .modal-content { background: #111; margin: 5% auto; padding: 40px; border: 1px solid var(--color-mostaza); width: 85%; max-width: 900px; border-radius: 10px; position: relative; }
-        .close-modal { position: absolute; top: 15px; right: 25px; font-size: 30px; cursor: pointer; color: #666; }
+        .close-modal { position: absolute; top: 15px; right: 25px; font-size: 30px; cursor: pointer; color: #666; transition: 0.3s; }
+        .close-modal:hover { color: var(--color-mostaza); }
 
         /* LOGIN */
         .login-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.98); z-index: 3000; justify-content: center; align-items: center; }
         .login-box { background: #000; padding: 40px; border: 2px solid var(--color-mostaza); border-radius: 10px; text-align: center; width: 320px; }
+        .login-box input { width: 100%; padding: 12px; margin-bottom: 15px; background: #111; border: 1px solid var(--color-mostaza); color: white; border-radius: 5px; box-sizing: border-box; }
+        .btn-login { background: var(--color-mostaza); color: black; border: none; padding: 12px; width: 100%; font-weight: bold; cursor: pointer; text-transform: uppercase; border-radius: 5px; }
+
+        footer { text-align: center; padding: 40px; border-top: 2px solid var(--color-mostaza); background: #000; color: #aaa; margin-top: 50px; }
     </style>
 </head>
 <body>
 
-    <nav>
+    <nav class="animate__animated animate__fadeInDown">
         <a href="#" class="logo-minimal-brilla">
-            <svg class="svg-carrito-dorado" viewBox="0 0 512 512"><path d="M472.1,348.6c13.7,0,24.8-11.1,24.8-24.8V188.2c0-13.7-11.1-24.8-24.8-24.8H188.2c-13.7,0-24.8,11.1-24.8,24.8v135.6c0,13.7,11.1,24.8,24.8,24.8h60v50H60c-13.7,0-24.8,11.1-24.8,24.8v50c0,13.7,11.1,24.8,24.8,24.8h400c13.7,0,24.8-11.1,24.8-24.8v-50c0-13.7-11.1-24.8-24.8-24.8h-70v-50C472.1,348.6,472.1,348.6,472.1,348.6z M188.2,188.2h283.9v135.6H188.2V188.2z M60,400h400v50H60V400z M273.9,348.6h100v50h-100V348.6z"/></svg>
-            <p class="text-brilla-nav">BRILLA AUTO SPA</p>
+            <svg class="svg-carrito-dorado" viewBox="0 0 512 512">
+                <path d="M472.1,348.6c13.7,0,24.8-11.1,24.8-24.8V188.2c0-13.7-11.1-24.8-24.8-24.8H188.2c-13.7,0-24.8,11.1-24.8,24.8v135.6c0,13.7,11.1,24.8,24.8,24.8h60v50H60c-13.7,0-24.8,11.1-24.8,24.8v50c0,13.7,11.1,24.8,24.8,24.8h400c13.7,0,24.8-11.1,24.8-24.8v-50c0-13.7-11.1-24.8-24.8-24.8h-70v-50C472.1,348.6,472.1,348.6,472.1,348.6z M188.2,188.2h283.9v135.6H188.2V188.2z M60,400h400v50H60V400z M273.9,348.6h100v50h-100V348.6z"/>
+            </svg>
+            <p class="text-brilla-nav">BRILLA</p>
+            <p class="text-autospa-nav">AUTO SPA</p>
         </a>
-        <div style="display: flex; align-items: center;">
-            <button id="btn-crear-publicacion" onclick="abrirPanelAdmin()"><i class="fas fa-plus"></i> NUEVA PUBLICACIÓN</button>
-            <button id="btn-admin-nav" onclick="document.getElementById('login-owner').style.display='flex'" style="background: transparent; color: var(--color-mostaza); border: 1px solid var(--color-mostaza); cursor: pointer; padding: 8px 15px; border-radius: 4px;">ACCESO OWNER</button>
-            <span id="user-greeting" style="display:none; color:var(--color-mostaza); font-weight:bold; margin-left:10px;"></span>
+
+        <div class="area-login-nav">
+            <span id="user-greeting"></span>
+            <button id="btn-admin-nav" onclick="document.getElementById('login-owner').style.display='flex'" style="background: transparent; color: var(--color-mostaza); border: 1px solid var(--color-mostaza); cursor: pointer; padding: 6px 12px; font-size: 11px; border-radius: 3px; font-weight: bold; text-transform: uppercase;">Owner</button>
         </div>
     </nav>
 
-    <div id="panel-admin" class="admin-panel">
-        <div class="form-crear animate__animated animate__zoomIn">
-            <h2><i class="fas fa-car-side"></i> CREAR NUEVA PUBLICACIÓN</h2>
-            <div class="grid-form">
-                <div class="campo" style="grid-column: span 2;">
-                    <label>Imagen del Vehículo</label>
-                    <div class="input-file-custom" onclick="document.getElementById('input-foto').click()">
-                        <i class="fas fa-cloud-upload-alt" style="font-size: 2rem; color: var(--color-mostaza);"></i>
-                        <p id="status-foto">Haz clic para subir foto desde tu dispositivo</p>
-                        <input type="file" id="input-foto" accept="image/*" style="display:none;" onchange="previsualizarFoto(this)">
-                    </div>
-                </div>
-                <div class="campo">
-                    <label>Título / Marca y Modelo</label>
-                    <input type="text" id="nuevo-titulo" placeholder="Ej: Lamborghini Huracán STO">
-                </div>
-                <div class="campo">
-                    <label>Precio ($)</label>
-                    <input type="text" id="nuevo-precio" placeholder="Ej: $350,000">
-                </div>
-                <div class="campo" style="grid-column: span 2;">
-                    <label>Descripción del Trabajo / Vehículo</label>
-                    <textarea id="nueva-desc" rows="3" placeholder="Describe el detallado o estado del auto..."></textarea>
-                </div>
-                <div class="campo"><label>Modelo (Año)</label><input type="text" id="nuevo-modelo"></div>
-                <div class="campo"><label>Motor</label><input type="text" id="nuevo-motor"></div>
-                <div class="campo"><label>Potencia</label><input type="text" id="nueva-potencia"></div>
-                <div class="campo"><label>Kilometraje</label><input type="text" id="nuevo-km"></div>
-            </div>
-            <div style="margin-top:30px; display:flex; gap:10px;">
-                <button onclick="publicarAuto()" style="flex:1; background:var(--color-mostaza); border:none; padding:15px; font-weight:bold; cursor:pointer; border-radius:5px;">PUBLICAR AHORA</button>
-                <button onclick="cerrarPanelAdmin()" style="flex:1; background:#333; color:white; border:none; padding:15px; font-weight:bold; cursor:pointer; border-radius:5px;">CANCELAR</button>
-            </div>
-        </div>
+    <div class="hero">
+        <h1 class="animate__animated animate__zoomIn">Servicio Premium</h1>
+        <p class="animate__animated animate__fadeInUp animate__delay-1s">Brilla Auto Spa by Day Rojas</p>
     </div>
 
     <div class="seccion-autos">
-        <div id="grid-autos" class="contenedor-autos"></div>
+        <h2 style="text-align:center; color:var(--color-mostaza); margin-bottom: 40px;" class="animate__animated animate__fadeIn">CATÁLOGO EXCLUSIVO</h2>
+        <div id="grid-autos" class="contenedor-autos">
+            </div>
     </div>
 
-    <div id="modal-detalles" class="modal"><div class="modal-content"><span class="close-modal" onclick="cerrarModal()">&times;</span><div id="contenido-modal"></div></div></div>
-
-    <div id="login-owner" class="login-overlay">
-        <div class="login-box">
-            <h2 style="color:var(--color-mostaza);">OWNER LOGIN</h2>
-            <input type="text" id="user-owner" placeholder="USUARIO">
-            <input type="password" id="pass-owner" placeholder="CONTRASEÑA">
-            <button onclick="validarAcceso()" style="background:var(--color-mostaza); border:none; padding:12px; width:100%; font-weight:bold; cursor:pointer;">ENTRAR</button>
+    <div id="modal-detalles" class="modal">
+        <div class="modal-content animate__animated animate__fadeInDown">
+            <span class="close-modal" onclick="cerrarModal()">&times;</span>
+            <div id="contenido-modal"></div>
         </div>
     </div>
 
+    <div id="login-owner" class="login-overlay">
+        <div class="login-box animate__animated animate__pulse">
+            <i class="fas fa-car-on" style="font-size: 2rem; color: var(--color-mostaza); margin-bottom: 15px;"></i>
+            <h2 style="color:var(--color-mostaza);">IDENTIFICACIÓN</h2>
+            <input type="text" id="user-owner" placeholder="USUARIO">
+            <input type="password" id="pass-owner" placeholder="CONTRASEÑA">
+            <button onclick="validarAcceso()" class="btn-login">Entrar</button>
+            <p onclick="document.getElementById('login-owner').style.display='none'" style="color:#555; cursor:pointer; margin-top:15px; font-size: 0.8rem;">Cerrar</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 BRILLA AUTO SPA - Exclusividad y Calidad</p>
+    </footer>
+
     <script>
         let esOwner = false;
-        let fotoBase64 = "";
-        let catalogo = JSON.parse(localStorage.getItem('brilla_spa_v7')) || {};
+        let autoActualId = "";
 
-        function guardar() { localStorage.setItem('brilla_spa_v7', JSON.stringify(catalogo)); }
+        const defaultCatalogo = {
+            'corvette': { titulo: 'Chevrolet Corvette Z06', precio: '$150,000', descripcion: 'Detallado premium de 3 etapas con sellado cerámico de grafeno.', modelo: '2024', motor: '5.5L LT6 V8', potencia: '670 HP' },
+            'ferrari': { titulo: 'Ferrari F8 Tributo', precio: '$380,000', descripcion: 'Tratamiento de cuero premium e interior impecable con acabado espejo.', modelo: '2023', motor: '3.9L Twin-Turbo V8', potencia: '710 HP' }
+        };
 
-        function previsualizarFoto(input) {
-            if (input.files && input.files[0]) {
-                const reader = new FileReader();
-                reader.onload = function(e) { 
-                    fotoBase64 = e.target.result;
-                    document.getElementById('status-foto').innerText = "✅ Imagen cargada correctamente";
-                    document.getElementById('status-foto').style.color = "#d1b464";
-                };
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
+        let catalogo = JSON.parse(localStorage.getItem('brilla_spa_v6')) || defaultCatalogo;
 
-        function abrirPanelAdmin() { document.getElementById('panel-admin').style.display = 'block'; }
-        function cerrarPanelAdmin() { document.getElementById('panel-admin').style.display = 'none'; }
-
-        function publicarAuto() {
-            const id = "auto_" + Date.now();
-            const nuevoAuto = {
-                titulo: document.getElementById('nuevo-titulo').value,
-                precio: document.getElementById('nuevo-precio').value,
-                descripcion: document.getElementById('nueva-desc').value,
-                modelo: document.getElementById('nuevo-modelo').value,
-                motor: document.getElementById('nuevo-motor').value,
-                potencia: document.getElementById('nueva-potencia').value,
-                km: document.getElementById('nuevo-km').value,
-                foto: fotoBase64 || 'https://via.placeholder.com/800x500?text=Sin+Imagen'
-            };
-
-            if(!nuevoAuto.titulo || !nuevoAuto.precio) return alert("Por favor llena el título y el precio");
-
-            catalogo[id] = nuevoAuto;
-            guardar();
-            renderizarCatalogo();
-            cerrarPanelAdmin();
-            alert("¡Publicación realizada con éxito!");
-        }
+        function guardar() { localStorage.setItem('brilla_spa_v6', JSON.stringify(catalogo)); }
 
         function renderizarCatalogo() {
             const grid = document.getElementById('grid-autos');
-            grid.innerHTML = "";
-            Object.keys(catalogo).reverse().forEach(id => {
+            if(!grid) return;
+            grid.innerHTML = ""; 
+
+            Object.keys(catalogo).forEach((id, index) => {
                 const auto = catalogo[id];
+                const img = id === 'corvette' ? 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=800' : 'https://images.unsplash.com/photo-1583121274602-3e2820c69888?w=800';
+                const delayClass = `animate__delay-${index}s`;
+
                 grid.innerHTML += `
-                    <div class="tarjeta-auto animate__animated animate__fadeInUp" onclick="abrirModal('${id}')">
-                        <button class="btn-borrar" style="display:${esOwner ? 'block' : 'none'}" onclick="event.stopPropagation(); eliminarAuto('${id}')">ELIMINAR</button>
-                        <img src="${auto.foto}">
+                    <div class="tarjeta-auto animate__animated animate__fadeInUp ${delayClass}" onclick="abrirModal('${id}')">
+                        <img src="${img}">
                         <div class="info-auto">
                             <p class="marca-modelo">${auto.titulo}</p>
-                            <p style="color:#aaa; font-size:0.8rem; height:40px; overflow:hidden;">${auto.descripcion.substring(0,60)}...</p>
-                            <p class="precio-auto">${auto.precio}</p>
+                            <p class="preview-info">${auto.descripcion.substring(0, 75)}...</p>
+                            <div class="preview-tech">
+                                <span><i class="fas fa-bolt"></i> ${auto.motor}</span>
+                                <span><i class="fas fa-calendar-alt"></i> ${auto.modelo}</span>
+                            </div>
+                            <div class="precio-auto">${auto.precio}</div>
                         </div>
-                    </div>`;
+                    </div>
+                `;
             });
         }
 
         function abrirModal(id) {
+            autoActualId = id;
             const auto = catalogo[id];
+            const displayEdit = esOwner ? 'inline-block' : 'none';
+            const imgUrl = id === 'corvette' ? 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=1000' : 'https://images.unsplash.com/photo-1583121274602-3e2820c69888?w=1000';
+
             document.getElementById('contenido-modal').innerHTML = `
-                <h2 style="color:var(--color-mostaza); font-size:2rem;">${auto.titulo}</h2>
-                <img src="${auto.foto}" style="width:100%; border-radius:10px; margin-bottom:20px;">
-                <div style="display:grid; grid-template-columns: 1fr 1fr; gap:30px;">
+                <h2 style="color: var(--color-mostaza); font-size: 2rem;">${auto.titulo} <button class="btn-edit-inline" style="display:${displayEdit}" onclick="editarCampo('titulo')"><i class="fas fa-edit"></i></button></h2>
+                <img src="${imgUrl}" style="width:100%; border-radius:8px; margin-bottom:20px; border: 1px solid #222;">
+                <div style="display:grid; grid-template-columns: 1.2fr 0.8fr; gap:30px; text-align:left;">
                     <div>
-                        <h3 style="color:var(--color-mostaza);">Descripción</h3>
+                        <h3 style="color:var(--color-mostaza);">Descripción <button class="btn-edit-inline" style="display:${displayEdit}" onclick="editarCampo('descripcion')"><i class="fas fa-edit"></i></button></h3>
                         <p style="color:#ccc; line-height:1.6;">${auto.descripcion}</p>
-                        <p style="font-size:2rem; color:white; font-weight:bold;">${auto.precio}</p>
+                        <h3 style="color:white; margin-top:20px;">Precio Sugerido <button class="btn-edit-inline" style="display:${displayEdit}" onclick="editarCampo('precio')"><i class="fas fa-edit"></i></button></h3>
+                        <p style="font-size:2rem; color:var(--color-mostaza); font-weight:bold; margin:0;">${auto.precio}</p>
                     </div>
-                    <div style="background:#1a1a1a; padding:20px; border-radius:10px; border:1px solid #333;">
-                        <h4 style="margin-top:0; border-bottom:1px solid var(--color-mostaza);">Ficha Técnica</h4>
-                        <p><strong>Año:</strong> ${auto.modelo}</p>
-                        <p><strong>Motor:</strong> ${auto.motor}</p>
-                        <p><strong>Potencia:</strong> ${auto.potencia}</p>
-                        <p><strong>KM:</strong> ${auto.km}</p>
+                    <div style="background:#1a1a1a; padding:25px; border-radius:10px; border: 1px solid #333;">
+                        <h3 style="margin-top:0; border-bottom:1px solid var(--color-mostaza); padding-bottom:10px;">Ficha Técnica</h3>
+                        <p><strong>Modelo:</strong> ${auto.modelo} <button class="btn-edit-inline" style="display:${displayEdit}" onclick="editarCampo('modelo')"><i class="fas fa-edit"></i></button></p>
+                        <p><strong>Motor:</strong> ${auto.motor} <button class="btn-edit-inline" style="display:${displayEdit}" onclick="editarCampo('motor')"><i class="fas fa-edit"></i></button></p>
+                        <p><strong>Potencia:</strong> ${auto.potencia} <button class="btn-edit-inline" style="display:${displayEdit}" onclick="editarCampo('potencia')"><i class="fas fa-edit"></i></button></p>
                     </div>
-                </div>`;
+                </div>
+            `;
             document.getElementById('modal-detalles').style.display = 'block';
         }
 
-        function eliminarAuto(id) {
-            if(confirm("¿Seguro que quieres borrar esta publicación?")) {
-                delete catalogo[id];
+        function editarCampo(campo) {
+            const nuevo = prompt("Actualizar " + campo.toUpperCase() + ":", catalogo[autoActualId][campo]);
+            if (nuevo !== null && nuevo !== "") {
+                catalogo[autoActualId][campo] = nuevo;
                 guardar();
                 renderizarCatalogo();
+                abrirModal(autoActualId);
             }
         }
 
@@ -251,15 +250,16 @@
             if (document.getElementById('user-owner').value === "DAY ROJAS" && document.getElementById('pass-owner').value === "POTOMAC2026") {
                 esOwner = true;
                 document.getElementById('login-owner').style.display = 'none';
-                document.getElementById('btn-crear-publicacion').style.display = 'inline-block';
+                document.getElementById('user-greeting').innerHTML = "DAY ROJAS";
+                document.getElementById('user-greeting').style.display = 'inline-block';
                 document.getElementById('btn-admin-nav').style.display = 'none';
-                document.getElementById('user-greeting').innerText = "MODO OWNER: DAY ROJAS";
-                document.getElementById('user-greeting').style.display = 'block';
                 renderizarCatalogo();
-            } else { alert("Datos incorrectos"); }
+            } else { alert("Acceso Denegado."); }
         }
 
         function cerrarModal() { document.getElementById('modal-detalles').style.display = 'none'; }
+        
+        // Iniciar
         renderizarCatalogo();
     </script>
 </body>

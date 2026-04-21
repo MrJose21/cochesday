@@ -3,20 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Brilla Auto Spa | DumfriesDetailing</title>
+    <title>Brilla Auto Spa | Catálogo de Exclusividad</title>
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
 
     <style>
-        /* CSS: EL DISEÑO DE TU FOLLETO */
+        /* CSS: EL DISEÑO DE TU LOGO Y FOLLETO */
         :root {
-            --color-mostaza: #eeba2a; /* Amarillo-mostaza exacto de tu folleto */
-            --color-negro: #131313;   /* Casi negro */
-            --color-gris-oscuro: #2a2a2a;
+            --color-mostaza: #d1b464; /* Dorado texturizado similar a tu logo */
+            --color-negro: #000000;   /* Negro puro */
+            --color-gris-oscuro: #121212;
             --color-texto-blanco: #ffffff;
-            --font-main: 'Arial', sans-serif; /* Tipografía limpia */
+            --font-main: 'Georgia', serif; /* Una fuente Serif con clase como la de tu logo */
         }
 
         body {
@@ -26,9 +25,9 @@
             color: var(--color-texto-blanco);
         }
 
-        /* 1. EL ENCABEZADO (NAV) */
+        /* 1. EL ENCABEZADO (NAV) CON TU LOGO */
         nav {
-            background: linear-gradient(135deg, var(--color-negro), var(--color-gris-oscuro));
+            background: linear-gradient(to bottom, #111, #000);
             border-bottom: 3px solid var(--color-mostaza);
             padding: 1rem 2rem;
             display: flex;
@@ -41,26 +40,37 @@
 
         .logo-area {
             display: flex;
+            flex-direction: column; /* Apilar texto */
             align-items: center;
-            gap: 15px;
+            gap: 5px;
         }
 
-        .logo-icon {
-            font-size: 2rem;
-            color: var(--color-mostaza);
+        /* Silueta de auto dorada similar a tu logo */
+        .logo-icon-svg {
+            fill: var(--color-mostaza);
+            width: 70px; /* Tamaño del auto */
+            filter: drop-shadow(0 0 5px rgba(209, 180, 100, 0.5));
         }
 
+        /* Texto de logo Serif con clase */
         .logo-text { 
             font-weight: bold; 
-            font-size: 1.8rem; 
+            font-size: 1.6rem; 
             color: var(--color-mostaza);
-            letter-spacing: 1px;
+            letter-spacing: 2px;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .logo-subtext {
+            font-size: 0.9rem;
+            color: #aaa;
+            letter-spacing: 3px;
+            text-transform: uppercase;
         }
 
         /* 2. LA PORTADA (HERO) CON ANIMACIÓN */
         .hero {
-            background: linear-gradient(rgba(19, 19, 19, 0.8), rgba(19, 19, 19, 0.9)), 
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.9)), 
                         url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1500&q=80');
             background-size: cover;
             background-position: center;
@@ -86,7 +96,7 @@
             max-width: 600px;
         }
 
-        /* 3. SECCIÓN DE AUTOS PÚBLICOS */
+        /* 3. SECCIÓN DE AUTOS */
         .seccion-autos {
             padding: 60px 20px;
             max-width: 1300px;
@@ -109,19 +119,20 @@
             gap: 30px;
         }
 
-        /* Tarjeta de Auto Premium */
+        /* Tarjeta de Auto Premium, ahora clickable */
         .tarjeta-auto {
             background: var(--color-gris-oscuro);
             border: 1px solid #333;
             border-radius: 8px;
             overflow: hidden;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer; /* Indicar que se puede hacer clic */
         }
 
         .tarjeta-auto:hover { 
             transform: translateY(-8px);
             border-color: var(--color-mostaza);
-            box-shadow: 0 10px 25px rgba(238, 186, 42, 0.2);
+            box-shadow: 0 10px 25px rgba(209, 180, 100, 0.2);
         }
 
         .tarjeta-auto img { 
@@ -140,11 +151,10 @@
             color: var(--color-mostaza);
         }
 
-        .caracteristicas { 
+        .caracteristicas-basicas { 
             color: #ccc; 
             font-size: 0.95rem; 
             margin: 10px 0; 
-            line-height: 1.4;
         }
 
         .precio-auto { 
@@ -153,24 +163,6 @@
             color: var(--color-texto-blanco); 
             margin-top: 15px; 
         }
-
-        /* Botón de Contacto Dorado */
-        .btn-contacto {
-            background: var(--color-mostaza);
-            color: black;
-            border: none;
-            padding: 12px 25px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-weight: bold;
-            text-transform: uppercase;
-            margin-top: 15px;
-            transition: opacity 0.3s;
-            display: inline-block;
-            text-decoration: none; /* Quitar subrayado si es link */
-        }
-
-        .btn-contacto:hover { opacity: 0.9; }
 
         /* Botón Secreto Admin (Owner) */
         #admin-panel { display: none; padding: 20px; } /* Lo ocultamos por ahora */
@@ -186,14 +178,111 @@
         .info-contacto { margin-top: 15px; color: white; font-size: 0.9rem; }
         .info-contacto i { color: var(--color-mostaza); margin-right: 10px; }
 
+
+        /* -----------------------------------------------------------
+           MODAL (VENTANA EMERGENTE DE DETALLES) - Premium
+           ----------------------------------------------------------- */
+        .modal {
+            display: none; /* Oculto por defecto */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            z-index: 2000;
+            overflow: auto; /* Permitir scroll si el contenido es largo */
+        }
+
+        .modal-content {
+            background-color: #111;
+            margin: 5% auto;
+            padding: 40px;
+            border: 1px solid var(--color-mostaza);
+            width: 80%;
+            max-width: 1000px;
+            border-radius: 8px;
+            position: relative;
+        }
+
+        .close-modal {
+            color: #aaa;
+            position: absolute;
+            top: 15px;
+            right: 25px;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close-modal:hover { color: var(--color-mostaza); }
+
+        .galeria-modal img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 4px;
+            border: 1px solid #333;
+        }
+
+        .info-modal {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .descripcion-larga {
+            color: #ccc;
+            line-height: 1.6;
+        }
+
+        .lista-caracteristicas {
+            background: #222;
+            padding: 20px;
+            border-radius: 4px;
+        }
+
+        .lista-caracteristicas li {
+            list-style: none;
+            margin-bottom: 10px;
+            color: white;
+            border-bottom: 1px solid #333;
+            padding-bottom: 5px;
+        }
+
+        .lista-caracteristicas li strong { color: var(--color-mostaza); }
+
+        /* Botón de Contacto WhatsApp Dorado */
+        .btn-whatsapp {
+            background: var(--color-mostaza);
+            color: black;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-top: 25px;
+            transition: opacity 0.3s;
+            display: inline-block;
+            text-decoration: none; /* Quitar subrayado si es link */
+            text-align: center;
+        }
+
+        .btn-whatsapp:hover { opacity: 0.9; }
+
     </style>
 </head>
 <body>
 
     <nav class="animate__animated animate__fadeInDown">
         <div class="logo-area">
-            <i class="fas fa-car-side logo-icon"></i>
-            <div class="logo-text">BRILLA AUTO SPA</div>
+            <svg class="logo-icon-svg" viewBox="0 0 100 50">
+                <path d="M10,20 C10,10 90,10 90,20 L80,30 C80,35 20,35 20,30 Z M30,35 A5,5 0 1,0 40,35 A5,5 0 1,0 30,35 Z M70,35 A5,5 0 1,0 80,35 A5,5 0 1,0 70,35 Z"/>
+            </svg>
+            <div class="logo-text">BRILLA</div>
+            <div class="logo-subtext">AUTO SPA</div>
         </div>
         <button onclick="activarAdmin()" style="background: transparent; color: var(--color-mostaza); border: 1px solid var(--color-mostaza); cursor: pointer; padding: 5px 10px; font-size: 12px;">Acceso Owner</button>
     </nav>
@@ -204,32 +293,41 @@
     </div>
 
     <div class="seccion-autos animate__animated animate__fadeInUp animate__delay-2s">
-        <h2 class="titulo-seccion">Nuestros Autos Brillantemente Detallados</h2>
+        <h2 class="titulo-seccion">Autos Brillantemente Detallados</h2>
         
         <div class="contenedor-autos" id="catalogo-publico">
             
-            <div class="tarjeta-auto">
+            <div class="tarjeta-auto" onclick="abrirModal('corvette')">
                 <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=800&q=80" alt="Auto">
                 <div class="info-auto">
                     <p class="marca-modelo">Chevrolet Corvette Z06</p>
-                    <p class="caracteristicas">Modelo: 2024 | Motor: V8 Supercharged | Estado: 0 KM | Edición Especial Brilla Spa.</p>
+                    <p class="caracteristicas-basicas">2024 | 0 KM | Edición Brilla Spa.</p>
                     <div class="precio-auto">$150,000</div>
-                    <a href="mailto:brillautospa@gmail.com?subject=Interesado en Corvette Z06" class="btn-contacto">Me Interesa</a>
                 </div>
             </div>
 
-            <div class="tarjeta-auto">
+            <div class="tarjeta-auto" onclick="abrirModal('ferrari')">
                 <img src="https://images.unsplash.com/photo-1583121274602-3e2820c69888?auto=format&fit=crop&w=800&q=80" alt="Auto">
                 <div class="info-auto">
                     <p class="marca-modelo">Ferrari F8 Tributo</p>
-                    <p class="caracteristicas">Modelo: 2023 | Motor: V8 Twin-Turbo | Detallado de Coleccionista.</p>
+                    <p class="caracteristicas-basicas">2023 | 2,500 KM | Colección Privada.</p>
                     <div class="precio-auto">$380,000</div>
-                    <a href="mailto:brillautospa@gmail.com?subject=Interesado en Ferrari F8" class="btn-contacto">Me Interesa</a>
                 </div>
             </div>
 
         </div>
     </div>
+
+
+    <div id="modal-detalles" class="modal">
+        <div class="modal-content animate__animated animate__fadeInDown">
+            <span class="close-modal" onclick="cerrarModal()">&times;</span>
+            
+            <div id="contenido-modal"></div>
+            
+        </div>
+    </div>
+
 
     <footer>
         <h3 style="color: var(--color-mostaza);">CONTÁCTANOS:</h3>
@@ -247,6 +345,78 @@
                 // Próximamente: document.getElementById('admin-panel').style.display = 'block';
             } else {
                 alert("Acceso denegado. Solo personal autorizado de Brilla Auto Spa.");
+            }
+        }
+
+        // -----------------------------------------------------------
+        // LÓGICA DE DETALLES DEL AUTO (MODAL)
+        // -----------------------------------------------------------
+        const catalogo = {
+            'corvette': {
+                titulo: 'Chevrolet Corvette Z06 - Edición Brilla Spa.',
+                img_grande: 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=1000&q=80',
+                descripcion: 'El pináculo del rendimiento estadounidense. Este Corvette Z06 ha recibido un detallado de pintura premium de 3 etapas, sellado con coating cerámico de grafeno. Interior en cuero Nappa impecablemente tratado. El auto está en estado de exhibición.',
+                caracteristicas: [
+                    '<strong>Modelo:</strong> 2024',
+                    '<strong>Motor:</strong> 5.5L LT6 V8 Supercharged',
+                    '<strong>Potencia:</strong> 670 HP',
+                    '<strong>Kilometraje:</strong> 0 KM',
+                    '<strong>Estado Exterior:</strong> 10/10 (Coating Cerámico 5 años)',
+                    '<strong>Estado Interior:</strong> 10/10 (Tratamiento Cuero Premium)'
+                ]
+            },
+            'ferrari': {
+                titulo: 'Ferrari F8 Tributo - Detallado de Coleccionista',
+                img_grande: 'https://images.unsplash.com/photo-1583121274602-3e2820c69888?auto=format&fit=crop&w=1000&q=80',
+                descripcion: 'Homenaje al motor V8 más icónico de la historia. Este F8 Tributo ha pasado por un proceso de corrección de pintura total para eliminar cualquier defecto. Acabado espejo perfecto. Se incluye funda original y cargador de batería.',
+                caracteristicas: [
+                    '<strong>Modelo:</strong> 2023',
+                    '<strong>Motor:</strong> 3.9L Twin-Turbo V8',
+                    '<strong>Potencia:</strong> 710 HP',
+                    '<strong>Kilometraje:</strong> 2,500 KM',
+                    '<strong>Tracción:</strong> Trasera',
+                    '<strong>Color:</strong> Rosso Corsa (Tratado)'
+                ]
+            }
+        };
+
+        function abrirModal(id_auto) {
+            const auto = catalogo[id_auto];
+            if (!auto) return;
+
+            // Dibujar el contenido dinámico dentro del modal
+            document.getElementById('contenido-modal').innerHTML = `
+                <h2 style="color: var(--color-mostaza);">${auto.titulo}</h2>
+                <div class="galeria-modal">
+                    <img src="${auto.img_grande}" alt="Auto Detalle">
+                </div>
+                <div class="info-modal">
+                    <div class="descripcion-larga">
+                        <h3>Descripción</h3>
+                        <p>${auto.descripcion}</p>
+                    </div>
+                    <div class="lista-caracteristicas">
+                        <h3>Características Técnicas</h3>
+                        <ul>
+                            ${auto.caracteristicas.map(item => `<li>${item}</li>`).join('')}
+                        </ul>
+                    </div>
+                </div>
+                <a href="https://wa.me/5712345678?text=Hola Brilla Spa, me interesa mucho el ${auto.titulo}. Quisiera agendar una cita para verlo." target="_blank" class="btn-whatsapp">Consultar Disponibilidad (WhatsApp)</a>
+            `;
+
+            document.getElementById('modal-detalles').style.display = 'block';
+        }
+
+        function cerrarModal() {
+            document.getElementById('modal-detalles').style.display = 'none';
+        }
+
+        // Cerrar modal si se hace clic fuera del contenido
+        window.onclick = function(event) {
+            const modal = document.getElementById('modal-detalles');
+            if (event.target == modal) {
+                modal.style.display = 'none';
             }
         }
     </script>

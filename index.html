@@ -557,24 +557,49 @@
         </div>
     </div>
 
-    <div id="editor-publicacion" class="editor-overlay">
-        <div class="editor-box animate__animated animate__fadeInDown">
-            <h3><i class="fas fa-edit"></i> Editar Publicación</h3>
-            <p style="color: #666; font-size: 0.8rem; margin-top: -10px;">Sesión activa: DAY ROJAS</p>
-            
-            <label>Nombre del Vehículo</label>
-            <input type="text" id="edit-nombre">
+   <div id="editor-publicacion" class="editor-overlay">
+    <div class="editor-box animate__animated animate__fadeInDown" style="max-width: 700px; width: 95%;">
+        <h3><i class="fas fa-car-crash"></i> Editor de Ficha Técnica</h3>
+        <p style="color: var(--color-mostaza); font-size: 0.8rem;">Owner: DAY ROJAS</p>
+        
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+            <div>
+                <label>Título de la Edición</label>
+                <input type="text" id="edit-nombre">
+                
+                <label>Descripción del Trabajo</label>
+                <textarea id="edit-desc" style="width:100%; height:100px; background:#111; color:white; border:1px solid #333; border-radius:4px; padding:10px;"></textarea>
+                
+                <label>Precio de Venta ($)</label>
+                <input type="text" id="edit-precio">
+            </div>
 
-            <label>Características (Resumen)</label>
-            <input type="text" id="edit-caract">
+            <div style="background: #111; padding: 15px; border-radius: 8px; border: 1px solid #222;">
+                <h4 style="color: var(--color-mostaza); margin-bottom: 10px; font-size: 0.9rem;">Ficha Técnica</h4>
+                
+                <label>Modelo (Año)</label>
+                <input type="text" id="edit-modelo">
+                
+                <label>Motor</label>
+                <input type="text" id="edit-motor">
+                
+                <label>Potencia / HP</label>
+                <input type="text" id="edit-hp">
+                
+                <label>Kilometraje</label>
+                <input type="text" id="edit-km">
+                
+                <label>Estado Exterior / Interior</label>
+                <input type="text" id="edit-estado" placeholder="Ej: 10/10">
+            </div>
+        </div>
 
-            <label>Precio ($)</label>
-            <input type="text" id="edit-precio">
-
-            <button class="btn-guardar" onclick="aplicarCambios()">Guardar Cambios</button>
-            <button onclick="cerrarEditor()" style="background:transparent; color:#666; border:none; width:100%; margin-top:10px; cursor:pointer;">Cancelar</button>
+        <div class="editor-buttons" style="margin-top: 25px;">
+            <button class="btn-guardar" onclick="aplicarCambios()">Aplicar a Publicación</button>
+            <button onclick="cerrarEditor()" style="background:transparent; color:#666; border:none; flex:1; cursor:pointer;">Cancelar</button>
         </div>
     </div>
+</div>
 </style>
 
 <div id="login-owner" class="login-overlay">
@@ -647,53 +672,83 @@
             msg.style.display = "block";
         }
     }
-   let autoSiendoEditado = null;
+   // --- LÓGICA DEL EDITOR DE FICHA TÉCNICA ---
+let autoSiendoEditado = null;
 
 function abrirEditor(elementoBtn) {
+    // Identifica la tarjeta que se va a editar
     autoSiendoEditado = elementoBtn.closest('.tarjeta-auto');
-    document.getElementById('edit-nombre').value = autoSiendoEditado.querySelector('.marca-modelo').innerText;
-    document.getElementById('edit-caract').value = autoSiendoEditado.querySelector('.caracteristicas-basicas').innerText;
-    document.getElementById('edit-precio').value = autoSiendoEditado.querySelector('.precio-auto').innerText;
+    const idAuto = autoSiendoEditado.getAttribute('data-id');
+    
+    // Si tienes un objeto 'catalogo', extrae los datos de ahí, si no, usa los de la tarjeta
+    const nombreActual = autoSiendoEditado.querySelector('.marca-modelo').innerText;
+    const precioActual = autoSiendoEditado.querySelector('.precio-auto').innerText;
+
+    // Carga los datos en el panel del editor
+    document.getElementById('edit-nombre').value = nombreActual;
+    document.getElementById('edit-precio').value = precioActual;
+    
+    // Mostrar el editor
     document.getElementById('editor-publicacion').style.display = 'flex';
 }
 
 function aplicarCambios() {
     if (!autoSiendoEditado) return;
+
+    // Actualiza la tarjeta visualmente
     autoSiendoEditado.querySelector('.marca-modelo').innerText = document.getElementById('edit-nombre').value;
-    autoSiendoEditado.querySelector('.caracteristicas-basicas').innerText = document.getElementById('edit-caract').value;
     autoSiendoEditado.querySelector('.precio-auto').innerText = document.getElementById('edit-precio').value;
 
+    // Feedback visual de éxito
     const btn = document.querySelector('.btn-guardar');
-    btn.innerText = "¡Sincronizado!";
+    btn.innerHTML = '<i class="fas fa-check"></i> ¡ACTUALIZADO!';
+    
     setTimeout(() => {
-        btn.innerText = "Guardar Cambios";
+        btn.innerText = "Aplicar a Publicación";
         cerrarEditor();
-    }, 1000);
+    }, 1200);
 }
 
 function cerrarEditor() {
     document.getElementById('editor-publicacion').style.display = 'none';
 }
+
+// Vincula el botón de editar con la nueva función (Cambiar esto en tu línea 663)
+document.querySelectorAll('.btn-editar-admin').forEach(btn => {
+    btn.onclick = function(e) { 
+        e.stopPropagation(); 
+        abrirEditor(this); 
+    };
+});
 </script>
-    <div id="editor-publicacion" class="editor-overlay">
+    <div id="editor-publicacion" class="editor-overlay" style="display:none;">
     <div class="editor-box animate__animated animate__fadeInDown">
-        <h3><i class="fas fa-edit"></i> Editar Publicación</h3>
-        <p style="color: #666; font-size: 0.8rem; margin-top: -10px;">Sesión activa: DAY ROJAS</p>
+        <h3><i class="fas fa-tools"></i> Editor de Ficha Técnica</h3>
+        <p style="color: var(--color-mostaza); font-size: 0.8rem;">Modo Owner: DAY ROJAS</p>
         
-        <label>Nombre del Vehículo</label>
-        <input type="text" id="edit-nombre">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; text-align: left;">
+            <div>
+                <label style="color:white; font-size:0.7rem;">Título del Vehículo</label>
+                <input type="text" id="edit-nombre" style="width:100%; margin-bottom:10px;">
+                
+                <label style="color:white; font-size:0.7rem;">Precio ($)</label>
+                <input type="text" id="edit-precio" style="width:100%;">
+            </div>
+            <div style="border-left: 1px solid #333; padding-left: 15px;">
+                <label style="color:white; font-size:0.7rem;">Motor / Potencia</label>
+                <input type="text" id="edit-motor" placeholder="Ej: 5.5L LT6 V8" style="width:100%; margin-bottom:10px;">
+                
+                <label style="color:white; font-size:0.7rem;">Descripción del Servicio</label>
+                <textarea id="edit-desc" style="width:100%; height:60px; background:#111; color:white; border:1px solid #333;"></textarea>
+            </div>
+        </div>
 
-        <label>Características (Resumen)</label>
-        <input type="text" id="edit-caract">
-
-        <label>Precio ($)</label>
-        <input type="text" id="edit-precio">
-
-        <button class="btn-guardar" onclick="aplicarCambios()">Guardar Cambios</button>
-        <button onclick="cerrarEditor()" style="background:transparent; color:#666; border:none; width:100%; margin-top:10px; cursor:pointer;">Cancelar</button>
+        <div style="margin-top: 20px; display: flex; gap: 10px;">
+            <button class="btn-guardar" onclick="aplicarCambios()" style="flex:2; background:var(--color-mostaza); font-weight:bold; padding:10px; cursor:pointer;">Guardar Cambios</button>
+            <button onclick="cerrarEditor()" style="flex:1; background:#222; color:white; border:none; cursor:pointer;">Cancelar</button>
+        </div>
     </div>
 </div>
-
 </body>
 </html>
 </body>

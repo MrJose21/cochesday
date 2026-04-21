@@ -17,9 +17,9 @@
             --font-main: 'Georgia', serif;
         }
 
-        body { font-family: var(--font-main); margin: 0; background-color: var(--color-negro); color: var(--color-texto-blanco); }
+        body { font-family: var(--font-main); margin: 0; background-color: var(--color-negro); color: var(--color-texto-blanco); overflow-x: hidden; }
 
-        /* NAV */
+        /* NAV CON ANIMACIÓN */
         nav {
             background: linear-gradient(to bottom, #111, #000);
             border-bottom: 3px solid var(--color-mostaza);
@@ -32,54 +32,78 @@
         .logo-text { font-weight: bold; font-size: 1.6rem; color: var(--color-mostaza); letter-spacing: 2px; }
         .logo-subtext { font-size: 0.9rem; color: #aaa; letter-spacing: 3px; text-transform: uppercase; }
 
-        /* HERO */
+        /* HERO CON ZOOM */
         .hero {
             background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.9)), url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1500&q=80');
             background-size: cover; background-position: center;
-            height: 300px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;
+            height: 350px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;
+            border-bottom: 1px solid var(--color-mostaza);
         }
 
-        /* CATALOGO */
+        .hero h1 { font-size: 3.5rem; text-transform: uppercase; margin-bottom: 10px; }
+
+        /* SECCIÓN DE AUTOS */
         .seccion-autos { padding: 60px 20px; max-width: 1300px; margin: auto; }
         .contenedor-autos { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
-        .tarjeta-auto { background: var(--color-gris-oscuro); border: 1px solid #333; border-radius: 8px; overflow: hidden; cursor: pointer; transition: 0.3s; }
+        
+        .tarjeta-auto { 
+            background: var(--color-gris-oscuro); 
+            border: 1px solid #333; 
+            border-radius: 8px; 
+            overflow: hidden; 
+            cursor: pointer; 
+            transition: 0.3s; 
+        }
+        .tarjeta-auto:hover { transform: translateY(-8px); border-color: var(--color-mostaza); box-shadow: 0 10px 20px rgba(209, 180, 100, 0.2); }
         .tarjeta-auto img { width: 100%; height: 230px; object-fit: cover; border-bottom: 2px solid var(--color-mostaza); }
         .info-auto { padding: 20px; }
-        .marca-modelo { font-size: 1.4rem; color: var(--color-mostaza); margin: 0; }
+        .marca-modelo { font-size: 1.4rem; color: var(--color-mostaza); margin: 0; font-weight: bold; }
         .precio-auto { font-size: 1.8rem; font-weight: bold; margin-top: 15px; }
 
         /* MODAL */
-        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 2000; overflow: auto; }
-        .modal-content { background: #111; margin: 5% auto; padding: 40px; border: 1px solid var(--color-mostaza); width: 80%; max-width: 900px; border-radius: 8px; position: relative; }
-        .close-modal { position: absolute; top: 15px; right: 25px; font-size: 28px; cursor: pointer; color: #aaa; }
-        
-        /* BOTONES EDITAR INLINE */
-        .btn-edit-inline { display: none; background: #222; color: var(--color-mostaza); border: 1px solid var(--color-mostaza); border-radius: 4px; padding: 2px 6px; font-size: 0.6rem; cursor: pointer; margin-left: 5px; vertical-align: middle; }
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 2000; overflow: auto; }
+        .modal-content { background: #111; margin: 5% auto; padding: 40px; border: 1px solid var(--color-mostaza); width: 85%; max-width: 900px; border-radius: 10px; position: relative; }
+        .close-modal { position: absolute; top: 15px; right: 25px; font-size: 30px; cursor: pointer; color: #666; transition: 0.3s; }
+        .close-modal:hover { color: var(--color-mostaza); }
+
+        /* BOTONES EDITAR INLINE (SOLO OWNER) */
+        .btn-edit-inline { 
+            display: none; background: #000; color: var(--color-mostaza); 
+            border: 1px solid var(--color-mostaza); border-radius: 4px; 
+            padding: 3px 8px; font-size: 0.65rem; cursor: pointer; 
+            margin-left: 8px; font-family: sans-serif;
+        }
 
         /* LOGIN */
         .login-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.98); z-index: 3000; justify-content: center; align-items: center; }
         .login-box { background: #000; padding: 40px; border: 2px solid var(--color-mostaza); border-radius: 10px; text-align: center; width: 320px; }
         .login-box input { width: 100%; padding: 12px; margin-bottom: 15px; background: #111; border: 1px solid var(--color-mostaza); color: white; border-radius: 5px; box-sizing: border-box; }
-        #user-greeting { display: none; color: var(--color-mostaza); font-weight: bold; margin-right: 15px; font-size: 0.8rem; }
+        #user-greeting { display: none; color: var(--color-mostaza); font-weight: bold; margin-right: 15px; text-transform: uppercase; font-size: 0.85rem; }
 
-        footer { text-align: center; padding: 40px; border-top: 2px solid var(--color-mostaza); background: #000; color: #aaa; }
+        footer { text-align: center; padding: 40px; border-top: 2px solid var(--color-mostaza); background: #000; color: #aaa; margin-top: 50px; }
     </style>
 </head>
 <body>
 
-    <nav>
+    <nav class="animate__animated animate__fadeInDown">
         <div class="logo-area">
             <div class="logo-text">BRILLA</div>
             <div class="logo-subtext">AUTO SPA</div>
         </div>
         <div>
             <span id="user-greeting"></span>
-            <button id="btn-admin-nav" onclick="document.getElementById('login-owner').style.display='flex'" style="background: transparent; color: var(--color-mostaza); border: 1px solid var(--color-mostaza); cursor: pointer; padding: 5px 10px; font-size: 12px; border-radius: 3px;">Acceso Owner</button>
+            <button id="btn-admin-nav" onclick="document.getElementById('login-owner').style.display='flex'" style="background: transparent; color: var(--color-mostaza); border: 1px solid var(--color-mostaza); cursor: pointer; padding: 6px 12px; font-size: 12px; border-radius: 3px; font-weight: bold;">ACCESO OWNER</button>
         </div>
     </nav>
 
+    <div class="hero">
+        <h1 class="animate__animated animate__zoomIn">Servicio Premium</h1>
+        <p class="animate__animated animate__fadeInUp animate__delay-1s">Experimenta la verdadera excelencia automotriz.</p>
+    </div>
+
     <div class="seccion-autos">
-        <div class="contenedor-autos">
+        <h2 style="text-align:center; color:var(--color-mostaza); letter-spacing: 3px; margin-bottom: 40px;" class="animate__animated animate__fadeIn">CATÁLOGO EXCLUSIVO</h2>
+        <div class="contenedor-autos animate__animated animate__fadeInUp animate__delay-1s">
             <div class="tarjeta-auto" onclick="abrirModal('corvette')">
                 <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=800">
                 <div class="info-auto">
@@ -98,96 +122,110 @@
     </div>
 
     <div id="modal-detalles" class="modal">
-        <div class="modal-content">
+        <div class="modal-content animate__animated animate__fadeInDown">
             <span class="close-modal" onclick="cerrarModal()">&times;</span>
             <div id="contenido-modal"></div>
         </div>
     </div>
 
     <div id="login-owner" class="login-overlay">
-        <div class="login-box">
-            <h2 style="color:var(--color-mostaza);">ACCESO OWNER</h2>
+        <div class="login-box animate__animated animate__pulse">
+            <i class="fas fa-crown" style="font-size: 2.5rem; color: var(--color-mostaza); margin-bottom: 15px;"></i>
+            <h2 style="color:var(--color-mostaza); letter-spacing: 2px;">IDENTIFICACIÓN</h2>
             <input type="text" id="user-owner" placeholder="USUARIO">
             <input type="password" id="pass-owner" placeholder="CONTRASEÑA">
-            <button onclick="validarAcceso()" style="background:var(--color-mostaza); border:none; padding:10px; width:100%; font-weight:bold; cursor:pointer;">ENTRAR</button>
-            <p onclick="document.getElementById('login-owner').style.display='none'" style="color:#666; cursor:pointer; margin-top:10px;">Cerrar</p>
+            <button onclick="validarAcceso()" style="background:var(--color-mostaza); border:none; padding:12px; width:100%; font-weight:bold; cursor:pointer; text-transform: uppercase;">Entrar al Sistema</button>
+            <p onclick="document.getElementById('login-owner').style.display='none'" style="color:#555; cursor:pointer; margin-top:15px; font-size: 0.8rem;">CANCELAR</p>
         </div>
     </div>
+
+    <footer>
+        <p>&copy; 2024 BRILLA AUTO SPA - Exclusividad y Calidad</p>
+    </footer>
 
     <script>
         let esOwner = false;
         let autoActualId = "";
 
-        // BASE DE DATOS LOCAL
+        // DATOS INICIALES (Se usan si la memoria está vacía)
         const defaultCatalogo = {
-            'corvette': { titulo: 'Chevrolet Corvette Z06', precio: '$150,000', descripcion: 'Pintura 3 etapas.', modelo: '2024', motor: '5.5L LT6 V8', potencia: '670 HP' },
-            'ferrari': { titulo: 'Ferrari F8 Tributo', precio: '$380,000', descripcion: 'Homenaje al motor V8.', modelo: '2023', motor: '3.9L Twin-Turbo V8', potencia: '710 HP' }
+            'corvette': { titulo: 'Chevrolet Corvette Z06', precio: '$150,000', descripcion: 'Este Corvette Z06 ha recibido un detallado de pintura premium de 3 etapas.', modelo: '2024', motor: '5.5L LT6 V8', potencia: '670 HP' },
+            'ferrari': { titulo: 'Ferrari F8 Tributo', precio: '$380,000', descripcion: 'Homenaje al motor V8 más icónico. Acabado espejo perfecto.', modelo: '2023', motor: '3.9L Twin-Turbo V8', potencia: '710 HP' }
         };
 
-        // Cargar datos guardados o usar los de fábrica
-        let catalogo = JSON.parse(localStorage.getItem('brilla_spa_data')) || defaultCatalogo;
+        // CARGAR DESDE LOCALSTORAGE
+        let catalogo = JSON.parse(localStorage.getItem('brilla_spa_v3')) || defaultCatalogo;
 
-        function guardarEnMemoria() {
-            localStorage.setItem('brilla_spa_data', JSON.stringify(catalogo));
+        function guardarCambios() {
+            localStorage.setItem('brilla_spa_v3', JSON.stringify(catalogo));
         }
 
-        function actualizarTarjetas() {
+        function refrescarTarjetas() {
             Object.keys(catalogo).forEach(id => {
-                document.getElementById('card-titulo-' + id).innerText = catalogo[id].titulo;
-                document.getElementById('card-precio-' + id).innerText = catalogo[id].precio;
+                const tituloElem = document.getElementById('card-titulo-' + id);
+                const precioElem = document.getElementById('card-precio-' + id);
+                if(tituloElem) tituloElem.innerText = catalogo[id].titulo;
+                if(precioElem) precioElem.innerText = catalogo[id].precio;
             });
         }
 
         function abrirModal(id) {
             autoActualId = id;
             const auto = catalogo[id];
-            const btnStyle = esOwner ? 'inline-block' : 'none';
+            const displayEdit = esOwner ? 'inline-block' : 'none';
+            const imgUrl = id === 'corvette' ? 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=1000' : 'https://images.unsplash.com/photo-1583121274602-3e2820c69888?w=1000';
 
             document.getElementById('contenido-modal').innerHTML = `
-                <h2 style="color: var(--color-mostaza);">${auto.titulo} <button class="btn-edit-inline" style="display:${btnStyle}" onclick="editar('titulo')">EDITAR</button></h2>
-                <div style="display:grid; grid-template-columns: 1fr 1fr; gap:20px;">
+                <h2 style="color: var(--color-mostaza); font-size: 2rem;">${auto.titulo} <button class="btn-edit-inline" style="display:${displayEdit}" onclick="editarCampo('titulo')"><i class="fas fa-edit"></i></button></h2>
+                <img src="${imgUrl}" style="width:100%; border-radius:8px; margin-bottom:20px; border: 1px solid #222;">
+                <div style="display:grid; grid-template-columns: 1.2fr 0.8fr; gap:30px; text-align:left;">
                     <div>
-                        <h3>Descripción <button class="btn-edit-inline" style="display:${btnStyle}" onclick="editar('descripcion')">EDITAR</button></h3>
-                        <p>${auto.descripcion}</p>
-                        <h3>Precio <button class="btn-edit-inline" style="display:${btnStyle}" onclick="editar('precio')">EDITAR</button></h3>
-                        <p style="font-size:1.5rem; color:var(--color-mostaza);">${auto.precio}</p>
+                        <h3 style="color:var(--color-mostaza);">Descripción <button class="btn-edit-inline" style="display:${displayEdit}" onclick="editarCampo('descripcion')"><i class="fas fa-edit"></i></button></h3>
+                        <p style="color:#ccc; line-height:1.6;">${auto.descripcion}</p>
+                        <h3 style="color:white; margin-top:20px;">Precio Sugerido <button class="btn-edit-inline" style="display:${displayEdit}" onclick="editarCampo('precio')"><i class="fas fa-edit"></i></button></h3>
+                        <p style="font-size:2rem; color:var(--color-mostaza); font-weight:bold; margin:0;">${auto.precio}</p>
                     </div>
-                    <div style="background:#222; padding:20px; border-radius:8px;">
-                        <h3>Ficha Técnica</h3>
-                        <p><strong>Modelo:</strong> ${auto.modelo} <button class="btn-edit-inline" style="display:${btnStyle}" onclick="editar('modelo')">EDITAR</button></p>
-                        <p><strong>Motor:</strong> ${auto.motor} <button class="btn-edit-inline" style="display:${btnStyle}" onclick="editar('motor')">EDITAR</button></p>
-                        <p><strong>Potencia:</strong> ${auto.potencia} <button class="btn-edit-inline" style="display:${btnStyle}" onclick="editar('potencia')">EDITAR</button></p>
+                    <div style="background:#1a1a1a; padding:25px; border-radius:10px; border: 1px solid #333;">
+                        <h3 style="margin-top:0; border-bottom:1px solid var(--color-mostaza); padding-bottom:10px;">Ficha Técnica</h3>
+                        <p style="margin:15px 0;"><strong>Modelo:</strong> ${auto.modelo} <button class="btn-edit-inline" style="display:${displayEdit}" onclick="editarCampo('modelo')"><i class="fas fa-edit"></i></button></p>
+                        <p style="margin:15px 0;"><strong>Motor:</strong> ${auto.motor} <button class="btn-edit-inline" style="display:${displayEdit}" onclick="bottom editarCampo('motor')"><i class="fas fa-edit"></i></button></p>
+                        <p style="margin:15px 0;"><strong>Potencia:</strong> ${auto.potencia} <button class="btn-edit-inline" style="display:${displayEdit}" onclick="editarCampo('potencia')"><i class="fas fa-edit"></i></button></p>
                     </div>
+                </div>
+                <div style="margin-top:30px; text-align:center;">
+                    <a href="https://wa.me/123456789" target="_blank" style="background:var(--color-mostaza); color:black; padding:15px 30px; text-decoration:none; font-weight:bold; border-radius:5px; display:inline-block;">CONSULTAR POR WHATSAPP</a>
                 </div>
             `;
             document.getElementById('modal-detalles').style.display = 'block';
         }
 
-        function editar(campo) {
-            const nuevoValor = prompt("Editar " + campo + ":", catalogo[autoActualId][campo]);
-            if (nuevoValor !== null) {
+        function editarCampo(campo) {
+            const nuevoValor = prompt("Actualizar " + campo.toUpperCase() + ":", catalogo[autoActualId][campo]);
+            if (nuevoValor !== null && nuevoValor !== "") {
                 catalogo[autoActualId][campo] = nuevoValor;
-                guardarEnMemoria(); // AQUÍ SE GUARDA PERMANENTE
-                actualizarTarjetas();
-                abrirModal(autoActualId);
+                guardarCambios(); // GUARDADO PERMANENTE
+                refrescarTarjetas();
+                abrirModal(autoActualId); // Recargar modal para ver cambios
             }
         }
 
         function validarAcceso() {
-            if (document.getElementById('user-owner').value === "DAY ROJAS" && document.getElementById('pass-owner').value === "POTOMAC2026") {
+            const u = document.getElementById('user-owner').value;
+            const p = document.getElementById('pass-owner').value;
+            if (u === "DAY ROJAS" && p === "POTOMAC2026") {
                 esOwner = true;
                 document.getElementById('login-owner').style.display = 'none';
-                document.getElementById('user-greeting').innerText = "OWNER: DAY ROJAS";
+                document.getElementById('user-greeting').innerHTML = '<i class="fas fa-user-shield"></i> ' + u;
                 document.getElementById('user-greeting').style.display = 'inline-block';
                 document.getElementById('btn-admin-nav').style.display = 'none';
-                alert("Modo Edición Permanente Activado.");
-            } else { alert("Error"); }
+                alert("Modo Edición Activado para Brilla Auto Spa.");
+            } else { alert("Acceso Denegado."); }
         }
 
         function cerrarModal() { document.getElementById('modal-detalles').style.display = 'none'; }
         
-        // Iniciar tarjetas al cargar
-        actualizarTarjetas();
+        // Inicialización
+        refrescarTarjetas();
     </script>
 </body>
 </html>

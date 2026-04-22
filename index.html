@@ -28,11 +28,11 @@
             overflow-x: hidden; 
         }
 
-        /* NAVEGACIÓN */
+        /* NAVEGACIÓN CORREGIDA */
         nav {
             background: #000;
             border-bottom: 2px solid var(--color-mostaza);
-            padding: 10px 30px;
+            padding: 10px 20px;
             display: flex; 
             justify-content: space-between; 
             align-items: center;
@@ -42,9 +42,22 @@
         }
 
         .nav-logo img { height: 50px; }
-        .nav-buttons { display: flex; align-items: center; gap: 20px; }
+        .nav-buttons { display: flex; align-items: center; gap: 10px; }
         #user-greeting { display: none; color: var(--color-mostaza); font-weight: bold; font-size: 0.9rem; }
         
+        /* Estilo para el selector de idioma */
+        #language-selector {
+            background: transparent;
+            color: var(--color-mostaza);
+            border: 1px solid var(--color-mostaza);
+            border-radius: 4px;
+            padding: 4px 8px;
+            font-size: 11px;
+            cursor: pointer;
+            font-weight: bold;
+            outline: none;
+        }
+
         .btn-gold-outline {
             background: transparent;
             color: var(--color-mostaza);
@@ -205,9 +218,9 @@
             <img src="https://raw.githubusercontent.com/MrJose21/cochesday/850bcbb51601be4a3a685ab1c271e31096074419/Brilla%20Auto%20Spa%20LOGO.png" alt="Logo">
         </div>
         <div class="nav-buttons">
-            <select id="language-selector" onchange="changeLanguage(this.value)" style="background: transparent; color: var(--color-mostaza); border: 1px solid var(--color-mostaza); border-radius: 4px; padding: 5px; font-size: 11px; cursor: pointer; font-weight: bold; outline: none;">
-                <option value="es" style="background: black;">ESP 🇪🇸</option>
-                <option value="en" style="background: black;">ENG 🇺🇸</option>
+            <select id="language-selector" onchange="changeLanguage(this.value)">
+                <option value="es">ESP 🇪🇸</option>
+                <option value="en">ENG 🇺🇸</option>
             </select>
 
             <span id="user-greeting"></span>
@@ -220,8 +233,8 @@
 
     <div class="hero">
         <img src="https://raw.githubusercontent.com/MrJose21/cochesday/1a562aa7f60a3f2cea6a5107fc5a288a2d6195d0/Brilla_Auto_Spa_LOGO-removebg-preview.png" alt="Logo Hero">
-        <h1>CATÁLOGO PREMIUM</h1>
-        <p>Exclusividad por Day Rojas</p>
+        <h1 id="txt-hero-title">CATÁLOGO PREMIUM</h1>
+        <p id="txt-hero-subtitle">Exclusividad por Day Rojas</p>
     </div>
 
     <div class="services-strip">
@@ -233,7 +246,7 @@
     </div>
 
     <div class="container">
-        <h2 style="text-align: center; color: var(--color-mostaza); letter-spacing: 3px; margin-bottom: 40px;">VEHÍCULOS DISPONIBLES</h2>
+        <h2 id="txt-avail-cars" style="text-align: center; color: var(--color-mostaza); letter-spacing: 3px; margin-bottom: 40px;">VEHÍCULOS DISPONIBLES</h2>
         <div id="lista-autos" class="grid-autos"></div>
     </div>
 
@@ -298,8 +311,8 @@
         const autosRef = ref(db, 'autos');
 
         let esAdmin = false;
+        let currentData = null;
         
-        // --- SISTEMA DE TRADUCCIÓN ---
         const translations = {
             es: {
                 heroTitle: "CATÁLOGO PREMIUM",
@@ -325,23 +338,23 @@
             }
         };
 
-        // Función para cambiar idioma
         window.changeLanguage = (lang) => {
             localStorage.setItem('selectedLang', lang);
             aplicarTraduccion(lang);
         };
 
         function aplicarTraduccion(lang) {
-            document.getElementById('txt-hero-title').innerText = translations[lang].heroTitle;
-            document.getElementById('txt-hero-subtitle').innerText = translations[lang].heroSubtitle;
-            document.getElementById('txt-avail-cars').innerText = translations[lang].availCars;
-            // Refrescar la lista de autos para traducir botones internos
+            const hTitle = document.getElementById('txt-hero-title');
+            const hSub = document.getElementById('txt-hero-subtitle');
+            const hAvail = document.getElementById('txt-avail-cars');
+            
+            if(hTitle) hTitle.innerText = translations[lang].heroTitle;
+            if(hSub) hSub.innerText = translations[lang].heroSubtitle;
+            if(hAvail) hAvail.innerText = translations[lang].availCars;
+            
             renderAutos(currentData);
         }
 
-        let currentData = null; // Para guardar los datos de Firebase y re-traducir sin recargar
-
-        // --- FUNCIONES DE SESIÓN Y DATOS ---
         window.actualizarLabel = (input) => {
             document.getElementById('label-fotos').innerText = input.files.length + " fotos seleccionadas";
         };
@@ -381,9 +394,12 @@
 
             push(autosRef, nuevo);
             document.getElementById('modal-pub').style.display = 'none';
+            // Limpiar campos
+            document.getElementById('in-titulo').value = "";
+            document.getElementById('in-desc').value = "";
+            document.getElementById('label-fotos').innerText = "Selecciona fotos del vehículo";
         };
 
-        // Escuchar cambios en Firebase
         onValue(autosRef, (snapshot) => {
             currentData = snapshot.val();
             renderAutos(currentData);
@@ -437,9 +453,11 @@
         };
 
         window.borrar = (key) => {
-            if(confirm("¿Seguro?")) remove(ref(db, 'autos/' + key));
+            if(confirm("¿Seguro que deseas eliminar esta publicación?")) remove(ref(db, 'autos/' + key));
         };
 
         // Al cargar, aplicar idioma guardado
         aplicarTraduccion(localStorage.getItem('selectedLang') || 'es');
     </script>
+</body>
+</html>

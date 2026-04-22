@@ -205,6 +205,11 @@
             <img src="https://raw.githubusercontent.com/MrJose21/cochesday/850bcbb51601be4a3a685ab1c271e31096074419/Brilla%20Auto%20Spa%20LOGO.png" alt="Logo">
         </div>
         <div class="nav-buttons">
+            <select id="language-selector" onchange="changeLanguage(this.value)" style="background: transparent; color: var(--color-mostaza); border: 1px solid var(--color-mostaza); border-radius: 4px; padding: 5px; font-size: 11px; cursor: pointer; font-weight: bold; outline: none;">
+                <option value="es" style="background: black;">ESP 🇪🇸</option>
+                <option value="en" style="background: black;">ENG 🇺🇸</option>
+            </select>
+
             <span id="user-greeting"></span>
             <button id="btn-pub" class="btn-gold-fill" onclick="document.getElementById('modal-pub').style.display='flex'">+ PUBLICAR</button>
             <button id="btn-login" class="btn-gold-outline" onclick="document.getElementById('modal-login').style.display='flex'">OWNER</button>

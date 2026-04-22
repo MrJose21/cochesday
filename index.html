@@ -274,7 +274,7 @@
         </div>
     </div>
 
-    <script type="module">
+   <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
         import { getDatabase, ref, push, onValue, remove } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
 
@@ -293,8 +293,50 @@
         const autosRef = ref(db, 'autos');
 
         let esAdmin = false;
+        
+        // --- SISTEMA DE TRADUCCIÓN ---
+        const translations = {
+            es: {
+                heroTitle: "CATÁLOGO PREMIUM",
+                heroSubtitle: "Exclusividad por Day Rojas",
+                availCars: "VEHÍCULOS DISPONIBLES",
+                btnDetails: "VER DETALLES",
+                btnContact: "CONTACTAR POR WHATSAPP",
+                labelYear: "Año",
+                labelEngine: "Motor",
+                labelPower: "Potencia",
+                deleteBtn: "ELIMINAR PUBLICACIÓN"
+            },
+            en: {
+                heroTitle: "PREMIUM CATALOG",
+                heroSubtitle: "Exclusivity by Day Rojas",
+                availCars: "AVAILABLE VEHICLES",
+                btnDetails: "VIEW DETAILS",
+                btnContact: "CONTACT VIA WHATSAPP",
+                labelYear: "Year",
+                labelEngine: "Engine",
+                labelPower: "Power",
+                deleteBtn: "DELETE POST"
+            }
+        };
 
-        // FUNCIONES GLOBALES PARA QUE EL HTML LAS VEA
+        // Función para cambiar idioma
+        window.changeLanguage = (lang) => {
+            localStorage.setItem('selectedLang', lang);
+            aplicarTraduccion(lang);
+        };
+
+        function aplicarTraduccion(lang) {
+            document.getElementById('txt-hero-title').innerText = translations[lang].heroTitle;
+            document.getElementById('txt-hero-subtitle').innerText = translations[lang].heroSubtitle;
+            document.getElementById('txt-avail-cars').innerText = translations[lang].availCars;
+            // Refrescar la lista de autos para traducir botones internos
+            renderAutos(currentData);
+        }
+
+        let currentData = null; // Para guardar los datos de Firebase y re-traducir sin recargar
+
+        // --- FUNCIONES DE SESIÓN Y DATOS ---
         window.actualizarLabel = (input) => {
             document.getElementById('label-fotos').innerText = input.files.length + " fotos seleccionadas";
         };
@@ -309,7 +351,7 @@
                 document.getElementById('btn-pub').style.display = 'block';
                 document.getElementById('user-greeting').innerText = "DAY ROJAS";
                 document.getElementById('user-greeting').style.display = 'block';
-                // El render se dispara solo por onValue
+                renderAutos(currentData);
             } else { alert("Datos incorrectos"); }
         };
 
@@ -329,27 +371,23 @@
                 anio: document.getElementById('in-anio').value || '-',
                 motor: document.getElementById('in-motor').value || '-',
                 potencia: document.getElementById('in-potencia').value || '-',
-                fotos: fotosBase64,
-                fecha: Date.now()
+                fotos: fotosBase64
             };
 
             push(autosRef, nuevo);
             document.getElementById('modal-pub').style.display = 'none';
-            // Limpiar formulario
-            document.getElementById('in-titulo').value = "";
-            document.getElementById('in-desc').value = "";
-            document.getElementById('in-precio').value = "";
-            document.getElementById('in-anio').value = "";
-            document.getElementById('in-motor').value = "";
-            document.getElementById('in-potencia').value = "";
-            document.getElementById('label-fotos').innerText = "Selecciona fotos del vehículo";
         };
 
-        // CARGA EN TIEMPO REAL DESDE FIREBASE
+        // Escuchar cambios en Firebase
         onValue(autosRef, (snapshot) => {
+            currentData = snapshot.val();
+            renderAutos(currentData);
+        });
+
+        function renderAutos(data) {
             const lista = document.getElementById('lista-autos');
+            const lang = localStorage.getItem('selectedLang') || 'es';
             lista.innerHTML = "";
-            const data = snapshot.val();
             
             if (data) {
                 Object.keys(data).forEach(key => {
@@ -362,43 +400,41 @@
                                 <p style="font-size:0.8rem; color:#666;">${a.motor} | ${a.anio}</p>
                                 <div style="display:flex; justify-content:space-between; align-items:center; margin-top:15px;">
                                     <span style="font-weight:bold; color:white;">${a.precio}</span>
-                                    <button class="btn-gold-outline" onclick="verDetalles('${key}')" style="font-size:9px;">VER DETALLES</button>
+                                    <button class="btn-gold-outline" onclick="verDetalles('${key}')" style="font-size:9px;">${translations[lang].btnDetails}</button>
                                 </div>
-                                ${esAdmin ? `<button onclick="borrar('${key}')" style="background:#ff4444; color:white; border:none; margin-top:10px; width:100%; padding:8px; border-radius:4px; cursor:pointer; font-size:10px; font-weight:bold;">ELIMINAR PUBLICACIÓN</button>` : ''}
+                                ${esAdmin ? `<button onclick="borrar('${key}')" style="background:#ff4444; color:white; border:none; margin-top:10px; width:100%; padding:8px; border-radius:4px; cursor:pointer; font-size:10px; font-weight:bold;">${translations[lang].deleteBtn}</button>` : ''}
                             </div>
                         </div>
                     `;
                 });
             }
-        });
+        }
 
         window.verDetalles = (key) => {
-            onValue(ref(db, 'autos/' + key), (snapshot) => {
-                const auto = snapshot.val();
-                const contenido = document.getElementById('detalle-contenido');
-                contenido.innerHTML = `
-                    <h2 style="color:var(--color-mostaza);">${auto.titulo}</h2>
-                    <div class="detail-gallery">
-                        ${auto.fotos.map(f => `<img src="${f}">`).join('')}
-                    </div>
-                    <p style="color:#ccc; line-height:1.5;">${auto.desc}</p>
-                    <div style="background:#111; padding:20px; border-radius:10px; display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:20px;">
-                        <p><b>Año:</b> ${auto.anio}</p>
-                        <p><b>Motor:</b> ${auto.motor}</p>
-                        <p><b>Potencia:</b> ${auto.potencia}</p>
-                        <p style="color:var(--color-mostaza); font-size:1.2rem;"><b>${auto.precio}</b></p>
-                    </div>
-                    <a href="https://wa.me/15716600734" target="_blank" style="display:block; text-align:center; background:#25d366; color:white; text-decoration:none; padding:15px; border-radius:8px; margin-top:20px; font-weight:bold;">CONTACTAR POR WHATSAPP</a>
-                `;
-                document.getElementById('modal-detalles').style.display = 'flex';
-            }, { onlyOnce: true });
+            const auto = currentData[key];
+            const lang = localStorage.getItem('selectedLang') || 'es';
+            const contenido = document.getElementById('detalle-contenido');
+            contenido.innerHTML = `
+                <h2 style="color:var(--color-mostaza);">${auto.titulo}</h2>
+                <div class="detail-gallery">
+                    ${auto.fotos.map(f => `<img src="${f}">`).join('')}
+                </div>
+                <p style="color:#ccc; line-height:1.5;">${auto.desc}</p>
+                <div style="background:#111; padding:20px; border-radius:10px; display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:20px;">
+                    <p><b>${translations[lang].labelYear}:</b> ${auto.anio}</p>
+                    <p><b>${translations[lang].labelEngine}:</b> ${auto.motor}</p>
+                    <p><b>${translations[lang].labelPower}:</b> ${auto.potencia}</p>
+                    <p style="color:var(--color-mostaza); font-size:1.2rem;"><b>${auto.precio}</b></p>
+                </div>
+                <a href="https://wa.me/15716600734" target="_blank" style="display:block; text-align:center; background:#25d366; color:white; text-decoration:none; padding:15px; border-radius:8px; margin-top:20px; font-weight:bold;">${translations[lang].btnContact}</a>
+            `;
+            document.getElementById('modal-detalles').style.display = 'flex';
         };
 
         window.borrar = (key) => {
-            if(confirm("¿Estás seguro de eliminar este vehículo del catálogo?")) {
-                remove(ref(db, 'autos/' + key));
-            }
+            if(confirm("¿Seguro?")) remove(ref(db, 'autos/' + key));
         };
+
+        // Al cargar, aplicar idioma guardado
+        aplicarTraduccion(localStorage.getItem('selectedLang') || 'es');
     </script>
-</body>
-</html>

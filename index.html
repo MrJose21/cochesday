@@ -154,6 +154,49 @@
         .star-rating i.active { color: var(--color-mostaza); }
 
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        /* Ajuste para que imágenes largas quepan sin cortarse */
+.img-container-premium {
+    width: 100%;
+    height: 350px;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid #222;
+}
+
+.img-container-premium img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain; /* Esto hace que la foto larga se ajuste al tamaño */
+}
+
+/* Flechas de navegación */
+.nav-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.6);
+    color: var(--color-mostaza);
+    border: 1px solid var(--color-mostaza);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    transition: 0.3s;
+}
+
+.nav-arrow:hover { background: var(--color-mostaza); color: black; }
+.arrow-left { left: 10px; }
+.arrow-right { right: 10px; }
     </style>
 </head>
 <body>
@@ -540,27 +583,54 @@
                 });
             }
         }
+        let fotoActualIndice = 0;
+let fotosActualesArray = [];
 
-        window.verDetalles = (seccion, id) => {
-            const item = catalogos[seccion][id];
-            const d = dic[document.getElementById('language-selector').value];
-            document.getElementById('detalle-contenido').innerHTML = `
-                <h2 style="color:var(--color-mostaza); text-transform: uppercase;">${item.titulo}</h2>
-                <div style="display:flex; gap:10px; overflow-x:auto; padding-bottom:15px;">
-                    ${(item.fotos || []).map(f => `<img src="${f}" style="height:150px; border-radius:8px; border:1px solid var(--color-mostaza);">`).join('')}
-                </div>
-                <p style="color:#ccc; line-height:1.6;">${item.desc}</p>
-                <div style="background:#111; padding:15px; border-radius:8px; display:grid; grid-template-columns:1fr 1fr; gap:10px; border: 1px solid #222;">
-                    <p><b>${d.modal_a}:</b> ${item.anio}</p><p><b>${d.modal_m}:</b> ${item.motor}</p>
-                    <p><b>${d.modal_po}:</b> ${item.potencia}</p><p style="color:var(--color-mostaza); font-weight:bold;">${item.precio}</p>
-                </div>
-                <a href="https://wa.me/15716600734" target="_blank" style="display:block; text-align:center; background:#25d366; color:white; text-decoration:none; padding:15px; border-radius:8px; margin-top:20px; font-weight:bold;">
-                    <i class="fab fa-whatsapp"></i> ${d.modal_c}
-                </a>`;
-            document.getElementById('modal-detalles').style.display = 'flex';
-        };
+window.verDetalles = (seccion, id) => {
+    const item = catalogos[seccion][id];
+    const d = dic[document.getElementById('language-selector').value];
+    fotosActualesArray = item.fotos || ['https://via.placeholder.com/300x200?text=No+Image'];
+    fotoActualIndice = 0;
 
-        window.eliminarPub = (seccion, id) => {
+    const actualizarImagenModal = () => {
+        const imgElement = document.getElementById('foto-detalles');
+        imgElement.src = fotosActualesArray[fotoActualIndice];
+        // Ocultar flechas si solo hay una foto
+        document.querySelector('.arrow-left').style.display = fotosActualesArray.length > 1 ? 'flex' : 'none';
+        document.querySelector('.arrow-right').style.display = fotosActualesArray.length > 1 ? 'flex' : 'none';
+    };
+
+    document.getElementById('detalle-contenido').innerHTML = `
+        <h2 style="color:var(--color-mostaza); text-transform: uppercase;">${item.titulo}</h2>
+        
+        <div class="img-container-premium">
+            <div class="nav-arrow arrow-left" onclick="cambiarFoto(-1)"><i class="fas fa-chevron-left"></i></div>
+            <img id="foto-detalles" src="${fotosActualesArray[0]}">
+            <div class="nav-arrow arrow-right" onclick="cambiarFoto(1)"><i class="fas fa-chevron-right"></i></div>
+        </div>
+
+        <p style="color:#ccc; line-height:1.6; margin-top:20px;">${item.desc}</p>
+        <div style="background:#111; padding:15px; border-radius:8px; display:grid; grid-template-columns:1fr 1fr; gap:10px; border: 1px solid #222;">
+            <p><b>${d.modal_a}:</b> ${item.anio}</p><p><b>${d.modal_m}:</b> ${item.motor}</p>
+            <p><b>${d.modal_po}:</b> ${item.potencia}</p><p style="color:var(--color-mostaza); font-weight:bold;">${item.precio}</p>
+        </div>
+        <a href="https://wa.me/15716600734" target="_blank" style="display:block; text-align:center; background:#25d366; color:white; text-decoration:none; padding:15px; border-radius:8px; margin-top:20px; font-weight:bold;">
+            <i class="fab fa-whatsapp"></i> ${d.modal_c}
+        </a>`;
+    
+    document.getElementById('modal-detalles').style.display = 'flex';
+    actualizarImagenModal();
+};
+
+// Función para cambiar fotos con las flechas
+window.cambiarFoto = (direccion) => {
+    fotoActualIndice += direccion;
+    if (fotoActualIndice < 0) fotoActualIndice = fotosActualesArray.length - 1;
+    if (fotoActualIndice >= fotosActualesArray.length) fotoActualIndice = 0;
+    document.getElementById('foto-detalles').src = fotosActualesArray[fotoActualIndice];
+};
+
+    window.eliminarPub = (seccion, id) => {
             if(confirm("¿Eliminar publicación?")) remove(ref(db, `publicaciones/${seccion}/${id}`));
         };
     </script>

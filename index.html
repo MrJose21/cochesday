@@ -158,33 +158,34 @@
         /* Ajuste para que imágenes largas quepan sin cortarse */
 .img-container-premium {
     width: 100%;
-    height: 350px;
+    height: 400px; /* Altura fija para que la web sea estable */
     background: #000;
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
-    border-radius: 10px;
+    border-radius: 12px;
     overflow: hidden;
     border: 1px solid #222;
+    margin-bottom: 15px;
 }
 
 .img-container-premium img {
     max-width: 100%;
     max-height: 100%;
-    object-fit: contain; /* Esto hace que la foto larga se ajuste al tamaño */
+    object-fit: contain; /* Ajusta la imagen larga al tamaño del cuadro */
 }
 
-/* Flechas de navegación */
+/* Flechas laterales premium */
 .nav-arrow {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: rgba(0,0,0,0.6);
+    background: rgba(0,0,0,0.7);
     color: var(--color-mostaza);
     border: 1px solid var(--color-mostaza);
-    width: 40px;
-    height: 40px;
+    width: 45px;
+    height: 45px;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -195,8 +196,8 @@
 }
 
 .nav-arrow:hover { background: var(--color-mostaza); color: black; }
-.arrow-left { left: 10px; }
-.arrow-right { right: 10px; }
+.arrow-left { left: 15px; }
+.arrow-right { right: 15px; }
     </style>
 </head>
 <body>
@@ -228,6 +229,7 @@
         <a href="#" class="sidebar-link" id="link-coches" onclick="showSection('coches')"><i class="fas fa-car"></i> <span>COCHES EN VENTA</span>
         <a href="#" class="sidebar-link" id="link-comunicacion" onclick="showSection('comunicacion')"><i class="fas fa-phone-alt"></i> <span>COMUNICACIÓN</span></a>
         <a href="#" class="sidebar-link" id="link-reseñas" onclick="showSection('reseñas')"><i class="fas fa-star"></i> <span>RESEÑAS</span></a>
+        <a href="#" class="sidebar-link" id="link-Metodos de pago" onclick="showSection('Moneda')"><i class="fas fa-mo"></i> <span>METODOS DE PAGO</span>
         <a href="#" id="sidebar-pub" class="sidebar-link" style="display:none; color: var(--color-mostaza);" onclick="document.getElementById('modal-pub').style.display='flex'"><i class="fas fa-plus-circle"></i> <span id="txt-nueva-pub">NUEVA PUBLICACIÓN</span></a>
 </a>
     </div>

@@ -308,7 +308,7 @@
             </div>
             <div class="grid-inputs">
                 <div><label class="form-label" id="lbl-motor">MOTOR</label><input type="text" id="in-motor" class="form-input"></div>
-                <div><label class="form-label" id="lbl-potencia">POTENCIA / CALIFICACIÓN</label><input type="text" id="in-potencia" class="form-input"></div>
+                <div><label class="form-label" id="lbl-millas">MILLAS / CALIFICACIÓN</label><input type="text" id="in-millas" class="form-input"></div>
             </div>
             <button class="btn-confirm" id="btn-publicar-final" onclick="guardarPublicacion()">CONFIRMAR Y PUBLICAR</button>
         </div>
@@ -388,9 +388,9 @@
                 hero_t: "BRILLA AUTO SPA", hero_s: "CALIDAD Y PASIÓN EN CADA DETALLE", hist_t: "NUESTRA HISTORIA", hist_p: "Brilla Auto Spa fue fundado en 2025 bajo la visión de Elvin Rojas García. Con más de 10 años de trayectoria técnica en talleres profesionales de detallado, Elvin decidió crear un espacio donde la precisión y el cuidado personal son la prioridad absoluta.",
                 t_coc: "COCHES EN VENTA", t_lim: "CATÁLOGO DE TRABAJOS (DETAILING)", t_mec: "TRABAJOS DE MECÁNICA LIGERA", t_res: "LO QUE DICEN NUESTROS CLIENTES",
                 c_t: "¿CÓMO CONTACTARNOS?", c_p: "Atención personalizada en los siguientes idiomas:", c_b: "WHATSAPP DIRECTO",
-                pub_h: "NUEVA PUBLICACIÓN", pub_f: "Selecciona fotos", pub_s: "SECCIÓN", pub_n: "NOMBRE VEHÍCULO", pub_d: "DESCRIPCIÓN", pub_pr: "PRECIO", pub_a: "AÑO", pub_m: "MOTOR", pub_po: "POTENCIA", pub_b: "CONFIRMAR",
+                pub_h: "NUEVA PUBLICACIÓN", pub_f: "Selecciona fotos", pub_s: "SECCIÓN", pub_n: "NOMBRE VEHÍCULO", pub_d: "DESCRIPCIÓN", pub_pr: "PRECIO", pub_a: "AÑO", pub_m: "MOTOR", pub_po: "MILLAS", pub_b: "CONFIRMAR",
                 btn_dejar_resena: "DEJAR UNA RESEÑA", h2_resena: "TU OPINIÓN NOS IMPORTA", lbl_tu_nombre: "TU NOMBRE", lbl_tu_cal: "CALIFICACIÓN", lbl_tu_desc: "DESCRIPCIÓN", btn_enviar: "PUBLICAR RESEÑA",
-                card_d: "DETALLES", card_e: "ELIMINAR", modal_p: "Precio", modal_a: "Año", modal_m: "Motor", modal_po: "Potencia", modal_c: "CONTACTAR"
+                card_d: "DETALLES", card_e: "ELIMINAR", modal_p: "Precio", modal_a: "Año", modal_m: "Motor", modal_po: "Millas", modal_c: "CONTACTAR"
             },
             en: {
                 menu_home: "HOME PAGE", menu_coc: "CARS FOR SALE", menu_lim: "CLEANING & DETAILING", menu_mec: "MECHANICS", menu_com: "COMMUNICATION", menu_res: "REVIEWS", menu_pub: "NEW POST",
@@ -399,7 +399,7 @@
                 c_t: "HOW TO CONTACT US?", c_p: "Personalized attention in:", c_b: "DIRECT WHATSAPP",
                 pub_h: "NEW PUBLICATION", pub_f: "Select photos", pub_s: "SECTION", pub_n: "VEHICLE NAME", pub_d: "DESCRIPTION", pub_pr: "PRICE", pub_a: "YEAR", pub_m: "ENGINE", pub_po: "POWER", pub_b: "CONFIRM",
                 btn_dejar_resena: "LEAVE A REVIEW", h2_resena: "YOUR OPINION MATTERS", lbl_tu_nombre: "YOUR NAME", lbl_tu_cal: "RATING", lbl_tu_desc: "DESCRIPTION", btn_enviar: "POST REVIEW",
-                card_d: "DETAILS", card_e: "DELETE", modal_p: "Price", modal_a: "Year", modal_m: "Engine", modal_po: "Power", modal_c: "CONTACT"
+                card_d: "DETAILS", card_e: "DELETE", modal_p: "Price", modal_a: "Year", modal_m: "Engine", modal_po: "Miles", modal_c: "CONTACT"
             }
         };
 
@@ -431,7 +431,7 @@
             document.getElementById('lbl-precio').innerText = d.pub_pr;
             document.getElementById('lbl-anio').innerText = d.pub_a;
             document.getElementById('lbl-motor').innerText = d.pub_m;
-            document.getElementById('lbl-potencia').innerText = d.pub_po;
+            document.getElementById('lbl-millas').innerText = d.pub_po;
             document.getElementById('btn-publicar-final').innerText = d.pub_b;
             document.getElementById('btn-dejar-resena').innerText = d.btn_dejar_resena;
             document.getElementById('h2-nueva-resena').innerText = d.h2_resena;
@@ -475,7 +475,7 @@
                 precio: document.getElementById('in-precio').value || '-',
                 anio: document.getElementById('in-anio').value || '-',
                 motor: document.getElementById('in-motor').value || '-',
-                potencia: document.getElementById('in-potencia').value || '-',
+                millas: document.getElementById('in-millas').value || '-',
                 fotos: fotosTemporales,
                 fecha: Date.now()
             };
@@ -529,7 +529,7 @@
             const nuevaReseña = {
                 titulo: nombre,
                 desc: desc,
-                potencia: calificacionSeleccionada + " ⭐", // Guardamos las estrellas en el campo potencia
+                millas: calificacionSeleccionada + " ⭐", // Guardamos las estrellas en el campo potencia
                 fecha: Date.now()
             };
 
@@ -560,7 +560,7 @@
                     if(seccion === 'reseñas') {
                         container.innerHTML += `
                             <div class="card animate__animated animate__fadeIn premium-card" style="margin:0;">
-                                <div style="color:var(--color-mostaza); margin-bottom:10px;">${item.potencia || ''}</div>
+                                <div style="color:var(--color-mostaza); margin-bottom:10px;">${item.millas || ''}</div>
                                 <p style="font-style: italic; color: #ccc;">"${item.desc}"</p>
                                 <p style="text-align: right; color: var(--color-mostaza); font-weight:bold; margin:0;">- ${item.titulo}</p>
                                 ${esAdmin ? `<button class="btn-gold-outline" style="background:#ff4444; color:white; border:none; margin-top:15px; width:100%;" onclick="eliminarPub('reseñas', '${item.id}')">${d.card_e}</button>` : ''}
@@ -613,7 +613,7 @@ window.verDetalles = (seccion, id) => {
         <p style="color:#ccc; line-height:1.6; margin-top:20px;">${item.desc}</p>
         <div style="background:#111; padding:15px; border-radius:8px; display:grid; grid-template-columns:1fr 1fr; gap:10px; border: 1px solid #222;">
             <p><b>${d.modal_a}:</b> ${item.anio}</p><p><b>${d.modal_m}:</b> ${item.motor}</p>
-            <p><b>${d.modal_po}:</b> ${item.potencia}</p><p style="color:var(--color-mostaza); font-weight:bold;">${item.precio}</p>
+            <p><b>${d.modal_po}:</b> ${item.millas}</p><p style="color:var(--color-mostaza); font-weight:bold;">${item.precio}</p>
         </div>
         <a href="https://wa.me/15716600734" target="_blank" style="display:block; text-align:center; background:#25d366; color:white; text-decoration:none; padding:15px; border-radius:8px; margin-top:20px; font-weight:bold;">
             <i class="fab fa-whatsapp"></i> ${d.modal_c}

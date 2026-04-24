@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Brilla Auto Spa | Catálogo Premium</title>
+    <title>Brilla Auto Spa | Premium Hub</title>
     
     <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/MrJose21/cochesday/2fc9948b3ad68451d7661ea1d7c6692337e8bd41/logo%20de%20fondo.jpg">
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
 
@@ -20,279 +19,299 @@
             --font-main: 'Georgia', serif;
         }
 
-        body { 
-            font-family: var(--font-main); 
-            margin: 0; 
-            background-color: var(--color-negro); 
-            color: var(--color-texto); 
-            overflow-x: hidden; 
-        }
+        body { font-family: var(--font-main); margin: 0; background-color: var(--color-negro); color: var(--color-texto); overflow-x: hidden; }
 
-        /* NAVEGACIÓN CORREGIDA */
+        /* HEADER (NAVBAR) */
         nav {
-            background: #000;
+            background: var(--color-negro);
             border-bottom: 2px solid var(--color-mostaza);
-            padding: 10px 20px;
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center;
-            position: sticky; 
-            top: 0; 
-            z-index: 1000;
+            padding: 15px 20px;
+            display: flex; align-items: center; justify-content: space-between;
+            position: sticky; top: 0; z-index: 2000;
         }
 
-        .nav-logo img { height: 50px; }
-        .nav-buttons { display: flex; align-items: center; gap: 10px; }
-        #user-greeting { display: none; color: var(--color-mostaza); font-weight: bold; font-size: 0.9rem; }
-        
-        /* Estilo para el selector de idioma */
+        .nav-left { display: flex; align-items: center; gap: 20px; }
+        .nav-right { display: flex; align-items: center; gap: 15px; }
+
+        .menu-icon { font-size: 24px; color: var(--color-mostaza); cursor: pointer; }
+        .nav-logo-text { font-size: 1.1rem; font-weight: bold; color: var(--color-mostaza); letter-spacing: 2px; }
+
         #language-selector {
             background: transparent;
             color: var(--color-mostaza);
             border: 1px solid var(--color-mostaza);
-            border-radius: 4px;
-            padding: 4px 8px;
-            font-size: 11px;
-            cursor: pointer;
-            font-weight: bold;
-            outline: none;
-        }
-
-        .btn-gold-outline {
-            background: transparent;
-            color: var(--color-mostaza);
-            border: 1px solid var(--color-mostaza);
-            padding: 5px 15px;
+            padding: 5px 10px;
             border-radius: 4px;
             cursor: pointer;
+            font-family: var(--font-main);
             font-weight: bold;
-            font-size: 11px;
-            text-transform: uppercase;
+        }
+        #language-selector option { background-color: var(--color-gris-oscuro); color: white; }
+
+        /* SIDEBAR */
+        .sidebar {
+            height: 100%; width: 0; position: fixed; z-index: 3000;
+            top: 0; left: 0; background-color: var(--color-gris-oscuro);
+            overflow-x: hidden; transition: 0.3s; border-right: 1px solid var(--color-mostaza);
         }
 
-        .btn-gold-fill {
-            background: var(--color-mostaza);
-            color: black;
-            border: none;
-            padding: 6px 16px;
-            border-radius: 4px;
-            font-weight: bold;
-            font-size: 11px;
-            cursor: pointer;
-            display: none;
-        }
+        .sidebar-header { background: var(--color-negro); padding: 30px 20px; border-bottom: 1px solid var(--color-mostaza); text-align: center; }
+        .sidebar-header img { width: 120px; }
 
-        .promo-bar {
-            background: var(--color-mostaza);
-            color: black;
-            text-align: center;
-            padding: 8px;
-            font-weight: bold;
-            font-size: 0.85rem;
-            letter-spacing: 1px;
+        .sidebar-link {
+            padding: 15px 25px; text-decoration: none; font-size: 1rem; color: var(--color-texto);
+            display: flex; align-items: center; border-bottom: 1px solid #111; transition: 0.2s;
         }
+        .sidebar-link:hover { background-color: #111; color: var(--color-mostaza); }
+        .sidebar-link i { margin-right: 15px; color: var(--color-mostaza); width: 20px; text-align: center; }
 
-        /* HERO SECTION */
-        .hero {
-            text-align: center;
-            padding: 50px 20px;
-            border-bottom: 1px solid #222;
-        }
-        .hero img { max-width: 450px; width: 100%; margin-bottom: 20px; }
-        .hero h1 { font-size: 3rem; margin: 0; letter-spacing: 4px; }
-        .hero p { color: var(--color-mostaza); font-size: 1.2rem; margin-top: 5px; }
+        .overlay { display: none; position: fixed; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 2500; }
 
-        .services-strip {
-            display: flex;
-            justify-content: center;
-            gap: 25px;
-            padding: 20px;
-            flex-wrap: wrap;
-            border-bottom: 1px solid #111;
-        }
-        .service-tag { color: #888; font-size: 0.75rem; text-transform: uppercase; display: flex; align-items: center; gap: 8px; }
-        .service-tag i { color: var(--color-mostaza); }
+        /* SECCIONES */
+        .content-section { display: none; padding: 20px; animation: fadeIn 0.5s; max-width: 1200px; margin: auto; }
+        .active { display: block; }
 
-        /* MODALES */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.9);
-            z-index: 3000;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .modal-box {
-            background: var(--color-negro);
-            width: 90%;
-            max-width: 700px;
-            border: 1px solid var(--color-mostaza);
-            border-radius: 15px;
+        .hero { text-align: center; padding: 40px 20px; }
+        .hero img { max-width: 300px; width: 100%; margin-bottom: 20px; }
+        
+        .premium-card {
+            background: var(--color-gris-oscuro);
+            border: 1px solid #222;
             padding: 30px;
-            position: relative;
-            box-shadow: 0 0 20px rgba(209, 180, 100, 0.2);
-            max-height: 90vh;
-            overflow-y: auto;
-        }
-
-        .modal-box h2 {
-            color: var(--color-mostaza);
-            text-align: center;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 25px;
-        }
-
-        .upload-area {
-            border: 1px dashed #444;
-            padding: 20px;
-            text-align: center;
             border-radius: 10px;
-            margin-bottom: 20px;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-        .upload-area:hover { border-color: var(--color-mostaza); }
-        .upload-area i { font-size: 1.5rem; color: var(--color-mostaza); margin-bottom: 10px; display: block; }
-        .upload-area p { font-size: 0.8rem; color: #777; margin: 0; }
-
-        .form-label {
-            display: block;
-            color: var(--color-mostaza);
-            font-size: 0.7rem;
-            font-weight: bold;
-            margin-bottom: 5px;
-            text-transform: uppercase;
+            margin: 20px auto;
+            line-height: 1.8;
+            text-align: justify;
         }
 
-        .form-input {
-            width: 100%;
-            background: var(--color-input);
-            border: 1px solid #333;
-            color: white;
-            padding: 12px;
-            border-radius: 8px;
-            margin-bottom: 15px;
-            box-sizing: border-box;
-            outline: none;
-        }
-
-        .grid-inputs {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-        }
-
-        .btn-confirm {
-            background: var(--color-mostaza);
-            color: black;
-            width: 100%;
-            padding: 15px;
-            border: none;
-            border-radius: 8px;
-            font-weight: bold;
-            text-transform: uppercase;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-
-        /* CATÁLOGO */
-        .container { padding: 50px 5%; }
-        .grid-autos { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .grid-publicaciones { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; padding: 20px 0; }
         .card { background: #0c0c0c; border: 1px solid #1a1a1a; border-radius: 12px; overflow: hidden; transition: 0.3s; }
         .card:hover { border-color: var(--color-mostaza); }
         .card img { width: 100%; height: 220px; object-fit: cover; border-bottom: 2px solid var(--color-mostaza); cursor: pointer; }
         .card-body { padding: 20px; }
 
-        /* GALERÍA DETALLES */
-        .detail-gallery { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 15px; margin-bottom: 15px; }
-        .detail-gallery img { height: 200px; border-radius: 8px; border: 1px solid #222; }
+        .btn-gold-outline {
+            background: transparent;
+            color: var(--color-mostaza);
+            border: 1px solid var(--color-mostaza);
+            padding: 8px 15px;
+            border-radius: 4px;
+            font-size: 11px;
+            cursor: pointer;
+            font-weight: bold;
+            text-transform: uppercase;
+            transition: 0.3s;
+        }
+        .btn-gold-outline:hover { background: var(--color-mostaza); color: black; }
+
+        /* MODALES */
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 4000; justify-content: center; align-items: center; }
+        
+        .modal-box {
+            background: var(--color-negro);
+            width: 90%; max-width: 700px;
+            border: 2px solid var(--color-mostaza);
+            border-radius: 20px;
+            padding: 40px;
+            position: relative;
+            box-shadow: 0 0 30px rgba(209, 180, 100, 0.1);
+            max-height: 90vh; overflow-y: auto;
+        }
+
+        .upload-area {
+            border: 1px dashed var(--color-mostaza); padding: 30px;
+            text-align: center; border-radius: 10px; margin-bottom: 25px;
+            cursor: pointer; background: #050505;
+        }
+
+        .form-label { display: block; color: var(--color-mostaza); font-size: 0.75rem; font-weight: bold; margin-bottom: 8px; text-transform: uppercase; }
+        
+        .form-input {
+            width: 100%; background: var(--color-input); border: 1px solid #333; color: white;
+            padding: 14px; border-radius: 8px; margin-bottom: 20px; box-sizing: border-box; outline: none;
+            font-family: Arial, sans-serif;
+        }
+
+        .grid-inputs { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+
+        .btn-confirm {
+            background: var(--color-mostaza); color: black; width: 100%;
+            padding: 18px; border: none; border-radius: 10px; font-weight: bold;
+            text-transform: uppercase; cursor: pointer; margin-top: 10px;
+            font-size: 1rem; letter-spacing: 1px;
+        }
+
+        /* CORRECCIÓN DE ESTRELLAS EN LÍNEA */
+        .star-rating { 
+            font-size: 2.5rem; 
+            color: #444; 
+            display: flex; 
+            justify-content: center; 
+            gap: 10px; 
+            margin-bottom: 25px; 
+        }
+        .star-rating i { cursor: pointer; transition: 0.2s; }
+        .star-rating i.active { color: var(--color-mostaza); }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     </style>
 </head>
 <body>
 
+    <div class="overlay" id="overlay" onclick="closeNav()"></div>
+
     <nav>
-        <div class="nav-logo">
-            <img src="https://raw.githubusercontent.com/MrJose21/cochesday/850bcbb51601be4a3a685ab1c271e31096074419/Brilla%20Auto%20Spa%20LOGO.png" alt="Logo">
+        <div class="nav-left">
+            <div class="menu-icon" onclick="openNav()"><i class="fas fa-bars"></i></div>
+            <div class="nav-logo-text">BRILLA AUTO SPA</div>
         </div>
-        <div class="nav-buttons">
+        <div class="nav-right">
+            <button id="btn-login" class="btn-gold-outline" onclick="document.getElementById('modal-login').style.display='flex'">OWNER</button>
+            <span id="user-greeting" style="display:none; color:var(--color-mostaza); font-weight:bold; font-size: 13px;"></span>
             <select id="language-selector" onchange="changeLanguage(this.value)">
                 <option value="es">ESP 🇪🇸</option>
                 <option value="en">ENG 🇺🇸</option>
             </select>
-
-            <span id="user-greeting"></span>
-            <button id="btn-pub" class="btn-gold-fill" onclick="document.getElementById('modal-pub').style.display='flex'">+ PUBLICAR</button>
-            <button id="btn-login" class="btn-gold-outline" onclick="document.getElementById('modal-login').style.display='flex'">OWNER</button>
         </div>
     </nav>
 
-    <div class="promo-bar">GET $15 OFF YOUR FIRST FULL DETAIL SERVICE!</div>
-
-    <div class="hero">
-        <img src="https://raw.githubusercontent.com/MrJose21/cochesday/1a562aa7f60a3f2cea6a5107fc5a288a2d6195d0/Brilla_Auto_Spa_LOGO-removebg-preview.png" alt="Logo Hero">
-        <h1 id="txt-hero-title">CATÁLOGO PREMIUM</h1>
-        <p id="txt-hero-subtitle">Exclusividad por Day Rojas</p>
+    <div id="mySidebar" class="sidebar">
+        <div class="sidebar-header">
+            <img src="https://raw.githubusercontent.com/MrJose21/cochesday/1a562aa7f60a3f2cea6a5107fc5a288a2d6195d0/Brilla_Auto_Spa_LOGO-removebg-preview.png" alt="Logo">
+        </div>
+        <a href="#" class="sidebar-link" id="link-home" onclick="showSection('home')"><i class="fas fa-home"></i> <span>PÁGINA PRINCIPAL</span></a>
+        <a href="#" class="sidebar-link" id="link-limpieza" onclick="showSection('limpieza')"><i class="fas fa-soap"></i> <span>LIMPIEZA & DETAILING</span></a>
+        <a href="#" class="sidebar-link" id="link-mecanica" onclick="showSection('mecanica')"><i class="fas fa-tools"></i> <span>MECÁNICA</span></a>
+        <a href="#" class="sidebar-link" id="link-coches" onclick="showSection('coches')"><i class="fas fa-car"></i> <span>COCHES EN VENTA</span>
+        <a href="#" class="sidebar-link" id="link-comunicacion" onclick="showSection('comunicacion')"><i class="fas fa-phone-alt"></i> <span>COMUNICACIÓN</span></a>
+        <a href="#" class="sidebar-link" id="link-reseñas" onclick="showSection('reseñas')"><i class="fas fa-star"></i> <span>RESEÑAS</span></a>
+        <a href="#" id="sidebar-pub" class="sidebar-link" style="display:none; color: var(--color-mostaza);" onclick="document.getElementById('modal-pub').style.display='flex'"><i class="fas fa-plus-circle"></i> <span id="txt-nueva-pub">NUEVA PUBLICACIÓN</span></a>
+</a>
     </div>
 
-    <div class="services-strip">
-        <div class="service-tag"><i class="fas fa-tools"></i> Light Mechanical</div>
-        <div class="service-tag"><i class="fas fa-broom"></i> Foam Wash</div>
-        <div class="service-tag"><i class="fas fa-car"></i> Premium Wash</div>
-        <div class="service-tag"><i class="fas fa-couch"></i> Full Interior</div>
-        <div class="service-tag"><i class="fas fa-magic"></i> Full Detailed</div>
-    </div>
+    <section id="home" class="content-section active">
+        <div class="hero">
+            <img src="https://raw.githubusercontent.com/MrJose21/cochesday/1a562aa7f60a3f2cea6a5107fc5a288a2d6195d0/Brilla_Auto_Spa_LOGO-removebg-preview.png" alt="Logo Hero">
+            <h1 id="hero-title">BRILLA AUTO SPA</h1>
+            <p id="hero-subtitle" style="color: var(--color-mostaza); letter-spacing: 2px;">CALIDAD Y PASIÓN EN CADA DETALLE</p>
+        </div>
+        <div class="premium-card">
+            <h3 id="history-title" style="color: var(--color-mostaza); text-align: center;">NUESTRA HISTORIA</h3>
+            <p id="history-text">Brilla Auto Spa fue fundado en 2025 bajo la visión de <b>Elvin Rojas García</b>. Con más de 10 años de trayectoria técnica en talleres profesionales de detallado, Elvin decidió crear un espacio donde la precisión y el cuidado personal son la prioridad absoluta. Originario de Honduras, su pasión por los vehículos se refleja en cada trabajo, desde una limpieza profunda de interiores hasta los recubrimientos cerámicos más avanzados.</p>
+        </div>
+    </section>
+    
+    <section id="coches" class="content-section">
+    <h2 id="title-coches" style="text-align: center; color: var(--color-mostaza); letter-spacing: 3px;">COCHES EN VENTA</h2>
+    <div id="lista-coches" class="grid-publicaciones"></div>
+</section>
 
-    <div class="container">
-        <h2 id="txt-avail-cars" style="text-align: center; color: var(--color-mostaza); letter-spacing: 3px; margin-bottom: 40px;">VEHÍCULOS DISPONIBLES</h2>
-        <div id="lista-autos" class="grid-autos"></div>
-    </div>
+    <section id="limpieza" class="content-section">
+        <h2 id="title-limpieza" style="text-align: center; color: var(--color-mostaza); letter-spacing: 3px;">CATÁLOGO DE TRABAJOS (DETAILING)</h2>
+        <div id="lista-limpieza" class="grid-publicaciones"></div>
+    </section>
+
+    <section id="mecanica" class="content-section">
+        <h2 id="title-mecanica" style="text-align: center; color: var(--color-mostaza); letter-spacing: 3px;">TRABAJOS DE MECÁNICA LIGERA</h2>
+        <div id="lista-mecanica" class="grid-publicaciones"></div>
+    </section>
+
+    <section id="comunicacion" class="content-section">
+        <div class="premium-card" style="text-align: center;">
+            <h2 id="contact-title" style="color: var(--color-mostaza);">¿CÓMO CONTACTARNOS?</h2>
+            <p id="contact-text">Atención personalizada en los siguientes idiomas:</p>
+            <p style="font-size: 1.5rem;"><b>ESPAÑOL | ENGLISH</b></p>
+            <a href="https://wa.me/15716600734" target="_blank" style="display:inline-block; background:#25d366; color:white; text-decoration:none; padding:15px 40px; border-radius:50px; font-weight:bold; margin-top:20px;">
+                <i class="fab fa-whatsapp"></i> <span id="btn-whatsapp">WHATSAPP DIRECTO</span>
+            </a>
+        </div>
+    </section>
+
+    <section id="reseñas" class="content-section">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 15px;">
+            <button class="btn-gold-outline" onclick="abrirModalReseñaCliente()">
+                <i class="fas fa-pen"></i> <span id="btn-dejar-resena">DEJAR UNA RESEÑA</span>
+            </button>
+            <h2 id="title-reseñas" style="color: var(--color-mostaza); margin: 0;">LO QUE DICEN NUESTROS CLIENTES</h2>
+            <div style="width: 150px;"></div>
+        </div>
+        <div id="lista-reseñas" class="grid-publicaciones"></div>
+    </section>
 
     <div id="modal-pub" class="modal">
-        <div class="modal-box">
+        <div class="modal-box animate__animated animate__zoomIn">
             <span onclick="this.parentElement.parentElement.style.display='none'" style="position:absolute; right:20px; top:15px; cursor:pointer; color:#555; font-size:25px;">&times;</span>
-            <h2>NUEVA PUBLICACIÓN</h2>
+            <h2 id="pub-header">NUEVA PUBLICACIÓN</h2>
             <div class="upload-area" onclick="document.getElementById('in-fotos').click()">
-                <i class="fas fa-cloud-upload-alt"></i>
-                <p id="label-fotos">Selecciona fotos del vehículo</p>
-                <input type="file" id="in-fotos" multiple accept="image/*" style="display:none;" onchange="actualizarLabel(this)">
+                <i class="fas fa-cloud-upload-alt" style="font-size: 2rem; color: var(--color-mostaza); margin-bottom: 10px; display: block;"></i>
+                <p id="label-fotos" style="color: #777; font-size: 0.8rem; margin: 0;">Selecciona fotos del vehículo</p>
+                <input type="file" id="in-fotos" multiple accept="image/*" style="display:none;" onchange="handleFiles(this)">
             </div>
-            <label class="form-label">Nombre del Vehículo</label>
+            <label class="form-label" id="lbl-seccion">SECCIÓN</label>
+            <select id="in-seccion" class="form-input" style="color: #888;">
+                <option value="limpieza">Limpieza & Detailing</option>
+                <option value="mecanica">Mecánica Ligera</option>
+                <option value="reseñas">Reseñas / Testimonios</option>
+                <option value="coches">Coches en Venta</option>
+            </select>
+            <label class="form-label" id="lbl-nombre">NOMBRE DEL VEHÍCULO / CLIENTE</label>
             <input type="text" id="in-titulo" class="form-input">
-            <label class="form-label">Descripción</label>
-            <textarea id="in-desc" class="form-input" rows="3"></textarea>
+            <label class="form-label" id="lbl-desc">DESCRIPCIÓN</label>
+            <textarea id="in-desc" class="form-input" rows="3" style="resize: none;"></textarea>
             <div class="grid-inputs">
-                <div><label class="form-label">Precio</label><input type="text" id="in-precio" class="form-input"></div>
-                <div><label class="form-label">Año</label><input type="text" id="in-anio" class="form-input"></div>
+                <div><label class="form-label" id="lbl-precio">PRECIO</label><input type="text" id="in-precio" class="form-input"></div>
+                <div><label class="form-label" id="lbl-anio">AÑO</label><input type="text" id="in-anio" class="form-input"></div>
             </div>
             <div class="grid-inputs">
-                <div><label class="form-label">Motor</label><input type="text" id="in-motor" class="form-input"></div>
-                <div><label class="form-label">Potencia</label><input type="text" id="in-potencia" class="form-input"></div>
+                <div><label class="form-label" id="lbl-motor">MOTOR</label><input type="text" id="in-motor" class="form-input"></div>
+                <div><label class="form-label" id="lbl-potencia">POTENCIA / CALIFICACIÓN</label><input type="text" id="in-potencia" class="form-input"></div>
             </div>
-            <button class="btn-confirm" onclick="guardarAuto()">CONFIRMAR Y PUBLICAR</button>
+            <button class="btn-confirm" id="btn-publicar-final" onclick="guardarPublicacion()">CONFIRMAR Y PUBLICAR</button>
         </div>
     </div>
 
-    <div id="modal-detalles" class="modal">
-        <div class="modal-box">
+    <div id="modal-resena-cliente" class="modal">
+        <div class="modal-box animate__animated animate__fadeInDown">
             <span onclick="this.parentElement.parentElement.style.display='none'" style="position:absolute; right:20px; top:15px; cursor:pointer; color:#555; font-size:25px;">&times;</span>
-            <div id="detalle-contenido"></div>
+            <h2 id="h2-nueva-resena" style="color: var(--color-mostaza); text-align: center;">TU OPINIÓN NOS IMPORTA</h2>
+            
+            <label class="form-label" id="lbl-nombre-cliente">TU NOMBRE</label>
+            <input type="text" id="cli-nombre" class="form-input" placeholder="Ej. Juan Pérez">
+
+            <label class="form-label" id="lbl-calificacion">CALIFICACIÓN</label>
+            <div id="star-rating" class="star-rating">
+                <i class="fas fa-star" data-value="1"></i>
+                <i class="fas fa-star" data-value="2"></i>
+                <i class="fas fa-star" data-value="3"></i>
+                <i class="fas fa-star" data-value="4"></i>
+                <i class="fas fa-star" data-value="5"></i>
+            </div>
+
+            <label class="form-label" id="lbl-servicio-desc">DESCRIPCIÓN DEL SERVICIO</label>
+            <textarea id="cli-desc" class="form-input" rows="4" style="resize: none;" placeholder="Cuéntanos tu experiencia..."></textarea>
+
+            <button class="btn-confirm" id="btn-enviar-resena" onclick="enviarReseñaCliente()">PUBLICAR RESEÑA</button>
         </div>
     </div>
 
     <div id="modal-login" class="modal">
         <div class="modal-box" style="max-width: 400px;">
-            <h2>ACCESO PANEL</h2>
+            <h2 style="color: var(--color-mostaza);">ADMIN ACCESS</h2>
             <input type="text" id="user" class="form-input" placeholder="USUARIO" style="text-align:center;">
             <input type="password" id="pass" class="form-input" placeholder="CONTRASEÑA" style="text-align:center;">
             <button class="btn-confirm" onclick="login()">ENTRAR</button>
-            <p onclick="document.getElementById('modal-login').style.display='none'" style="text-align:center; color:#444; font-size:0.8rem; cursor:pointer; margin-top:15px;">CANCELAR</p>
+            <p onclick="this.parentElement.parentElement.style.display='none'" style="text-align:center; color:#444; font-size:0.8rem; cursor:pointer; margin-top:15px;">CANCELAR</p>
         </div>
     </div>
 
-   <script type="module">
+    <div id="modal-detalles" class="modal">
+        <div class="modal-box">
+            <span onclick="this.parentElement.parentElement.style.display='none'" style="position:absolute; right:20px; top:15px; cursor:pointer; font-size:25px;">&times;</span>
+            <div id="detalle-contenido"></div>
+        </div>
+    </div>
+
+    <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
         import { getDatabase, ref, push, onValue, remove } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
 
@@ -302,61 +321,81 @@
             projectId: "brillaautospa",
             databaseURL: "https://brillaautospa-default-rtdb.firebaseio.com",
             storageBucket: "brillaautospa.firebasestorage.app",
-            messagingSenderId: "774015478340",
             appId: "1:774015478340:web:c096f36482374bd72c6a11"
         };
 
         const app = initializeApp(firebaseConfig);
         const db = getDatabase(app);
-        const autosRef = ref(db, 'autos');
+        
+        const refs = {
+            coches: ref(db, 'publicaciones/coches'),
+            limpieza: ref(db, 'publicaciones/limpieza'),
+            mecanica: ref(db, 'publicaciones/mecanica'),
+            reseñas: ref(db, 'publicaciones/reseñas')
+        };
 
         let esAdmin = false;
-        let currentData = null;
-        
-        const translations = {
+        let fotosTemporales = [];
+        let calificacionSeleccionada = 0;
+
+        const dic = {
             es: {
-                heroTitle: "CATÁLOGO PREMIUM",
-                heroSubtitle: "Exclusividad por Day Rojas",
-                availCars: "VEHÍCULOS DISPONIBLES",
-                btnDetails: "VER DETALLES",
-                btnContact: "CONTACTAR POR WHATSAPP",
-                labelYear: "Año",
-                labelEngine: "Motor",
-                labelPower: "Potencia",
-                deleteBtn: "ELIMINAR PUBLICACIÓN"
+                menu_home: "PÁGINA PRINCIPAL", menu_coc: "COCHES EN VENTA", menu_lim: "LIMPIEZA & DETAILING", menu_mec: "MECÁNICA", menu_com: "COMUNICACIÓN", menu_res: "RESEÑAS", menu_pub: "NUEVA PUBLICACIÓN",
+                hero_t: "BRILLA AUTO SPA", hero_s: "CALIDAD Y PASIÓN EN CADA DETALLE", hist_t: "NUESTRA HISTORIA", hist_p: "Brilla Auto Spa fue fundado en 2025 bajo la visión de Elvin Rojas García. Con más de 10 años de trayectoria técnica en talleres profesionales de detallado, Elvin decidió crear un espacio donde la precisión y el cuidado personal son la prioridad absoluta.",
+                t_coc: "COCHES EN VENTA", t_lim: "CATÁLOGO DE TRABAJOS (DETAILING)", t_mec: "TRABAJOS DE MECÁNICA LIGERA", t_res: "LO QUE DICEN NUESTROS CLIENTES",
+                c_t: "¿CÓMO CONTACTARNOS?", c_p: "Atención personalizada en los siguientes idiomas:", c_b: "WHATSAPP DIRECTO",
+                pub_h: "NUEVA PUBLICACIÓN", pub_f: "Selecciona fotos", pub_s: "SECCIÓN", pub_n: "NOMBRE VEHÍCULO", pub_d: "DESCRIPCIÓN", pub_pr: "PRECIO", pub_a: "AÑO", pub_m: "MOTOR", pub_po: "POTENCIA", pub_b: "CONFIRMAR",
+                btn_dejar_resena: "DEJAR UNA RESEÑA", h2_resena: "TU OPINIÓN NOS IMPORTA", lbl_tu_nombre: "TU NOMBRE", lbl_tu_cal: "CALIFICACIÓN", lbl_tu_desc: "DESCRIPCIÓN", btn_enviar: "PUBLICAR RESEÑA",
+                card_d: "DETALLES", card_e: "ELIMINAR", modal_p: "Precio", modal_a: "Año", modal_m: "Motor", modal_po: "Potencia", modal_c: "CONTACTAR"
             },
             en: {
-                heroTitle: "PREMIUM CATALOG",
-                heroSubtitle: "Exclusivity by Day Rojas",
-                availCars: "AVAILABLE VEHICLES",
-                btnDetails: "VIEW DETAILS",
-                btnContact: "CONTACT VIA WHATSAPP",
-                labelYear: "Year",
-                labelEngine: "Engine",
-                labelPower: "Power",
-                deleteBtn: "DELETE POST"
+                menu_home: "HOME PAGE", menu_coc: "CARS FOR SALE", menu_lim: "CLEANING & DETAILING", menu_mec: "MECHANICS", menu_com: "COMMUNICATION", menu_res: "REVIEWS", menu_pub: "NEW POST",
+                hero_t: "BRILLA AUTO SPA", hero_s: "QUALITY AND PASSION", hist_t: "OUR HISTORY", hist_p: "Brilla Auto Spa was founded in 2025 by Elvin Rojas García. With 10+ years experience, Elvin created a space where precision is the priority.",
+                t_coc: "CARS FOR SALE", t_lim: "JOB CATALOG", t_mec: "LIGHT MECHANICS", t_res: "WHAT CLIENTS SAY",
+                c_t: "HOW TO CONTACT US?", c_p: "Personalized attention in:", c_b: "DIRECT WHATSAPP",
+                pub_h: "NEW PUBLICATION", pub_f: "Select photos", pub_s: "SECTION", pub_n: "VEHICLE NAME", pub_d: "DESCRIPTION", pub_pr: "PRICE", pub_a: "YEAR", pub_m: "ENGINE", pub_po: "POWER", pub_b: "CONFIRM",
+                btn_dejar_resena: "LEAVE A REVIEW", h2_resena: "YOUR OPINION MATTERS", lbl_tu_nombre: "YOUR NAME", lbl_tu_cal: "RATING", lbl_tu_desc: "DESCRIPTION", btn_enviar: "POST REVIEW",
+                card_d: "DETAILS", card_e: "DELETE", modal_p: "Price", modal_a: "Year", modal_m: "Engine", modal_po: "Power", modal_c: "CONTACT"
             }
         };
 
         window.changeLanguage = (lang) => {
-            localStorage.setItem('selectedLang', lang);
-            aplicarTraduccion(lang);
-        };
-
-        function aplicarTraduccion(lang) {
-            const hTitle = document.getElementById('txt-hero-title');
-            const hSub = document.getElementById('txt-hero-subtitle');
-            const hAvail = document.getElementById('txt-avail-cars');
-            
-            if(hTitle) hTitle.innerText = translations[lang].heroTitle;
-            if(hSub) hSub.innerText = translations[lang].heroSubtitle;
-            if(hAvail) hAvail.innerText = translations[lang].availCars;
-            
-            renderAutos(currentData);
-        }
-
-        window.actualizarLabel = (input) => {
-            document.getElementById('label-fotos').innerText = input.files.length + " fotos seleccionadas";
+            const d = dic[lang];
+            document.querySelector('#link-coches span').innerText = d.menu_coc;
+            document.querySelector('#link-home span').innerText = d.menu_home;
+            document.querySelector('#link-limpieza span').innerText = d.menu_lim;
+            document.querySelector('#link-mecanica span').innerText = d.menu_mec;
+            document.querySelector('#link-comunicacion span').innerText = d.menu_com;
+            document.querySelector('#link-reseñas span').innerText = d.menu_res;
+            document.querySelector('#txt-nueva-pub').innerText = d.menu_pub;
+            document.getElementById('title-coches').innerText = d.t_coc;
+            document.getElementById('hero-title').innerText = d.hero_t;
+            document.getElementById('hero-subtitle').innerText = d.hero_s;
+            document.getElementById('history-title').innerText = d.hist_t;
+            document.getElementById('history-text').innerText = d.hist_p;
+            document.getElementById('title-limpieza').innerText = d.t_lim;
+            document.getElementById('title-mecanica').innerText = d.t_mec;
+            document.getElementById('title-reseñas').innerText = d.t_res;
+            document.getElementById('contact-title').innerText = d.c_t;
+            document.getElementById('contact-text').innerText = d.c_p;
+            document.getElementById('btn-whatsapp').innerText = d.c_b;
+            document.getElementById('pub-header').innerText = d.pub_h;
+            document.getElementById('label-fotos').innerText = d.pub_f;
+            document.getElementById('lbl-seccion').innerText = d.pub_s;
+            document.getElementById('lbl-nombre').innerText = d.pub_n;
+            document.getElementById('lbl-desc').innerText = d.pub_d;
+            document.getElementById('lbl-precio').innerText = d.pub_pr;
+            document.getElementById('lbl-anio').innerText = d.pub_a;
+            document.getElementById('lbl-motor').innerText = d.pub_m;
+            document.getElementById('lbl-potencia').innerText = d.pub_po;
+            document.getElementById('btn-publicar-final').innerText = d.pub_b;
+            document.getElementById('btn-dejar-resena').innerText = d.btn_dejar_resena;
+            document.getElementById('h2-nueva-resena').innerText = d.h2_resena;
+            document.getElementById('lbl-nombre-cliente').innerText = d.lbl_tu_nombre;
+            document.getElementById('lbl-calificacion').innerText = d.lbl_tu_cal;
+            document.getElementById('lbl-servicio-desc').innerText = d.lbl_tu_desc;
+            document.getElementById('btn-enviar-resena').innerText = d.btn_enviar;
+            renderAllContainers();
         };
 
         window.login = () => {
@@ -366,98 +405,175 @@
                 esAdmin = true;
                 document.getElementById('modal-login').style.display = 'none';
                 document.getElementById('btn-login').style.display = 'none';
-                document.getElementById('btn-pub').style.display = 'block';
-                document.getElementById('user-greeting').innerText = "DAY ROJAS";
-                document.getElementById('user-greeting').style.display = 'block';
-                renderAutos(currentData);
-            } else { alert("Datos incorrectos"); }
+                document.getElementById('user-greeting').innerText = "HOLA, DAY ROJAS";
+                document.getElementById('user-greeting').style.display = 'inline';
+                document.getElementById('sidebar-pub').style.display = 'flex';
+                renderAllContainers();
+            } else { alert("Acceso denegado"); }
         };
 
-        window.guardarAuto = async () => {
-            const files = document.getElementById('in-fotos').files;
-            if(files.length === 0) return alert("Sube fotos");
-            
+        window.handleFiles = async (input) => {
+            const files = input.files;
             const promesas = Array.from(files).map(f => new Promise(res => {
                 const r = new FileReader(); r.onload = e => res(e.target.result); r.readAsDataURL(f);
             }));
-            const fotosBase64 = await Promise.all(promesas);
+            fotosTemporales = await Promise.all(promesas);
+            document.getElementById('label-fotos').innerText = files.length + " fotos cargadas";
+        };
 
-            const nuevo = {
-                titulo: document.getElementById('in-titulo').value || 'Sin título',
+        window.guardarPublicacion = () => {
+            const seccion = document.getElementById('in-seccion').value;
+            const titulo = document.getElementById('in-titulo').value;
+            if(!titulo) return alert("Nombre obligatorio");
+            const nuevaPub = {
+                titulo: titulo,
                 desc: document.getElementById('in-desc').value || '',
-                precio: document.getElementById('in-precio').value || 'Consultar',
+                precio: document.getElementById('in-precio').value || '-',
                 anio: document.getElementById('in-anio').value || '-',
                 motor: document.getElementById('in-motor').value || '-',
                 potencia: document.getElementById('in-potencia').value || '-',
-                fotos: fotosBase64
+                fotos: fotosTemporales,
+                fecha: Date.now()
             };
-
-            push(autosRef, nuevo);
+            push(refs[seccion], nuevaPub);
             document.getElementById('modal-pub').style.display = 'none';
-            // Limpiar campos
-            document.getElementById('in-titulo').value = "";
-            document.getElementById('in-desc').value = "";
-            document.getElementById('label-fotos').innerText = "Selecciona fotos del vehículo";
+            fotosTemporales = [];
         };
 
-        onValue(autosRef, (snapshot) => {
-            currentData = snapshot.val();
-            renderAutos(currentData);
+        window.abrirModalReseñaCliente = () => {
+            document.getElementById('modal-resena-cliente').style.display = 'flex';
+            calificacionSeleccionada = 0;
+            actualizarEstrellas(0);
+            document.getElementById('cli-nombre').value = '';
+            document.getElementById('cli-desc').value = '';
+        };
+
+        // --- PARCHE DE ESTRELLAS (ILUMINACIÓN Y SELECCIÓN) ---
+        const estrellas = document.querySelectorAll('#star-rating i');
+        estrellas.forEach(star => {
+            // 1. Click para fijar la calificación
+            star.addEventListener('click', (e) => {
+                calificacionSeleccionada = e.target.getAttribute('data-value');
+                actualizarEstrellas(calificacionSeleccionada);
+            });
+            // 2. Mouseover para iluminar al pasar el puntero
+            star.addEventListener('mouseover', (e) => {
+                actualizarEstrellas(e.target.getAttribute('data-value'));
+            });
+            // 3. Mouseleave para volver a la calificación fijada
+            star.addEventListener('mouseleave', () => {
+                actualizarEstrellas(calificacionSeleccionada);
+            });
         });
 
-        function renderAutos(data) {
-            const lista = document.getElementById('lista-autos');
-            const lang = localStorage.getItem('selectedLang') || 'es';
-            lista.innerHTML = "";
+        // Función que aplica o quita la clase 'active' (el color dorado)
+        function actualizarEstrellas(valor) {
+            estrellas.forEach(s => {
+                s.classList.toggle('active', s.getAttribute('data-value') <= valor);
+            });
+        }
+
+        // --- FUNCIÓN PARA ENVIAR LA RESEÑA A FIREBASE ---
+        window.enviarReseñaCliente = () => {
+            const nombre = document.getElementById('cli-nombre').value;
+            const desc = document.getElementById('cli-desc').value;
             
+            if(!nombre || !desc || calificacionSeleccionada === 0) {
+                return alert("Por favor, escribe tu nombre, tu experiencia y selecciona las estrellas.");
+            }
+            
+            const nuevaReseña = {
+                titulo: nombre,
+                desc: desc,
+                potencia: calificacionSeleccionada + " ⭐", // Guardamos las estrellas en el campo potencia
+                fecha: Date.now()
+            };
+
+            push(refs.reseñas, nuevaReseña);
+            alert("¡Gracias por tu reseña!");
+            document.getElementById('modal-resena-cliente').style.display = 'none';
+        };
+
+        const catalogos = { coches: null, limpieza: null, mecanica: null, reseñas: null };
+        Object.keys(refs).forEach(key => {
+            onValue(refs[key], (snapshot) => {
+                catalogos[key] = snapshot.val();
+                renderContainer(key, catalogos[key]);
+            });
+        });
+
+        function renderAllContainers() { Object.keys(catalogos).forEach(key => renderContainer(key, catalogos[key])); }
+
+        function renderContainer(seccion, data) {
+            const container = document.getElementById(`lista-${seccion}`);
+            if(!container) return;
+            container.innerHTML = "";
+            const d = dic[document.getElementById('language-selector').value];
+
             if (data) {
-                Object.keys(data).forEach(key => {
-                    const a = data[key];
-                    lista.innerHTML += `
-                        <div class="card animate__animated animate__fadeIn">
-                            <img src="${a.fotos[0]}" onclick="verDetalles('${key}')">
-                            <div class="card-body">
-                                <h3 style="color:var(--color-mostaza); margin:0;">${a.titulo}</h3>
-                                <p style="font-size:0.8rem; color:#666;">${a.motor} | ${a.anio}</p>
-                                <div style="display:flex; justify-content:space-between; align-items:center; margin-top:15px;">
-                                    <span style="font-weight:bold; color:white;">${a.precio}</span>
-                                    <button class="btn-gold-outline" onclick="verDetalles('${key}')" style="font-size:9px;">${translations[lang].btnDetails}</button>
+                const items = Object.keys(data).map(k => ({ id: k, ...data[k] })).sort((a,b) => b.fecha - a.fecha);
+                items.forEach(item => {
+                    if(seccion === 'reseñas') {
+                        container.innerHTML += `
+                            <div class="card animate__animated animate__fadeIn premium-card" style="margin:0;">
+                                <div style="color:var(--color-mostaza); margin-bottom:10px;">${item.potencia || ''}</div>
+                                <p style="font-style: italic; color: #ccc;">"${item.desc}"</p>
+                                <p style="text-align: right; color: var(--color-mostaza); font-weight:bold; margin:0;">- ${item.titulo}</p>
+                                ${esAdmin ? `<button class="btn-gold-outline" style="background:#ff4444; color:white; border:none; margin-top:15px; width:100%;" onclick="eliminarPub('reseñas', '${item.id}')">${d.card_e}</button>` : ''}
+                            </div>`;
+                    } else {
+                        const img = item.fotos ? item.fotos[0] : 'https://via.placeholder.com/300x200?text=No+Image';
+                        container.innerHTML += `
+                            <div class="card animate__animated animate__fadeIn">
+                                <img src="${img}" onclick="verDetalles('${seccion}', '${item.id}')">
+                                <div class="card-body">
+                                    <h3 style="color:var(--color-mostaza); margin:0; text-transform: uppercase;">${item.titulo}</h3>
+                                    <p style="font-size:0.8rem; color:#666;">${item.motor} | ${item.anio}</p>
+                                    <div style="display:flex; justify-content:space-between; align-items:center; margin-top: 10px;">
+                                        <span style="font-weight:bold; color:white; font-size: 1.1rem;">${item.precio}</span>
+                                        <button class="btn-gold-outline" onclick="verDetalles('${seccion}', '${item.id}')">${d.card_d}</button>
+                                    </div>
+                                    ${esAdmin ? `<button class="btn-gold-outline" style="background:#ff4444; color:white; border:none; margin-top:10px; width:100%;" onclick="eliminarPub('${seccion}', '${item.id}')">${d.card_e}</button>` : ''}
                                 </div>
-                                ${esAdmin ? `<button onclick="borrar('${key}')" style="background:#ff4444; color:white; border:none; margin-top:10px; width:100%; padding:8px; border-radius:4px; cursor:pointer; font-size:10px; font-weight:bold;">${translations[lang].deleteBtn}</button>` : ''}
-                            </div>
-                        </div>
-                    `;
+                            </div>`;
+                    }
                 });
             }
         }
 
-        window.verDetalles = (key) => {
-            const auto = currentData[key];
-            const lang = localStorage.getItem('selectedLang') || 'es';
-            const contenido = document.getElementById('detalle-contenido');
-            contenido.innerHTML = `
-                <h2 style="color:var(--color-mostaza);">${auto.titulo}</h2>
-                <div class="detail-gallery">
-                    ${auto.fotos.map(f => `<img src="${f}">`).join('')}
+        window.verDetalles = (seccion, id) => {
+            const item = catalogos[seccion][id];
+            const d = dic[document.getElementById('language-selector').value];
+            document.getElementById('detalle-contenido').innerHTML = `
+                <h2 style="color:var(--color-mostaza); text-transform: uppercase;">${item.titulo}</h2>
+                <div style="display:flex; gap:10px; overflow-x:auto; padding-bottom:15px;">
+                    ${(item.fotos || []).map(f => `<img src="${f}" style="height:150px; border-radius:8px; border:1px solid var(--color-mostaza);">`).join('')}
                 </div>
-                <p style="color:#ccc; line-height:1.5;">${auto.desc}</p>
-                <div style="background:#111; padding:20px; border-radius:10px; display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:20px;">
-                    <p><b>${translations[lang].labelYear}:</b> ${auto.anio}</p>
-                    <p><b>${translations[lang].labelEngine}:</b> ${auto.motor}</p>
-                    <p><b>${translations[lang].labelPower}:</b> ${auto.potencia}</p>
-                    <p style="color:var(--color-mostaza); font-size:1.2rem;"><b>${auto.precio}</b></p>
+                <p style="color:#ccc; line-height:1.6;">${item.desc}</p>
+                <div style="background:#111; padding:15px; border-radius:8px; display:grid; grid-template-columns:1fr 1fr; gap:10px; border: 1px solid #222;">
+                    <p><b>${d.modal_a}:</b> ${item.anio}</p><p><b>${d.modal_m}:</b> ${item.motor}</p>
+                    <p><b>${d.modal_po}:</b> ${item.potencia}</p><p style="color:var(--color-mostaza); font-weight:bold;">${item.precio}</p>
                 </div>
-                <a href="https://wa.me/15716600734" target="_blank" style="display:block; text-align:center; background:#25d366; color:white; text-decoration:none; padding:15px; border-radius:8px; margin-top:20px; font-weight:bold;">${translations[lang].btnContact}</a>
-            `;
+                <a href="https://wa.me/15716600734" target="_blank" style="display:block; text-align:center; background:#25d366; color:white; text-decoration:none; padding:15px; border-radius:8px; margin-top:20px; font-weight:bold;">
+                    <i class="fab fa-whatsapp"></i> ${d.modal_c}
+                </a>`;
             document.getElementById('modal-detalles').style.display = 'flex';
         };
 
-        window.borrar = (key) => {
-            if(confirm("¿Seguro que deseas eliminar esta publicación?")) remove(ref(db, 'autos/' + key));
+        window.eliminarPub = (seccion, id) => {
+            if(confirm("¿Eliminar publicación?")) remove(ref(db, `publicaciones/${seccion}/${id}`));
         };
+    </script>
 
-        // Al cargar, aplicar idioma guardado
-        aplicarTraduccion(localStorage.getItem('selectedLang') || 'es');
+    <script>
+        function openNav() { document.getElementById("mySidebar").style.width = "300px"; document.getElementById("overlay").style.display = "block"; }
+        function closeNav() { document.getElementById("mySidebar").style.width = "0"; document.getElementById("overlay").style.display = "none"; }
+        function showSection(id) {
+            document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+            closeNav();
+            window.scrollTo(0,0);
+        }
     </script>
 </body>
 </html>
